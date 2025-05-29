@@ -1,0 +1,5 @@
+@mixin shadow ($shadow-color) {
+    -webkit-box-shadow: 7px 7px 5px -1px $shadow-color;
+    -moz-box-shadow: 7px 7px 5px -1px $shadow-color;
+    box-shadow: 7px 7px 5px -1px $shadow-color;
+}
