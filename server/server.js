@@ -35,6 +35,9 @@ app.get('/', (req, res) => {
 app.get('/ready', (req, res) => {
   res.send('Server Ready!');
 });
+const userRoutes = require('./routes/users.routes');
+
+app.use('/users', userRoutes);
 
 app.listen(port, () => {
   console.log(`Servidor corriendo en http://localhost:${port}`);
