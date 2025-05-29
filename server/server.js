@@ -14,7 +14,8 @@ app.use(cors({
   origin: [
     "http://localhost:5173",
     "http://localhost:80",
-    "http://localhost"
+    "http://localhost",
+    "https://deveraai.netlify.app/"
   ],
   credentials: true
 }));
