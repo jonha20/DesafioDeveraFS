@@ -3,7 +3,7 @@ const app = express(); // Inciializar servidor con express
 const port = 3000; // Puerto a usar por el servidor
 const morgan = require('morgan');
 const path = require('path');
-const cookieParser = require('cookie-parser');
+const cookieParser = require("cookie-parser");
 const cors = require('cors');
 app.use(express.json());
 

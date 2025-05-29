@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { register, login, logout } = require('../controllers/users.controllers');
+const { register, login, logout, refreshToken } = require('../controllers/users.controllers');
 //const auth = require("../middlewares/auth.middleware");
 
 
@@ -19,6 +19,10 @@ router.post("/login", login);
 
 // Cerrar sesión
 router.post("/logout", logout);
+
+// Refrescar token
+
+router.post("/refresh-token", refreshToken);
 
 // // Cambiar foto de perfil
 // router.put('/photo/:id', upload.single('image'), Userpgadmin.changePhoto);

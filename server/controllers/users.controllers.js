@@ -47,16 +47,26 @@ async function login(req, res) {
     await client.query("UPDATE users SET logged = true WHERE id = $1", [
       user.id,
     ]);
-    const token = jwt.sign(
-      {
-        id: user.id,
-        email: user.email,
-        logged: user.logged,
-        name: user.name,
-      },
-      process.env.JWT_SECRET,
-      { expiresIn: "1h" }
-    );
+const token = jwt.sign(
+  {
+    id: user.id,
+    email: user.email,
+    logged: user.logged,
+    name: user.name,
+  },
+  process.env.JWT_SECRET,
+  { expiresIn: "1h" }
+);
+
+const refreshToken = jwt.sign(
+  {
+    id: user.id,
+    email: user.email,
+    name: user.name,
+  },
+  process.env.JWT_REFRESH_SECRET,
+  { expiresIn: "7d" }
+);
 
     res.status(200).set("Authorization", `Bearer ${token}`);
 
@@ -66,16 +76,23 @@ async function login(req, res) {
     const isProduction = process.env.NODE_ENV === "production";
 
     res
-      .cookie("access_token", token, {
+  .cookie("access_token", token, {
         httpOnly: false,
         secure: isProduction, // true en prod (HTTPS), false en dev (HTTP)
         sameSite: isProduction ? "none" : "lax", // none para prod, lax para dev
         maxAge: 3600000,
         domain: isProduction ? "ringtomic.onrender.com" : undefined, // solo en prod
       })
-      .status(200)
-      .json({ token, msg: "Login correcto" })
-      .send();
+  .cookie("refresh_token", refreshToken, {
+  httpOnly: false,
+  secure: isProduction,
+  sameSite: isProduction ? "none" : "lax",
+  maxAge: 7 * 24 * 60 * 60 * 1000,
+  domain: isProduction ? "ringtomic.onrender.com" : undefined,
+})
+  .status(200)
+  .json({ token: token, msg: "Login correcto" })
+  .send();
   } catch (error) {
     res.status(500).json({ message: "Error en el inicio de sesión" });
   } finally {
@@ -113,4 +130,22 @@ async function logout(req, res) {
   }
 }
 
-module.exports = { register, login, logout };
+async function refreshToken(req, res) {
+  const refreshToken = req.cookies.refresh_token;
+  if (!refreshToken) {
+    return res.status(401).json({ message: "No refresh token" });
+  }
+  try {
+    const payload = jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET);
+    const newAccessToken = jwt.sign(
+      { id: payload.id, email: payload.email, name: payload.name },
+      process.env.JWT_SECRET,
+      { expiresIn: "1h" }
+    );
+    res.status(200).json({ token: newAccessToken });
+  } catch (error) {
+    res.status(403).json({ message: "Refresh token inválido" });
+  }
+}
+
+module.exports = { register, login, logout, refreshToken };
