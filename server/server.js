@@ -35,11 +35,10 @@ app.get('/ready', (req, res) => {
   res.send('Server Ready!');
 });
 const userRoutes = require('./routes/users.routes');
+const tableRoutes = require('./routes/productos_impacto.routes');
 
 app.use('/users', userRoutes);
-
-const tableRoutes = require('./routes/table.routes');
-app.use('/table', tableRoutes);
+app.use('/productos_impacto', tableRoutes);
 
 app.listen(port, () => {
   console.log(`Servidor corriendo en http://localhost:${port}`);
