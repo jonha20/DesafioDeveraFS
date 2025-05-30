@@ -31,6 +31,7 @@
     align-items: center;
     gap: 0.5rem;
     position: relative;
+    margin-right: 40px;
   }
 
   &__menu-trigger {
@@ -53,23 +54,11 @@
       object-fit: cover;
       border: 2px solid #e0e0e0;
     }
-    .header__burger {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 3px;
-      width: 24px;
-      height: 24px;
-      span {
-        display: block;
-        height: 3px;
-        width: 100%;
-        background: #222;
-        border-radius: 2px;
-        transition: 0.2s;
-      }
-    }
+    
   }
+.header__burger {
+  display: none; // Oculto en mobile
+}
 
   // Menú hamburguesa (Material UI Menu)
   .MuiMenu-paper {
@@ -115,7 +104,12 @@
     }
   }
 }
-
+.header__username--desktop {
+  display: none;
+}
+.header__nav {
+  display: none; // Oculto en mobile
+}
 // Desktop layout
 @media (min-width: 900px) {
   .header {
@@ -123,29 +117,29 @@
     &__left {
       flex: 0 0 auto;
     }
-    &__nav {
+   .header__nav {
+    display: flex;
+    flex: 1 1 auto;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem;
+    .header__nav-link {
       display: flex;
-      flex: 1 1 auto;
-      justify-content: center;
       align-items: center;
-      gap: 2.5rem;
-      .header__nav-link {
-        display: flex;
-        align-items: center;
-        gap: 0.4rem;
-        font-size: 1.1rem;
-        color: #bdbdbd;
-        text-decoration: none;
-        font-weight: 500;
-        &--active {
-          color: #25a488;
-          font-weight: 700;
-        }
-        .header__icon {
-          font-size: 1.2rem;
-        }
+      gap: 0.4rem;
+      font-size: 1.1rem;
+      color: #bdbdbd;
+      text-decoration: none;
+      font-weight: 500;
+      &--active {
+        color: #25a488;
+        font-weight: 700;
+      }
+      .header__icon {
+        font-size: 1.2rem;
       }
     }
+  }
     &__right {
       flex: 0 0 auto;
       gap: 1.3rem;
@@ -154,5 +148,20 @@
     &__menu-trigger {
       display: flex;
     }
+  }
+  .header__username--desktop {
+    display: inline-block;
+    max-width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-left: 0.5rem;
+    font-size: 1rem;
+    color: #222;
+    font-weight: 500;
+    vertical-align: middle;
+  }
+  .header__menu-links{
+    display: none;
   }
 }

@@ -36,7 +36,7 @@ const location = useLocation();
     } catch (error) {
       console.log(error.message);
     }
-    handleClose();
+    handleMenuClose();
   };
 
   return (
@@ -55,32 +55,48 @@ const location = useLocation();
     </Link>
   </nav>
  <div className="header__right">
-  <button className="header__menu-trigger" onClick={handleMenuOpen}>
-    <img
-      src={user.image || "/default-avatar.png"}
-      alt={user.name}
-      className="header__avatar"
-    />
-    <div className="header__burger">
-      <span />
-      <span />
-      <span />
-    </div>
-  </button>
+  <span className="header__username header__username--desktop">{user.name}</span>
+ <button className="header__menu-trigger" onClick={handleMenuOpen}>
+  <img
+    src={user.image || "/default-avatar.png"}
+    alt={user.name}
+    className="header__avatar"
+  />
+  <div className="header__burger">
+    <span />
+    <span />
+    <span />
+  </div>
+  
+</button>
   <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleMenuClose}>
-    <div className="header__menu-top">
-      <img
-        src={user.image || "/default-avatar.png"}
-        alt={user.name}
-        className="header__avatar"
-      />
-    </div>
-    <div className="header__languages">
-      <LenguagePicker />
-      {/* o dos botones de idioma */}
-    </div>
-    <MenuItem onClick={logout} className="header__logout">Logout</MenuItem>
-  </Menu>
+  <div className="header__menu-links">
+    <MenuItem
+      component={Link}
+      to="/"
+      onClick={handleMenuClose}
+      selected={location.pathname === "/"}
+    >
+      <span className="header__icon">&#8962;</span>
+      <span>{t("Inicio")}</span>
+    </MenuItem>
+    <MenuItem
+      component={Link}
+      to="/onboarding"
+      onClick={handleMenuClose}
+      selected={location.pathname === "/onboarding"}
+    >
+      <span className="header__icon">&#128172;</span>
+      <span>{t("Onboarding")}</span>
+    </MenuItem>
+  </div>
+  <div className="header__languages">
+    <LenguagePicker />
+  </div>
+  <MenuItem onClick={logout} className="header__logout">
+    Logout
+  </MenuItem>
+</Menu>
 </div>
 </header>
   );
