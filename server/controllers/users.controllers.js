@@ -143,9 +143,7 @@ async function login(req, res) {
       process.env.JWT_REFRESH_SECRET,
       { expiresIn: "7d" }
     );
-    res.status(200).set("Authorization", `Bearer ${token}`);
 
-    const isSecure = req.secure || req.headers["x-forwarded-proto"] === "https"; // Verifica si la conexión es segura (HTTPS)
 
     const isProduction = process.env.NODE_ENV === "production";
 
@@ -159,6 +157,7 @@ async function login(req, res) {
       .status(200)
       .json({ token, msg: "Login correcto" });
   } catch (error) {
+     console.error("Error en login:", error); // <-- Agrega esto
     res.status(500).json({ message: "Error en el inicio de sesión" });
   } finally {
     if (client) client.release();
