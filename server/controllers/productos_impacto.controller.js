@@ -1,4 +1,4 @@
-const querieProduct = require("../models/tabla.model");
+const querieProduct = require("../models/productos_impacto.model");
 
 const getAllProducts = async (req, res) => {
   try {

@@ -1,5 +1,5 @@
 const pool = require("../config/sqlConfig");
-const queries = require("../utils/queries.table"); // Queries SQL
+const queries = require("../utils/queries"); // Queries SQL
 
 const getAllProducts = async () => {
     let client, result;
