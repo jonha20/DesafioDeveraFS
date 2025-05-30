@@ -37,7 +37,7 @@ const SignUp = () => {
     try {
       const request = await axios.post(
        "https://desafiodeverafs.onrender.com/users/register",
-         //"http://localhost:3000/users/register",
+       //  "http://localhost:3000/users/register",
         { name, email, password },
         { withCredentials: true }
       );
