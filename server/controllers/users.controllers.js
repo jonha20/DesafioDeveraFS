@@ -152,10 +152,9 @@ async function login(req, res) {
     res
       .cookie("access_token", token, {
         httpOnly: false,
-        secure: isProduction, // true en prod (HTTPS), false en dev (HTTP)
-        sameSite: isProduction ? "none" : "lax", // none para prod, lax para dev
+        secure: isProduction, // true en producción (Render), false en local
+        sameSite: isProduction ? "none" : "lax", // "none" para cross-site, "lax" en local
         maxAge: 3600000,
-        domain: isProduction ? "desafiodeverafs.onrender.com" : undefined, // solo en prod
       })
       .status(200)
       .json({ token, msg: "Login correcto" });
