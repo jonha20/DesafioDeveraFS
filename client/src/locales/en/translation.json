@@ -7,6 +7,22 @@
     "Archivos": "Files",
     "Informacion": "General information"
   },
+  "Filter":{
+    "show": "Show",
+    "entries": "entries",
+    "SearchPlaceholder": "Search name, email, or etc.",
+    "export": "Export to CSV"
+  },
+  "TableTitles": {
+    "Producto": "Product",
+    "Huella de carbono": "Carbon footprint",
+    "Diferncia huella": "Footprint difference",
+    "Score": "Score",
+    "Status": "Status",
+    "Ver" : "View",
+    "Descargar": "Download",
+    "Archivos": "Files"
+  },
   "form": {
     "titulo": "Devera: Company Information",
     "intro": "Answer this questionnaire so we can assess your company’s sustainability policies. Based on the information provided and the carbon footprint we detect automatically, we will assign a sustainability score to your products.",
@@ -47,4 +63,5 @@
       "Otro": "Other"
     }
   }
+
 }

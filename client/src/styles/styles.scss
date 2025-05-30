@@ -6,4 +6,7 @@
 @use './utils/variables.scss';
 @use './utils/mixins.scss';
 @use './components/Form';
-
+@use './components/NavProductos';
+@use './components/Filters';
+@use './components/ProductsTable';
+@use './components/ResultsContainer';

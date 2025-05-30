@@ -9,6 +9,7 @@ import SignUp from "./Pages/SignUp/SignUp";
 import Form from './Pages/Form/Form';
 import { UserContext } from "./context/userContext";
 import {jwtDecode} from "jwt-decode";
+import Home from "./components/Main/ResultsContainer/ResultsContainer";
 import axios from "axios";
 import "./i18n";
 import "normalize.css";
@@ -72,7 +73,8 @@ useEffect(() => {
         <Route path="/login" element={<LogIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/" element={<Main />} />
-            <Route path="/form" element={<Form />} />
+        <Route path="/form" element={<Form />} />
+        <Route path="/home" element={<Home />} />
       </Routes>
       {!hideHeader && <Footer />}
 

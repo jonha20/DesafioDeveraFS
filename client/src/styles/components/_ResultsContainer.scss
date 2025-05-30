@@ -1,0 +1,16 @@
+td{
+  text-align: center;
+}
+.results-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+table {
+  width: 95%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}

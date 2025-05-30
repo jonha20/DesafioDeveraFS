@@ -7,6 +7,22 @@
     "Archivos": "Archivos",
     "Informacion": "Información general"
   },
+  "Filter":{
+    "show": "Mostrar",
+    "entries": "entradas",
+    "SearchPlaceholder": "Buscar por nombre, correo electrónico, etc.",
+    "export": "Exportar listado CSV"
+  },
+  "TableTitles":{
+    "Producto": "Producto",
+    "Huella de carbono": "Huella de carbono",
+    "Diferncia huella": "Diferencia huella",
+    "Score": "Puntuación",
+    "Status": "Estado",
+    "Ver" : "Ver",
+    "Descargar": "Descargar",
+    "Archivos": "Archivos"
+  },
   "form": {
     "titulo": "Devera: Información empresa",
     "intro": "Contesta este cuestionario para que podamos evaluar las políticas de sostenibilidad de tu empresa. En base a la información aportada y a la huella de carbono que detectamos automáticamente, podremos asignar un score de sostenibilidad a tus productos.",

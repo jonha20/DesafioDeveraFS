@@ -45,7 +45,7 @@ const location = useLocation();
     <img src="/devera.png" alt="devera logo" className="header__logo" />
   </div>
   <nav className="header__nav">
-    <Link to="/" className={`header__nav-link${location.pathname === "/" ? " header__nav-link--active" : ""}`}>
+    <Link to="/Home" className={`header__nav-link${location.pathname === "/" ? " header__nav-link--active" : ""}`}>
       <span className="header__icon">&#8962;</span>
       <span>{t("Inicio")}</span>
     </Link>
@@ -73,7 +73,7 @@ const location = useLocation();
   <div className="header__menu-links">
     <MenuItem
       component={Link}
-      to="/"
+      to="/Home"
       onClick={handleMenuClose}
       selected={location.pathname === "/"}
     >
