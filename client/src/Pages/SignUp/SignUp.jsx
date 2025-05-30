@@ -16,7 +16,7 @@ const SignUp = () => {
     // Validación manual antes de enviar
     const emailValidation = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const passwordValidation =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{9,}$/;
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!"#$%&'()*+,\-./:;<=>@[\\\]^_`{|}~]).{8,}$/;
 
     let regex = true;
 
@@ -36,8 +36,8 @@ const SignUp = () => {
     if (!regex) return; // Bloquea el submit si hay errores
     try {
       const request = await axios.post(
-       //"https://ringtomic.onrender.com/users/register",
-         "http://localhost:3000/users/register",
+       "https://desafiodeverafs.onrender.com/users/register",
+         //"http://localhost:3000/users/register",
         { name, email, password },
         { withCredentials: true }
       );
