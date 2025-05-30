@@ -155,7 +155,7 @@ async function login(req, res) {
         secure: isProduction, // true en prod (HTTPS), false en dev (HTTP)
         sameSite: isProduction ? "none" : "lax", // none para prod, lax para dev
         maxAge: 3600000,
-        domain: isProduction ? "ringtomic.onrender.com" : undefined, // solo en prod
+        domain: isProduction ? "desafiodeverafs.onrender.com" : undefined, // solo en prod
       })
       .status(200)
       .json({ token, msg: "Login correcto" });
