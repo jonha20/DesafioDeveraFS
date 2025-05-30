@@ -6,6 +6,7 @@ const path = require('path');
 const cookieParser = require("cookie-parser");
 const cors = require('cors');
 app.use(express.json());
+const helmet = require('helmet'); // Importamos helmet para seguridad
 
 
 app.set('trust proxy', 1); // Habilitar el proxy para HTTPS
@@ -19,7 +20,7 @@ app.use(cors({
   ],
   credentials: true
 }));
-
+app.use(helmet());
 app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
