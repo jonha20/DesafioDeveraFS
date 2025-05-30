@@ -38,6 +38,9 @@ const userRoutes = require('./routes/users.routes');
 
 app.use('/users', userRoutes);
 
+const tableRoutes = require('./routes/table.routes');
+app.use('/table', tableRoutes);
+
 app.listen(port, () => {
   console.log(`Servidor corriendo en http://localhost:${port}`);
 });
