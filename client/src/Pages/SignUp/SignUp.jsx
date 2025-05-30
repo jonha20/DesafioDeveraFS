@@ -67,7 +67,7 @@ const SignUp = () => {
           autoComplete="on"
         >
           <div className="signup__field">
-            <label htmlFor="username">Username</label>
+            <label htmlFor="username">Full Name</label>
             <input
               type="text"
               id="username"
