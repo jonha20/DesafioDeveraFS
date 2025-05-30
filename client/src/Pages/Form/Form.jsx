@@ -127,7 +127,7 @@ const Form = () => {
 
   return (
     <form className="devera-form" onSubmit={handleSubmit} noValidate>
-      <img src="src/assets/images/logo-devera.png" className="logo-devera" alt="Logo Devera" />
+      <img src="/devera_ai_logo.png" className="logo-devera" alt="Logo Devera" />
       <h2>{t("form.titulo")}</h2>
       <p className="intro-text">{t("form.intro")}</p>
       <hr />
