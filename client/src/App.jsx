@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import LogIn from "./Pages/LogIn/LogIn";
 import SignUp from "./Pages/SignUp/SignUp";
+import Form from './Pages/Form/Form';
 import axios from 'axios';
 import "normalize.css";
 function App() {
@@ -35,6 +36,7 @@ function useRefreshToken() {
     <Routes>
           <Route path="/login" element={<LogIn  />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/form" element={<Form />} />
         </Routes>
 
    </>
