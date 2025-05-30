@@ -22,6 +22,45 @@
     "Ver" : "Ver",
     "Descargar": "Descargar",
     "Archivos": "Archivos"
-
+  },
+  "form": {
+    "titulo": "Devera: Información empresa",
+    "intro": "Contesta este cuestionario para que podamos evaluar las políticas de sostenibilidad de tu empresa. En base a la información aportada y a la huella de carbono que detectamos automáticamente, podremos asignar un score de sostenibilidad a tus productos.",
+    "nombreEmpresa": "Nombre de tu empresa *",
+    "empleados": "¿Cuántos empleados tiene la empresa? *",
+    "certificados": "¿Tiene tu empresa algún certificado? ¿Cuál?",
+    "certificadosDescripcion": "Indica todos los certificados que tiene tu empresa y los de los productos que comercializas, así como de transparencia de la cadena de suministro (Bcorp, Fair Trade, ISO14001, Cradle to Cradle, FSC, etc.)",
+    "memoria": "¿Tiene tu empresa memoria de sostenibilidad?",
+    "energia": "¿En qué porcentaje la energía de tu empresa y tus fábricas proviene de fuentes renovables?",
+    "carbono": "¿Se miden las emisiones de carbono en la empresa o se tiene un plan para reducir la huella de carbono?",
+    "materiaVirgen": "¿Qué porcentaje de materia virgen no renovable usan vuestros productos de media?",
+    "proveedores": "¿Qué porcentaje de vuestros proveedores se encuentra a una distancia inferior a 400 km?",
+    "proyectosSociales": "¿Realizáis o apoyáis proyectos sociales?",
+    "criticas": "¿Existen noticias públicas criticando aspectos de sostenibilidad de vuestra empresa?",
+    "igualdad": "¿Existe un plan de igualdad implementado?",
+    "brechaSalarial": "¿Medís la brecha salarial por género?",
+    "conciliacion": "¿Tenéis medidas de conciliación publicadas?",
+    "enps": "¿Medís el eNPS (satisfacción del empleado)?",
+    "otraInfo": "¿Hay alguna otra información relevante?",
+    "enviar": "Enviar",
+    "seleccione": "Seleccione una opción",
+    "enviado": "Formulario enviado correctamente",
+    "alertaRadios": "Selecciona los campos obligatorios",
+    "opciones": {
+      "Si": "Sí",
+      "No": "No",
+      "NoLoSe": "No lo sé",
+      "0%": "0%",
+      "Menos25": "Menos del 25%",
+      "25_50": "Entre un 25 y un 50%",
+      "50_75": "Entre un 50 y un 75%",
+      "75_99": "Entre un 75 y un 99%",
+      "100%": "100%",
+      "ConPlan": "Se están midiendo y hay un plan de reducción",
+      "SinPlan": "Se están midiendo pero no hay plan de reducción",
+      "Proceso": "Se está en proceso de medición",
+      "SinMedicion": "No hay plan de medición",
+      "Otro": "Otro"
+    }
   }
 }
