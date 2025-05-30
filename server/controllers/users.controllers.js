@@ -134,22 +134,37 @@ async function login(req, res) {
       process.env.JWT_SECRET,
       { expiresIn: "1h" }
     );
-
+ const refreshToken = jwt.sign(
+      {
+        id: user.id,
+        email: user.email,
+        name: user.name,
+      },
+      process.env.JWT_REFRESH_SECRET,
+      { expiresIn: "7d" }
+    );
     res.status(200).set("Authorization", `Bearer ${token}`);
 
     const isSecure = req.secure || req.headers["x-forwarded-proto"] === "https"; // Verifica si la conexión es segura (HTTPS)
     const sameSite = isSecure ? "none" : "lax"; // "lax" para desarrollo, "none" para producción con HTTPS
 
     const isProduction = process.env.NODE_ENV === "production";
-
-    res
-      .cookie("access_token", token, {
-        httpOnly: false,
-        secure: isProduction, // true en prod (HTTPS), false en dev (HTTP)
-        sameSite: isProduction ? "none" : "lax", // none para prod, lax para dev
-        maxAge: 3600000,
-        domain: isProduction ? "ringtomic.onrender.com" : undefined, // solo en prod
-      }).status(200).json({ token, msg: "Login correcto" }).send();
+   
+res
+  .cookie("access_token", token, {
+    httpOnly: false,
+    secure: isProduction,
+    sameSite: isProduction ? "none" : "lax",
+    maxAge: 3600000,
+    domain: isProduction ? "deveraai.netlify.app" : undefined,
+  })
+  .cookie("refresh_token", refreshToken, {
+    httpOnly: false,
+    secure: isProduction,
+    sameSite: isProduction ? "none" : "lax",
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+    domain: isProduction ? "deveraai.netlify.app" : undefined,
+  }).status(200).json({ token, msg: "Login correcto" }).send();
   } catch (error) {
     res.status(500).json({ message: "Error en el inicio de sesión" });
   } finally {
