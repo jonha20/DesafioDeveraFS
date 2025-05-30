@@ -1,0 +1,166 @@
+@use '../utils/variables.scss' as vars;
+
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: vars.$white;
+  font-family: vars.$font-main;
+
+  .login-header {
+    width: 100%;
+    padding: 2rem 0 0 2.5rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    .devera-logo {
+      height: 38px;
+      // Ajusta el tamaño según tu logo
+      img {
+        height: 100%;
+        width: auto;
+        display: block;
+      }
+    }
+  }
+
+  .login-center {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .login-box {
+      width: 100%;
+      max-width: 400px;
+      background: vars.$white;
+      border-radius: 12px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+      padding: 2.5rem 2rem 2rem 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: vars.$font-main;
+
+      .login-title {
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-bottom: 2rem;
+        text-align: center;
+        color: #222;
+        font-family: vars.$font-main;
+      }
+
+      .login-form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+        font-family: vars.$font-main;
+
+        .login-field {
+          position: relative;
+          input {
+            width: 100%;
+            padding: 0.8rem 2.5rem 0.8rem 0.8rem;
+            border: none;
+            border-bottom: 1px solid #ccc;
+            font-size: 1rem;
+            background: transparent;
+            outline: none;
+            transition: border 0.2s;
+            font-family: vars.$font-main;
+            &::placeholder {
+              color: #bbb;
+              font-family: vars.$font-main;
+            }
+            &:focus {
+              border-bottom: 1.5px solid #222;
+            }
+          }
+          .login-eye {
+            position: absolute;
+            right: 0.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.1rem;
+            color: #888;
+            cursor: pointer;
+          }
+        }
+
+        .login-forgot {
+          text-align: center;
+          margin-bottom: 0.5rem;
+          a {
+            color: #666;
+            font-size: 0.95rem;
+            text-decoration: none;
+            font-family: vars.$font-main;
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+
+        .login-submit {
+          width: 113%;
+          padding: 0.9rem 0;
+          background: #000;
+          color: vars.$white;
+          border: none;
+          border-radius: 6px;
+          font-size: 1.1rem;
+          font-weight: 600;
+          cursor: pointer;
+          margin-top: 0.5rem;
+          transition: background 0.2s;
+          font-family: vars.$font-main;
+          &:hover {
+            background: #222;
+          }
+        }
+
+        .login-message {
+          display: block;
+          margin-top: 0.5rem;
+          color: #d32f2f;
+          font-size: 0.98rem;
+          text-align: center;
+          font-family: vars.$font-main;
+        }
+      }
+
+      .login-signup {
+        margin: 1.5rem 0 0.5rem 0;
+        text-align: center;
+        font-size: 1rem;
+        font-family: vars.$font-main;
+        a {
+          color: #222;
+          text-decoration: underline;
+          margin-left: 0.2rem;
+          font-family: vars.$font-main;
+        }
+      }
+
+      .login-legal {
+        margin-top: 1.5rem;
+        font-size: 0.85rem;
+        color: #888;
+        text-align: center;
+        font-family: vars.$font-main;
+        a {
+          color: #888;
+          text-decoration: underline;
+          margin: 0 0.1rem;
+          font-family: vars.$font-main;
+        }
+        b {
+          color: #222;
+          font-family: vars.$font-main;
+        }
+      }
+    }
+  }
+}

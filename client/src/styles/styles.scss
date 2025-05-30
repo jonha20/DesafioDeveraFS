@@ -1,3 +1,9 @@
+
+@use './views/App';
+@use './components/Header';
+@use './components/Login';
+@use './components/Registro';
 @use './utils/variables.scss';
 @use './utils/mixins.scss';
 @use './components/Form';
+

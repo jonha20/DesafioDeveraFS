@@ -1,16 +1,5 @@
 {
-    "language": "español",
-    "selectLanguage": "escoge tu idioma",
-    "articles": [
-        {
-            "heading": "Hechos probados ¿Va bien o mal la economía?",
-            "subheading": "Pronósticos apocalípticos sobre el PIB o el mercado de trabajo han sido desmentidos por la realidad y por los datos de Eurostat, Banco de España, OCDE e INE",
-            "text": "Estados Unidos encaró en 1992 una campaña electoral alimentada por victorias militares en la Guerra del Golfo. Con ese capital bélico en su haber, el presidente George Bush creyó que ganaría fácil en las urnas. Sin embargo, el deterioro de la economía fue más decisivo que la guerra e inclinó la balanza a favor del candidato demócrata Bill Clinton. Su jefe de campaña, James Carville, apostó por un lema —”es la economía, estúpido”— para derrotar a Bush a cuenta del precio de las hipotecas, los datos del empleo o el coste de la vida. El lema de Carville se ha convertido en el ejemplo más utilizado en todo el mundo para explicar la importancia de la economía en cualquier campaña electoral...."
-        },
-        {
-            "heading": "La UE no tiene presidente",
-            "subheading": "Pedro Sánchez no es el presidente de la Unión Europea. Ya le gustaría a él",
-            "text": "Les voy a contar un cuento sobre cómo casi 40 años de pertenencia española a la Unión Europea no han sido suficientes para que nuestros medios de comunicación interioricen conceptos básicos y para que la formación de nuestras elites políticas dedique algo de tiempo a estudiar las instituciones comunitarias...."
-        }
-    ]
+  "welcome": "Bientenido",
+  "Inicio": "Inicio",
+  "Onboarding": "Chat de incorporación"
 }
