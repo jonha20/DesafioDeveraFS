@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const Form = () => {
-  const [formData, setFormData] = useState({
+  const initialFormData = { //Estado inicial del formulario
     empresa: "",
     empleados: "",
     certificados: "",
@@ -17,9 +18,11 @@ const Form = () => {
     conciliacion: "",
     enps: "",
     otraInfo: "",
-  });
-
+  }
+  const { t } = useTranslation();
+  const fieldRefs = useRef({})
   const [errors, setErrors] = useState({});
+  const [formData, setFormData] = useState(initialFormData);
 
   const requiredFields = [
     "empresa",
@@ -41,28 +44,65 @@ const Form = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const validate = () => {
+  const validate = () => { //Validación del formulario
     const newErrors = {};
+    let firstErrorKey = null;
+
     requiredFields.forEach((field) => {
-      if (!formData[field]) {
-        newErrors[field] = "Seleccione una opción";
+      if (formData[field] === undefined || formData[field] === ""){
+        newErrors[field] = t("form.seleccione");
+        if(!firstErrorKey){
+          firstErrorKey = field;
+        }
       }
     });
     setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+    return {
+      isValid: Object.keys(newErrors).length === 0,
+      firstErrorKey,
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (validate()) {
+    const { isValid, firstErrorKey } = validate();
+  
+    if (isValid) {
       console.log("Datos enviados:", formData);
-      alert("Formulario enviado correctamente (simulado).");
+      alert(t("form.enviado"));
+      setFormData(initialFormData);
+    } else {
+
+      const radioFields = [
+        "empresa",
+        "empleados",
+        "memoria",
+        "energia",
+        "carbono",
+        "materiaVirgen",
+        "proveedores",
+        "criticas",
+        "igualdad",
+        "brechaSalarial",
+        "conciliacion",
+        "enps",
+      ];
+
+      if (radioFields.includes(firstErrorKey)){ //Alert por si no se selecciona una opción
+        alert(t("form.alertaRadios"))
+      }
+
+      const errorElement = fieldRefs.current[firstErrorKey]; //Scroll para que nos lleve al campo obligatorio vacío
+      if (errorElement && errorElement.scrollIntoView) {
+        errorElement.scrollIntoView({ behavior: "smooth", block: "center" });
+        errorElement.focus?.();
+      }
     }
   };
 
-  const renderRadioGroup = (name, label, options) => (
+  const renderRadioGroup = (name, label, options) => ( //Función para pintar los input de tipo radio
     <fieldset className="radio-group">
-      <legend className="question-label">{label} *</legend>
+      <legend className="question-label">{t(label)} *</legend>
       {options.map((opt, index) => (
         <label
           key={opt}
@@ -75,8 +115,10 @@ const Form = () => {
             value={opt}
             checked={formData[name] === opt}
             onChange={handleChange}
+            required={index === 0}
+            ref={index === 0 ? (el) => (fieldRefs.current[name] = el) : null}
           />
-          {opt}
+          {t(`form.opciones.${opt}`) || opt}
         </label>
       ))}
       {errors[name] && <span className="error">{errors[name]}</span>}
@@ -86,77 +128,72 @@ const Form = () => {
   return (
     <form className="devera-form" onSubmit={handleSubmit} noValidate>
       <img src="src/assets/images/logo-devera.png" className="logo-devera" alt="Logo Devera" />
-      <h2>Devera: Información empresa</h2>
-      <p className="intro-text">
-        Contesta este cuestionario para que podamos evaluar las políticas de sostenibilidad de tu empresa.
-        En base a la información aportada y a la huella de carbono que detectamos automáticamente,
-        podremos asignar un score de sostenibilidad a tus productos.
-      </p>
+      <h2>{t("form.titulo")}</h2>
+      <p className="intro-text">{t("form.intro")}</p>
       <hr />
 
       <div>
-        <label className="question-label">Nombre de tu empresa *</label>
-        <input type="text" name="empresa" value={formData.empresa} onChange={handleChange} required/>
+        <label className="question-label">{t("form.nombreEmpresa")}</label>
+        <input 
+          type="text" 
+          name="empresa" 
+          value={formData.empresa} 
+          onChange={handleChange} 
+          required 
+          ref={(el) => (fieldRefs.current["empresa"] = el)}/>
         {errors.empresa && <span className="error">{errors.empresa}</span>}
       </div>
 
       <div>
-        <label className="question-label">¿Cuántos empleados tiene la empresa? *</label>
-        <input type="text" name="empleados" value={formData.empleados} onChange={handleChange} required/>
+        <label className="question-label">{t("form.empleados")}</label>
+        <input 
+          type="text" 
+          name="empleados" 
+          value={formData.empleados} 
+          onChange={handleChange} 
+          required
+          ref={(el) => (fieldRefs.current["empleados"] = el)}
+          />
         {errors.empleados && <span className="error">{errors.empleados}</span>}
       </div>
 
       <div>
-        <label className="question-label">¿Tiene tu empresa algún certificado? ¿Cuál?</label>
-        <p>Indica todos los certificados que tiene tu empresa y los de los productos que comercializas, así como de transparencia de la cadena de suministro (Bcorp, Fair Trade, ISO14001, Cradle to Cradle, FSC, etc.) </p>
+        <label className="question-label">{t("form.certificados")}</label>
+        <p>{t("form.certificadosDescripcion")}</p>
         <textarea name="certificados" value={formData.certificados} onChange={handleChange}></textarea>
       </div>
 
-      {renderRadioGroup("memoria", "¿Tiene tu empresa memoria de sostenibilidad?", ["Si", "No"])}
-      {renderRadioGroup(
-        "energia",
-        "¿En qué porcentaje la energía de tu empresa y tus fábricas proviene de fuentes renovables?",
-        ["0%", "Menos del 25%", "Entre un 25 y un 50%", "Entre un 50 y un 75%", "Entre un 75 y un 99%", "100%", "No lo sé"]
-      )}
-      {renderRadioGroup(
-        "carbono",
-        "¿Se miden las emisiones de carbono en la empresa o se tiene un plan para reducir la huella de carbono?",
-        [
-          "Se están midiendo y hay un plan de reducción",
-          "Se están midiendo pero no hay plan de reducción",
-          "Se está en proceso de medición",
-          "No hay plan de medición",
-          "Otro",
-        ]
-      )}
-      {renderRadioGroup(
-        "materiaVirgen",
-        "¿Qué porcentaje de materia virgen no renovable usan vuestros productos de media?",
-        ["0%", "Menos del 25%", "Entre un 25 y un 50%", "Entre un 50 y un 75%", "Entre un 75 y un 99%", "100%", "No lo sé"]
-      )}
-      {renderRadioGroup(
-        "proveedores",
-        "¿Qué porcentaje de vuestros proveedores se encuentra a una distancia inferior a 400 km?",
-        ["0%", "Menos del 25%", "Entre un 25 y un 50%", "Entre un 50 y un 75%", "Entre un 75 y un 99%", "100%", "No lo sé"]
-      )}
+      {renderRadioGroup("memoria", "form.memoria", ["Si", "No"])}
+      {renderRadioGroup("energia", "form.energia", [
+        "0%", "Menos25", "25_50", "50_75", "75_99", "100%", "NoLoSe"
+      ])}
+      {renderRadioGroup("carbono", "form.carbono", [
+        "ConPlan", "SinPlan", "Proceso", "SinMedicion", "Otro"
+      ])}
+      {renderRadioGroup("materiaVirgen", "form.materiaVirgen", [
+        "0%", "Menos25", "25_50", "50_75", "75_99", "100%", "NoLoSe"
+      ])}
+      {renderRadioGroup("proveedores", "form.proveedores", [
+        "0%", "Menos25", "25_50", "50_75", "75_99", "100%", "NoLoSe"
+      ])}
 
       <div>
-        <label className="question-label">¿Realizáis o apoyáis proyectos sociales?</label>
+        <label className="question-label">{t("form.proyectosSociales")}</label>
         <textarea name="proyectosSociales" value={formData.proyectosSociales} onChange={handleChange}></textarea>
       </div>
 
-      {renderRadioGroup("criticas", "¿Existen noticias públicas criticando aspectos de sostenibilidad de vuestra empresa?", ["Si", "No", "No lo sé"])}
-      {renderRadioGroup("igualdad", "¿Existe un plan de igualdad implementado?", ["Si", "No", "No lo sé"])}
-      {renderRadioGroup("brechaSalarial", "¿Medís la brecha salarial por género?", ["Si", "No", "No lo sé"])}
-      {renderRadioGroup("conciliacion", "¿Tenéis medidas de conciliación publicadas?", ["Si", "No", "No lo sé"])}
-      {renderRadioGroup("enps", "¿Medís el eNPS (satisfacción del empleado)?", ["Si", "No", "No lo sé"])}
+      {renderRadioGroup("criticas", "form.criticas", ["Si", "No", "NoLoSe"])}
+      {renderRadioGroup("igualdad", "form.igualdad", ["Si", "No", "NoLoSe"])}
+      {renderRadioGroup("brechaSalarial", "form.brechaSalarial", ["Si", "No", "NoLoSe"])}
+      {renderRadioGroup("conciliacion", "form.conciliacion", ["Si", "No", "NoLoSe"])}
+      {renderRadioGroup("enps", "form.enps", ["Si", "No", "NoLoSe"])}
 
       <div>
-        <label className="question-label">¿Hay alguna otra información relevante?</label>
+        <label className="question-label">{t("form.otraInfo")}</label>
         <textarea name="otraInfo" value={formData.otraInfo} onChange={handleChange}></textarea>
       </div>
 
-      <button type="submit">Enviar</button>
+      <button type="submit">{t("form.enviar")}</button>
     </form>
   );
 };
