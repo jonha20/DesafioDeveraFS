@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "./ProductsTable.module.scss";
 
 
 const ProductsTable = ({producto}) => {
