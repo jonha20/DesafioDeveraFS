@@ -5,7 +5,11 @@ html, body {
   padding: 0;
   width: 100%;
   overflow-x: hidden; // <-- Esto previene el scroll horizontal
- 
+  font-family: vars.$font-main;
+  color: vars.$black;
+  font-size: 16px; // Tamaño de fuente base
+  line-height: 1.6; // Espaciado entre líneas
+  box-sizing: border-box; // Asegura que el padding y border se incluyan en el ancho y alto de los elementos
 }
 
 *, *::before, *::after {

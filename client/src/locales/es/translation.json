@@ -1,5 +1,27 @@
 {
   "welcome": "Bientenido",
   "Inicio": "Inicio",
-  "Onboarding": "Chat de incorporación"
+  "Onboarding": "Chat de incorporación",
+  "NavProductos":{
+    "Productos": "Mis productos",
+    "Archivos": "Archivos",
+    "Informacion": "Información general"
+  },
+  "Filter":{
+    "show": "Mostrar",
+    "entries": "entradas",
+    "SearchPlaceholder": "Buscar por nombre, correo electrónico, etc.",
+    "export": "Exportar listado CSV"
+  },
+  "TableTitles":{
+    "Producto": "Producto",
+    "Huella de carbono": "Huella de carbono",
+    "Diferncia huella": "Diferencia huella",
+    "Score": "Puntuación",
+    "Status": "Estado",
+    "Ver" : "Ver",
+    "Descargar": "Descargar",
+    "Archivos": "Archivos"
+
+  }
 }
