@@ -155,16 +155,16 @@ res
     httpOnly: false,
     secure: isProduction,
     sameSite: isProduction ? "none" : "lax",
-    maxAge: 3600000,
-    domain: isProduction ? "deveraai.netlify.app" : undefined,
+    maxAge: 3600000
   })
   .cookie("refresh_token", refreshToken, {
-    httpOnly: false,
+    httpOnly: true,
     secure: isProduction,
     sameSite: isProduction ? "none" : "lax",
-    maxAge: 7 * 24 * 60 * 60 * 1000,
-    domain: isProduction ? "deveraai.netlify.app" : undefined,
-  }).status(200).json({ token, msg: "Login correcto" }).send();
+    maxAge: 7 * 24 * 60 * 60 * 1000
+  })
+  .status(200)
+  .json({ token, msg: "Login correcto" });
   } catch (error) {
     res.status(500).json({ message: "Error en el inicio de sesión" });
   } finally {
