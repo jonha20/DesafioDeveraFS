@@ -1,10 +1,89 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import LenguagePicker from "./LenguagePicker";
+import { UserContext } from "../../context/userContext";
+import { useTranslation } from "react-i18next";
+import { useNavigate, Link, useLocation  } from "react-router-dom";
+import axios from "axios";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import Avatar from "@mui/material/Avatar";
+import IconButton from "@mui/material/IconButton";
 
 const Header = () => {
-  return <>
+  const { user } = useContext(UserContext);
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+  const [anchorEl, setAnchorEl] = useState(null);
+const location = useLocation();
+
+  const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  const logout = async () => {
+    try {
+      const request = await axios.post(
+        "https://desafiodeverafs.onrender.com/users/logout",
+        { withCredentials: true }
+      );
+      if (request.status === 200) {
+        sessionStorage.clear();
+        navigate("/login");
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+    handleClose();
+  };
+
+  return (
+    <header className="header">
+  <div className="header__left">
+    <img src="/devera.png" alt="devera logo" className="header__logo" />
+  </div>
+  <nav className="header__nav">
+    <Link to="/" className={`header__nav-link${location.pathname === "/" ? " header__nav-link--active" : ""}`}>
+      <span className="header__icon">&#8962;</span>
+      <span>{t("Inicio")}</span>
+    </Link>
+    <Link to="/onboarding" className={`header__nav-link${location.pathname === "/onboarding" ? " header__nav-link--active" : ""}`}>
+      <span className="header__icon">&#128172;</span>
+      <span>{t("Onboarding")} </span>
+    </Link>
+  </nav>
+ <div className="header__right">
+  <button className="header__menu-trigger" onClick={handleMenuOpen}>
+    <img
+      src={user.image || "/default-avatar.png"}
+      alt={user.name}
+      className="header__avatar"
+    />
+    <div className="header__burger">
+      <span />
+      <span />
+      <span />
+    </div>
+  </button>
+  <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleMenuClose}>
+    <div className="header__menu-top">
+      <img
+        src={user.image || "/default-avatar.png"}
+        alt={user.name}
+        className="header__avatar"
+      />
+    </div>
+    <div className="header__languages">
       <LenguagePicker />
-  </>;
+      {/* o dos botones de idioma */}
+    </div>
+    <MenuItem onClick={logout} className="header__logout">Logout</MenuItem>
+  </Menu>
+</div>
+</header>
+  );
 };
 
 export default Header;

@@ -130,6 +130,7 @@ async function login(req, res) {
         email: user.email,
         logged: user.logged,
         name: user.name,
+        image: user.image_url || null, // Asegúrate de que 'image' sea opcional
       },
       process.env.JWT_SECRET,
       { expiresIn: "1h" }

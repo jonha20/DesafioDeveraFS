@@ -14,18 +14,11 @@ const LenguagePicker = () => {
   };
 
   return (
-    <div style={{ display: "flex", gap: "0.5rem" }}>
+    <div>
       {Object.entries(flags).map(([lng, flag]) => (
         <button
           key={lng}
           onClick={() => handleChange(lng)}
-          style={{
-            fontSize: "1.5rem",
-            background: "none",
-            border: "none",
-            cursor: "pointer",
-            outline: "none",
-          }}
           aria-label={lng}
         >
           {flag}

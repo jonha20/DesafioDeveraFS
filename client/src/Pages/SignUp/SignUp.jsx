@@ -56,59 +56,66 @@ const SignUp = () => {
     }
   };
 
-  return (
-    <>
-      <main className="signup">
-        <ToastContainer />
-        <h1>Sign Up</h1>
-        <form
-          className="signup__form"
-          onSubmit={handleSignUp}
-          autoComplete="on"
-        >
-          <div className="signup__field">
-            <label htmlFor="username">Full Name</label>
-            <input
-              type="text"
-              id="username"
-              value={name}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-              autoComplete="username"
-            />
+ return (
+    <main className="signup-page">
+      <ToastContainer />
+      <div className="signup-header">
+        <div className="devera-logo">
+          <img src="/devera.png" alt="devera logo" />
+        </div>
+      </div>
+      <div className="signup-center">
+        <div className="signup-box">
+          <h1 className="signup-title">Regístrate</h1>
+          <form
+            className="signup-form"
+            onSubmit={handleSignUp}
+            autoComplete="on"
+          >
+            <div className="signup-field">
+              <input
+                type="text"
+                id="username"
+                value={name}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="Nombre completo"
+                required
+                autoComplete="username"
+              />
+            </div>
+            <div className="signup-field">
+              <input
+                type="email"
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="E-mail"
+                required
+                autoComplete="email"
+              />
+            </div>
+            <div className="signup-field">
+              <input
+                type="password"
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Contraseña"
+                required
+                autoComplete="new-password"
+              />
+            </div>
+            <button className="signup-submit" type="submit">
+              Registrarse
+            </button>
+          </form>
+          {message && <span className="signup-message">{message}</span>}
+          <div className="signup-login">
+            ¿Tienes cuenta de Empresa? <a href="/login">Inicia Sesión</a>
           </div>
-          <div className="signup__field">
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              autoComplete="email"
-            />
-          </div>
-          <div className="signup__field">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              autoComplete="new-password"
-            />
-          </div>
-          <button className="signup__submit" type="submit">
-            Sign Up
-          </button>
-        </form>
-        {message && <span className="signup__message">{message}</span>}
-        <p className="signup__login">
-          Already have an account? <a href="/login">Log in</a>
-        </p>
-      </main>
-    </>
+        </div>
+      </div>
+    </main>
   );
 };
 

@@ -9,6 +9,7 @@ import SignUp from "./Pages/SignUp/SignUp";
 import { UserContext } from "./context/userContext";
 import {jwtDecode} from "jwt-decode";
 import axios from "axios";
+import "./i18n";
 import "normalize.css";
 function App() {
   const navigate = useNavigate();
@@ -64,15 +65,16 @@ useEffect(() => {
 
   return (
     <>
-      {!hideHeader && <Header />}
-       <UserContext.Provider value={{ user }}>
+     <UserContext.Provider value={{ user }}>
+      {!hideHeader && <Header />}   
       <Routes>
         <Route path="/login" element={<LogIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/" element={<Main />} />
       </Routes>
+      {!hideHeader && <Footer />}
       </UserContext.Provider>
-      <Footer />
+      
     </>
   );
 }
