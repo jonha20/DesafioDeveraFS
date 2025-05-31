@@ -1,6 +1,6 @@
 @use '../utils/variables.scss' as vars;
 
-.nav-products {
+.navbar {
   display: block;
   align-items: center;
   gap: 1.2rem;
@@ -46,7 +46,7 @@
     width: 100%;
   }
 }
-.nav-products-underline {
+.navbar-underline {
   width: 95%;
   height: 3px;
   background: vars.$primary-color;
@@ -57,7 +57,7 @@
 
 // Desktop
 @media (min-width: 900px) {
-  .nav-products {
+  .navbar {
     display: flex;
     flex-direction: row;
     gap: 3rem;
