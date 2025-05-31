@@ -1,5 +1,67 @@
 {
   "welcome": "Welcome",
   "Inicio": "Home",
-  "Onboarding": "Onboarding chat"
+  "Onboarding": "Onboarding chat",
+  "NavProductos": {
+    "Productos": "My products",
+    "Archivos": "Files",
+    "Informacion": "General information"
+  },
+  "Filter":{
+    "show": "Show",
+    "entries": "entries",
+    "SearchPlaceholder": "Search name, email, or etc.",
+    "export": "Export to CSV"
+  },
+  "TableTitles": {
+    "Producto": "Product",
+    "Huella de carbono": "Carbon footprint",
+    "Diferncia huella": "Footprint difference",
+    "Score": "Score",
+    "Status": "Status",
+    "Ver" : "View",
+    "Descargar": "Download",
+    "Archivos": "Files"
+  },
+  "form": {
+    "titulo": "Devera: Company Information",
+    "intro": "Answer this questionnaire so we can assess your company’s sustainability policies. Based on the information provided and the carbon footprint we detect automatically, we will assign a sustainability score to your products.",
+    "nombreEmpresa": "Your company's name *",
+    "empleados": "How many employees does the company have? *",
+    "certificados": "Does your company have any certification? Which ones?",
+    "certificadosDescripcion": "List all the certifications your company and your products have, including supply chain transparency (Bcorp, Fair Trade, ISO14001, Cradle to Cradle, FSC, etc.)",
+    "memoria": "Does your company publish a sustainability report?",
+    "energia": "What percentage of your company's and factories' energy comes from renewable sources?",
+    "carbono": "Are carbon emissions measured in the company or is there a plan to reduce carbon footprint?",
+    "materiaVirgen": "What percentage of non-renewable virgin materials do your products use on average?",
+    "proveedores": "What percentage of your suppliers are located less than 400 km away?",
+    "proyectosSociales": "Do you carry out or support social projects?",
+    "criticas": "Are there public reports criticizing your company’s sustainability practices?",
+    "igualdad": "Is there an equality plan implemented?",
+    "brechaSalarial": "Do you measure the gender pay gap?",
+    "conciliacion": "Do you have published work-life balance policies?",
+    "enps": "Do you measure eNPS (employee satisfaction)?",
+    "otraInfo": "Any other relevant information?",
+    "enviar": "Submit",
+    "seleccione": "Please select an option",
+    "enviado": "Form submitted successfully",
+    "alertaRadios": "Please select the required options",
+    "opciones": {
+      "Si": "Yes",
+      "No": "No",
+      "NoLoSe": "I don't know",
+      "0%": "0%",
+      "Menos25": "Less than 25%",
+      "25_50": "Between 25% and 50%",
+      "50_75": "Between 50% and 75%",
+      "75_99": "Between 75% and 99%",
+      "100%": "100%",
+      "ConPlan": "They are being measured and there is a reduction plan",
+      "SinPlan": "They are being measured but there is no reduction plan",
+      "Proceso": "Measurement is in progress",
+      "SinMedicion": "No measurement plan",
+      "Otro": "Other"
+    }
+  }
+
 }
