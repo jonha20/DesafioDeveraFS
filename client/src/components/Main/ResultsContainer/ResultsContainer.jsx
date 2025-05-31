@@ -38,7 +38,7 @@ const Results = () => {
 useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("http://localhost:5173/data.json");
+        const response = await axios.get("/data.json");
         setProductos(response.data);
       } catch (error) {
         console.error("Error fetching results:", error);
