@@ -1,0 +1,12 @@
+@use '../utils/variables.scss' as variables;
+
+
+.chat-container {
+    background: variables.$color-bg;
+    color: variables.$color-text;
+    border-radius: variables.$radius;
+    box-shadow: variables.$shadow;
+    padding: 20px;
+    font-family: variables.$font-main;
+  }
+

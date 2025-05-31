@@ -7,6 +7,7 @@ import Footer from "./components/Footer/Footer";
 import LogIn from "./Pages/LogIn/LogIn";
 import SignUp from "./Pages/SignUp/SignUp";
 import Form from './Pages/Form/Form';
+import Onboarding from "./components/Main/Onboarding/Onboarding";
 import { UserContext } from "./context/userContext";
 import {jwtDecode} from "jwt-decode";
 import axios from "axios";
@@ -71,6 +72,7 @@ useEffect(() => {
       <Routes>
         <Route path="/login" element={<LogIn />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/onboarding" element={<Onboarding />} />
         <Route path="/" element={<Main />} />
             <Route path="/form" element={<Form />} />
       </Routes>
