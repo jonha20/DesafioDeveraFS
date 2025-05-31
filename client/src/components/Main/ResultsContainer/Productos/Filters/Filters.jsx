@@ -3,9 +3,10 @@ import { useTranslation } from "react-i18next";
 import { useDebounce } from "use-debounce";
 import { utils } from "xlsx";
 
-const Filters = ({setFilterProducto}) => {
+const Filters = ({setFilterProducto, data}) => {
   const { t } = useTranslation();
   const [entries, setEntries] = useState(10);
+  const csvLink = useRef(null);
   const [search, setSearch] = useState("");
   const [debouncedText] = useDebounce(search, 2000);
   console.log("Search text:", search);
