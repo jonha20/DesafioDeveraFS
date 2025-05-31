@@ -3,7 +3,7 @@
   "Inicio": "Home",
   "Onboarding": "Onboarding chat",
   "NavProductos": {
-    "Productos": "My products",
+    "Productos": "Products",
     "Archivos": "Files",
     "Informacion": "General information"
   },
@@ -22,6 +22,18 @@
     "Ver" : "View",
     "Descargar": "Download",
     "Archivos": "Files"
+  },
+  "ArchivosPage": {
+  "AnadirArchivos": "Add more files",
+  "DescargarArchivos": "Download files"
+  },
+  "InformacionPage": {
+  "InformacionAportada": "Provided Information",
+  "TextoAportado": "Here will go the information extracted from the chat about sales, number of references, etc. It can be edited at any time, and new information can be added.",
+  "CuestionarioEmpresa": "Company Questionnaire",
+  "TextoCuestionario": "The questionnaire is already completed, if you need to modify information you can contact the chat or do it again.",
+  "InformarCambios": "Report changes",
+  "RealizarFormulario": "Complete form"
   },
   "form": {
     "titulo": "Devera: Company Information",

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { FaPaperclip, FaSmile, FaPaperPlane } from 'react-icons/fa';
-
+import { FaPaperclip } from 'react-icons/fa';
 
 const InputBox = ({ onSend }) => {
   const [input, setInput] = useState('');
@@ -25,9 +24,26 @@ const InputBox = ({ onSend }) => {
         onKeyPress={handleKeyPress}
       />
       <div className="icons">
-        <FaPaperclip />
-        <FaSmile />
-        <FaPaperPlane onClick={handleSend} style={{ cursor: 'pointer' }} />
+        <img 
+            src="/public/paperclip.svg" 
+            alt="Attach" 
+            width="24" 
+            height="24" 
+          />
+        <img 
+          src="/public/smile.svg" 
+          alt="Smile" 
+          width="24" 
+          height="24" 
+        />
+        <img 
+          src="/public/send.svg" 
+          alt="Send" 
+          width="24" 
+          height="24" 
+          style={{ cursor: 'pointer' }}
+          onClick={handleSend}
+        />
       </div>
     </div>
   );

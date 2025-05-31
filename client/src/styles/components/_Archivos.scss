@@ -1,0 +1,89 @@
+.archivos-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+  }
+  
+  .archivos-buttons {
+    display: flex;
+    gap: 1.5rem;
+  
+    button {
+      padding: 0.8rem 1.5rem;
+      font-weight: bold;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+  
+    .btn-anadir {
+      background-color: #000000;
+      color: #ffffff;
+      border: none;
+  
+      &:hover {
+        background-color: #333333;
+      }
+    }
+  
+    .btn-descargar {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 1rem 2rem;
+      font-weight: bold;
+      font-size: 1.2rem;
+      border: 2px solid #26a68b;
+      border-radius: 10px;
+      background-color: #ffffff;
+      color: #000000;
+      transition: all 0.3s ease;
+  
+      &:hover {
+        background-color: #f0f0f0;
+      }
+  
+      .icono-descargar {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+  
+  .archivos-listado {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+  
+  .archivo-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    width: 150px;
+    padding: 1rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+  
+    &:hover {
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    }
+  
+    .archivo-icono {
+      width: 60px;
+      height: 60px;
+    }
+  
+    .archivo-nombre {
+      font-size: 0.9rem;
+      text-align: center;
+      word-break: break-word;
+    }
+  }

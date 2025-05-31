@@ -3,7 +3,7 @@
   "Inicio": "Inicio",
   "Onboarding": "Chat de incorporación",
   "NavProductos":{
-    "Productos": "Mis productos",
+    "Productos": "Productos",
     "Archivos": "Archivos",
     "Informacion": "Información general"
   },
@@ -22,6 +22,18 @@
     "Ver" : "Ver",
     "Descargar": "Descargar",
     "Archivos": "Archivos"
+  },
+  "ArchivosPage": {
+  "AnadirArchivos": "Añadir más archivos",
+  "DescargarArchivos": "Descargar archivos"
+  },
+  "InformacionPage": {
+  "InformacionAportada": "Información aportada",
+  "TextoAportado": "Aquí irá la información extraída del chat sobre ventas, número de referencias, etc. Se podrá editar en todo momento, y añadir nueva información.",
+  "CuestionarioEmpresa": "Cuestionario de empresa",
+  "TextoCuestionario": "El cuestionario ya está cumplimentado, si necesitas modificar información puedes comunicarte con el chat o hacerlo de nuevo.",
+  "InformarCambios": "Informar cambios",
+  "RealizarFormulario": "Realizar formulario completo"
   },
   "form": {
     "titulo": "Devera: Información empresa",

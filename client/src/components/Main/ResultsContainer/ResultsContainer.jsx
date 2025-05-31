@@ -1,15 +1,12 @@
-import React, {useState , useEffect, useMemo} from "react";
-import axios from "axios";
-import Navbar from "./Navbar/Navbar";
+import React, { useState, useEffect } from "react";
+import NavResults from "./Navbar/Navbar";
 import Filters from "./Productos/Filters/Filters";
 import ProductsTable from "./Productos/ProductsTable/ProductsTable";
+import Archivos from "./Archivos/Archivos";
+import Informacion from "./Informacion/Informacion";
+import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import { useTranslation } from "react-i18next";
-
-
-  
-
-
 
 const Results = () => {
   const [activeTab, setActiveTab] = useState('productos');
@@ -33,22 +30,19 @@ const Results = () => {
     fetchResults();
   }, []);
 
-// Filtrado avanzado: busca el texto ingresado en cualquier campo del producto
-const filteredProductos = productos.filter((producto) => {
-  const lowerFilter = filterProducto.toLowerCase();
-  const matchAnyField = Object.values(producto).some((value) =>
-    String(value).toLowerCase().includes(lowerFilter)
-  );
-  const matchStatus = filterStatus ? producto.status === filterStatus : true;
-  return matchAnyField && matchStatus;
-});
+  const filteredProductos = productos.filter((producto) => {
+    const lowerFilter = filterProducto.toLowerCase();
+    const matchAnyField = Object.values(producto).some((value) =>
+      String(value).toLowerCase().includes(lowerFilter)
+    );
+    const matchStatus = filterStatus ? producto.status === filterStatus : true;
+    return matchAnyField && matchStatus;
+  });
 
-  // Ordenación
   const sortedProductos = [...filteredProductos].sort((a, b) => {
     if (!sortField) return 0;
     let aValue = a[sortField];
     let bValue = b[sortField];
-    // Si es string, comparar como string
     if (typeof aValue === "string") {
       aValue = aValue.toLowerCase();
       bValue = bValue.toLowerCase();
@@ -58,102 +52,98 @@ const filteredProductos = productos.filter((producto) => {
     return 0;
   });
 
-  // Handler para ordenar
   const handleSort = (field, order) => {
     setSortField(field);
     setSortOrder(order);
   };
 
-
   return (
     <>
-      <Navbar setActiveTab={setActiveTab} activeTab={activeTab}/>
-      <div className="results-container">
-      
-      <Filters  setFilterProducto={setFilterProducto} data={sortedProductos}/>
-      <table className="results-table">
-        <thead>
-          <tr>
-            <th>
-              <input type="checkbox" />
-            </th>
-            <th>
-              {t("TableTitles.Producto")}
-              <span className="sort-icons">
-                <span
-                  style={{ cursor: "pointer", color: sortField === "product_name" && sortOrder === "asc" ? "#1976d2" : undefined }}
-                  onClick={() => handleSort("product_name", "asc")}
-                >&#9650;</span>
-                <span
-                  style={{ cursor: "pointer", color: sortField === "product_name" && sortOrder === "desc" ? "#1976d2" : undefined }}
-                  onClick={() => handleSort("product_name", "desc")}
-                >&#9660;</span>
-              </span>
-            </th>
-            <th>
-              {t("TableTitles.Huella de carbono")}
-              <span className="sort-icons">
-                <span
-                  style={{ cursor: "pointer", color: sortField === "co2_firgerprint" && sortOrder === "asc" ? "#1976d2" : undefined }}
-                  onClick={() => handleSort("co2_firgerprint", "asc")}
-                >&#9650;</span>
-                <span
-                  style={{ cursor: "pointer", color: sortField === "co2_firgerprint" && sortOrder === "desc" ? "#1976d2" : undefined }}
-                  onClick={() => handleSort("co2_firgerprint", "desc")}
-                >&#9660;</span>
-              </span>
-            </th>
-            <th>
-              {t("TableTitles.Diferncia huella")}
-              <span className="sort-icons">
-                <span
-                  style={{ cursor: "pointer", color: sortField === "pct_benchmark" && sortOrder === "asc" ? "#1976d2" : undefined }}
-                  onClick={() => handleSort("pct_benchmark", "asc")}
-                >&#9650;</span>
-                <span
-                  style={{ cursor: "pointer", color: sortField === "pct_benchmark" && sortOrder === "desc" ? "#1976d2" : undefined }}
-                  onClick={() => handleSort("pct_benchmark", "desc")}
-                >&#9660;</span>
-              </span>
-            </th>
-            <th>
-              {t("TableTitles.Score")}
-              <span className="sort-icons">
-                <span
-                  style={{ cursor: "pointer", color: sortField === "score" && sortOrder === "asc" ? "#1976d2" : undefined }}
-                  onClick={() => handleSort("score", "asc")}
-                >&#9650;</span>
-                <span
-                  style={{ cursor: "pointer", color: sortField === "score" && sortOrder === "desc" ? "#1976d2" : undefined }}
-                  onClick={() => handleSort("score", "desc")}
-                >&#9660;</span>
-              </span>
-            </th>
-            <th>
-              {t("TableTitles.Status")}
-              <span className="sort-icons">
-                <span
-                  style={{ cursor: "pointer", color: sortField === "status" && sortOrder === "asc" ? "#1976d2" : undefined }}
-                  onClick={() => handleSort("status", "asc")}
-                >&#9650;</span>
-                <span
-                  style={{ cursor: "pointer", color: sortField === "status" && sortOrder === "desc" ? "#1976d2" : undefined }}
-                  onClick={() => handleSort("status", "desc")}
-                >&#9660;</span>
-              </span>
-            </th>
-            <th>{t("TableTitles.Ver")}</th>
-            <th>{t("TableTitles.Descargar")}</th>
-            <th>{t("TableTitles.Archivos")}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {sortedProductos.map((producto) => (
-            <ProductsTable key={uuidv4()} producto={producto} />
-          ))}
-        </tbody>
-      </table>
-      </div>
+      <NavResults setActiveTab={setActiveTab} activeTab={activeTab} />
+
+      {activeTab === 'productos' && (
+        <div className="results-container">
+          <Filters setFilterProducto={setFilterProducto} data={sortedProductos} />
+          <table className="results-table">
+            <thead>
+              <tr>
+                <th><input type="checkbox" /></th>
+                <th>{t("TableTitles.Producto")}
+                  <span className="sort-icons">
+                    <span
+                      style={{ cursor: "pointer", color: sortField === "product_name" && sortOrder === "asc" ? "#1976d2" : undefined }}
+                      onClick={() => handleSort("product_name", "asc")}
+                    >▲</span>
+                    <span
+                      style={{ cursor: "pointer", color: sortField === "product_name" && sortOrder === "desc" ? "#1976d2" : undefined }}
+                      onClick={() => handleSort("product_name", "desc")}
+                    >▼</span>
+                  </span>
+                </th>
+                <th>{t("TableTitles.Huella de carbono")}
+                  <span className="sort-icons">
+                    <span
+                      style={{ cursor: "pointer", color: sortField === "co2_firgerprint" && sortOrder === "asc" ? "#1976d2" : undefined }}
+                      onClick={() => handleSort("co2_firgerprint", "asc")}
+                    >▲</span>
+                    <span
+                      style={{ cursor: "pointer", color: sortField === "co2_firgerprint" && sortOrder === "desc" ? "#1976d2" : undefined }}
+                      onClick={() => handleSort("co2_firgerprint", "desc")}
+                    >▼</span>
+                  </span>
+                </th>
+                <th>{t("TableTitles.Diferncia huella")}
+                  <span className="sort-icons">
+                    <span
+                      style={{ cursor: "pointer", color: sortField === "pct_benchmark" && sortOrder === "asc" ? "#1976d2" : undefined }}
+                      onClick={() => handleSort("pct_benchmark", "asc")}
+                    >▲</span>
+                    <span
+                      style={{ cursor: "pointer", color: sortField === "pct_benchmark" && sortOrder === "desc" ? "#1976d2" : undefined }}
+                      onClick={() => handleSort("pct_benchmark", "desc")}
+                    >▼</span>
+                  </span>
+                </th>
+                <th>{t("TableTitles.Score")}
+                  <span className="sort-icons">
+                    <span
+                      style={{ cursor: "pointer", color: sortField === "score" && sortOrder === "asc" ? "#1976d2" : undefined }}
+                      onClick={() => handleSort("score", "asc")}
+                    >▲</span>
+                    <span
+                      style={{ cursor: "pointer", color: sortField === "score" && sortOrder === "desc" ? "#1976d2" : undefined }}
+                      onClick={() => handleSort("score", "desc")}
+                    >▼</span>
+                  </span>
+                </th>
+                <th>{t("TableTitles.Status")}
+                  <span className="sort-icons">
+                    <span
+                      style={{ cursor: "pointer", color: sortField === "status" && sortOrder === "asc" ? "#1976d2" : undefined }}
+                      onClick={() => handleSort("status", "asc")}
+                    >▲</span>
+                    <span
+                      style={{ cursor: "pointer", color: sortField === "status" && sortOrder === "desc" ? "#1976d2" : undefined }}
+                      onClick={() => handleSort("status", "desc")}
+                    >▼</span>
+                  </span>
+                </th>
+                <th>{t("TableTitles.Ver")}</th>
+                <th>{t("TableTitles.Descargar")}</th>
+                <th>{t("TableTitles.Archivos")}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {sortedProductos.map((producto) => (
+                <ProductsTable key={uuidv4()} producto={producto} />
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+
+      {activeTab === 'archivos' && <Archivos />}
+      {activeTab === 'informacion' && <Informacion />}
     </>
   );
 };
