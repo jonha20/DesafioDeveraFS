@@ -1,3 +1,5 @@
+@use '../utils/variables.scss' as vars;
+
 td{
   text-align: center;
 }
@@ -22,12 +24,14 @@ table {
 }
 
 .results-table {
-  display: block;
-  align-items: center;
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center; // Centra las filas horizontalmente
+  justify-content: center; // Centra las filas verticalmente si es necesario
   margin: auto;
+  width: 100%; // Asegura que ocupe todo el ancho disponible
+  padding: 0;
   border: none;
-  margin: 0;
 }
 
 /* Hide table headers on mobile */
@@ -36,15 +40,20 @@ table {
 }
 
 /* Product card style rows */
+
 .table-row {
   display: flex;
   flex-direction: column;
+  align-items: center; // Centra el contenido dentro de cada fila
+  justify-content: center;
   background: #fff;
   border-radius: 8px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
   margin-bottom: 16px;
   padding: 12px 10px;
   border: 1px solid #f0f0f0;
+  width: 90%; // Asegura que las filas no ocupen todo el ancho, dejando márgenes laterales
+  max-width: 400px; // Limita el ancho máximo de las filas
 }
 
 .table-cell {
@@ -62,35 +71,161 @@ table {
   margin-right: 8px;
   flex-shrink: 0;
 }
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  list-style: none;
+  padding: 0;
 
-// DESKTOP: Show as table
-@media (min-width: 800px) {
+  li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    &:hover {
+      background-color: #e0e0e0;
+    }
+
+    &.active {
+      background-color: vars.$primary;
+      color: #fff;
+      border-color: vars.$primary;
+    }
+
+    &.disabled {
+      background-color: #f0f0f0;
+      color: #aaa;
+      cursor: not-allowed;
+    }
+  }
+
+  .pagination__break {
+    font-size: 14px;
+    color: #666;
+    padding: 8px 12px;
+  }
+
+  .pagination__next,
+  .pagination__previous {
+    font-size: 14px;
+    color: #1976d2;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+
+// Estilos para pantallas más grandes
+@media (min-width: 768px) {
+  .pagination {
+    gap: 12px;
+
+    .pagination__page,
+    .pagination__next,
+    .pagination__previous {
+      font-size: 16px;
+      padding: 10px 16px;
+    }
+  }
+}
+// DESKTOP: Mejorar tabla en pantallas grandes
+@media (min-width: 900px) {
   .results-table {
     display: table;
-    width: 95%;
+    width: 100%;
+    max-width: 2400px;
     border-collapse: collapse;
-    margin: 20px 0;
+    margin: 20px auto;
+    table-layout: fixed;
   }
+
   .results-table thead {
     display: table-header-group;
+    background-color: #f9f9f9; // Fondo más claro para las cabeceras
+    border-bottom: 2px solid #ddd;
   }
+
+ .column-header{
+  display: flex;
+  flex-direction: row;
+ }
+ .column-title{
+  flex: 1;
+  display: flex;
+  font-weight: bold;
+  font-size: 16px; // Aumenta el tamaño de la fuente en desktop
+  color: #222;
+  padding: 12px 16px; // Ajuste de espacio
+  text-align: center;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+   height: 100px; /* Asegúrate de que el contenedor tenga una altura definida */
+ }
+ .sort-icons{
+   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100px; /* Asegúrate de que el contenedor tenga una altura definida */
+ }
+ .sort-icon {
+  cursor: pointer;
+  margin: -8px 0; // Reduce el espaciado vertical entre los íconos
+}
   .table-row {
     display: table-row;
-    background: none;
-    border-radius: 0;
-    box-shadow: none;
-    margin-bottom: 0;
-    padding: 0;
+    background: #fff;
     border: none;
+    padding: 0;
   }
+
   .table-cell {
     display: table-cell;
-    padding: 12px 8px;
-    font-size: 1rem;
+    padding: 12px 16px; // Ajuste de espacio
+    font-size: 0.95rem;
     border-bottom: 1px solid #eee;
-    vertical-align: middle;
+    text-align: center;
+    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    &::before{
+      display: none;
+    }
   }
-  .table-cell .cell-label {
-    display: none;
+
+  .table-cell:first-child {
+    text-align: left;
+  }
+
+  .score-bar-container {
+    margin: 0 auto;
+    width: 70%; // Ajuste del ancho de la barra
+  }
+
+  .pagination {
+    justify-content: flex-end;
+    margin-top: 16px;
+    gap: 8px;
+  }
+
+  .pagination li {
+    font-size: 14px;
+    padding: 8px 12px;
   }
 }

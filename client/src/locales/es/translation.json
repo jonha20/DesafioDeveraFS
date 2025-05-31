@@ -3,7 +3,7 @@
   "Inicio": "Inicio",
   "Onboarding": "Chat de incorporación",
   "NavProductos":{
-    "Productos": "Mis productos",
+    "Productos": "Productos",
     "Archivos": "Archivos",
     "Informacion": "Información general"
   },
@@ -14,6 +14,7 @@
     "export": "Exportar listado CSV"
   },
   "TableTitles":{
+    "Analizar": "Analizar",
     "Producto": "Producto",
     "Huella de carbono": "Huella de carbono",
     "Diferncia huella": "Diferencia huella",
