@@ -36,9 +36,11 @@ app.get('/ready', (req, res) => {
 });
 const userRoutes = require('./routes/users.routes');
 const tableRoutes = require('./routes/productos_impacto.routes');
+const formRoutes = require("./routes/form.routes")
 
 app.use('/users', userRoutes);
 app.use('/productos_impacto', tableRoutes);
+app.use("/form", formRoutes);
 
 app.listen(port, () => {
   console.log(`Servidor corriendo en http://localhost:${port}`);
