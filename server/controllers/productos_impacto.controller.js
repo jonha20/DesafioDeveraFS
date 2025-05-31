@@ -9,6 +9,21 @@ const getAllProducts = async (req, res) => {
   }
 };
 
+const createProduct = async (req, res) => {
+  const { product_name, href , id_brand} = req.body;
+  if (!product_name || !href) {
+    return res.status(400).json({ error: "Faltan datos del producto" });
+  }
+
+  try {
+    const newProduct = await querieProduct.createProduct({ product_name, href, id_brand });
+    res.status(201).json(newProduct);
+  } catch (error) {
+    res.status(500).json({ error: "Error al crear el producto" });
+  }
+}
+
 module.exports = {
   getAllProducts,
+  createProduct
 };

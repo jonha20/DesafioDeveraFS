@@ -32,7 +32,19 @@ inner join products p2 on p2.id_products = p1.id_products;`,
   $8, $9, $10, $11, $12, $13
   )
   RETURNING *;
-  `
-};
+  `,
+
+  // PRODUCTS 
+   createProduct: `
+  WITH new_product AS (
+    INSERT INTO products (product_name, href, id_brand)
+    VALUES ($1, $2, $3)
+    RETURNING id_products
+  )
+  INSERT INTO products_impacts_resume (id_products)
+  VALUES ((SELECT id_products FROM new_product))
+  RETURNING *;
+`
+  };
 
 module.exports = queries;

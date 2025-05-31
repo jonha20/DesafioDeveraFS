@@ -140,12 +140,14 @@ async function login(req, res) {
       {
         id: user.id,
         email: user.email,
+        logged: user.logged,
         name: user.name,
+        image: user.image_url || null, // Asegúrate de que 'image' sea opcional
+        id_brand: user.id_brand,
       },
       process.env.JWT_REFRESH_SECRET,
       { expiresIn: "7d" }
     );
-
 
     const isProduction = process.env.NODE_ENV === "production";
 
@@ -159,7 +161,7 @@ async function login(req, res) {
       .status(200)
       .json({ token, msg: "Login correcto" });
   } catch (error) {
-     console.error("Error en login:", error); // <-- Agrega esto
+    console.error("Error en login:", error); // <-- Agrega esto
     res.status(500).json({ message: "Error en el inicio de sesión" });
   } finally {
     if (client) client.release();
