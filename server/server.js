@@ -14,7 +14,7 @@ app.set('trust proxy', 1); // Habilitar el proxy para HTTPS
 app.use(cors({
   origin: [
     "https://deveraai.netlify.app",
-    "http://localhost:5173"
+    "http://localhost:5173",
   ],
   credentials: true
 }));

@@ -14,7 +14,7 @@ const LenguagePicker = () => {
   };
 
   return (
-    <div>
+    <div className="language-picker">
       {Object.entries(flags).map(([lng, flag]) => (
         <button
           key={lng}
