@@ -70,7 +70,7 @@ const filteredProductos = productos.filter((producto) => {
       <Navbar setActiveTab={setActiveTab} activeTab={activeTab}/>
       <div className="results-container">
       
-      <Filters  setFilterProducto={setFilterProducto}/>
+      <Filters  setFilterProducto={setFilterProducto} data={sortedProductos}/>
       <table className="results-table">
         <thead>
           <tr>
