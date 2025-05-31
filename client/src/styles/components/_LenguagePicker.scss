@@ -1,0 +1,48 @@
+.language-picker {
+  display: flex;
+  justify-content: center; /* Centrado horizontal en mobile */
+  align-items: center;     /* Centrado vertical */
+  gap: 10px;
+  padding: 0.5rem;
+  button {
+    background-color: #fafafa;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    color: transparent;
+    font-size: 0;
+    cursor: pointer;
+    transition: transform 0.2s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    &:hover {
+      transform: scale(1.1);
+      border-color: #1976d2;
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.5);
+    }
+  }
+
+  /* Asignamos las imágenes de bandera según el atributo aria-label */
+  button[aria-label="es"] {
+    background-image: url("/icons/spain.svg");
+  }
+
+  button[aria-label="en"] {
+    background-image: url("/icons/usa.svg");
+  }
+}
+
+/* Para pantallas mayores se puede modificar la disposición */
+@media (min-width: 900px) {
+  .language-picker {
+    height: auto;  // Se devuelve a la altura natural del contenido
+    justify-content: flex-start; /* o según tu diseño */
+  }
+}

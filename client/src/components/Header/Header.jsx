@@ -6,8 +6,6 @@ import { useNavigate, Link, useLocation  } from "react-router-dom";
 import axios from "axios";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import Avatar from "@mui/material/Avatar";
-import IconButton from "@mui/material/IconButton";
 
 const Header = () => {
   const { user } = useContext(UserContext);
@@ -46,11 +44,11 @@ const location = useLocation();
   </div>
   <nav className="header__nav">
     <Link to="/Home" className={`header__nav-link${location.pathname === "/" ? " header__nav-link--active" : ""}`}>
-      <span className="header__icon">&#8962;</span>
+      <span className="header__icon"><img src="/icons/home1.svg" alt="home" /></span>
       <span>{t("Inicio")}</span>
     </Link>
     <Link to="/onboarding" className={`header__nav-link${location.pathname === "/onboarding" ? " header__nav-link--active" : ""}`}>
-      <span className="header__icon">&#128172;</span>
+      <span className="header__icon"><img src="/icons/chat.svg" alt="chat" /></span>
       <span>{t("Onboarding")} </span>
     </Link>
   </nav>
@@ -77,7 +75,7 @@ const location = useLocation();
       onClick={handleMenuClose}
       selected={location.pathname === "/"}
     >
-      <span className="header__icon">&#8962;</span>
+      <span className="header__icon"><img src="/icons/home1.svg" alt="home" /></span>
       <span>{t("Inicio")}</span>
     </MenuItem>
     <MenuItem
@@ -86,7 +84,7 @@ const location = useLocation();
       onClick={handleMenuClose}
       selected={location.pathname === "/onboarding"}
     >
-      <span className="header__icon">&#128172;</span>
+      <span className="header__icon"><img src="/icons/chat.svg" alt="chat" /></span>
       <span>{t("Onboarding")}</span>
     </MenuItem>
   </div>

@@ -1,8 +1,16 @@
 .table-row {
-  display: block;
-  flex-direction: column;
+  width: 100%;
   border-bottom: 1px solid #eee;
   padding: 8px 0;
+}
+table {
+  border-collapse: collapse;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+  margin: 0;
+  border: none;
+  justify-content: center;
 }
 
 .table-cell {
@@ -13,7 +21,7 @@
 .score-bar-container {
   margin: 8px 0;
   position: relative; // AÑADE ESTA LÍNEA
-  height: 32px;       // Opcional: asegura espacio para el sello
+  height: 32px; // Opcional: asegura espacio para el sello
 }
 
 .score-bar {
@@ -52,7 +60,7 @@
   top: 0; // Cambia de -10px a 0 para alinearlo justo encima de la barra
   transition: left 0.3s;
   z-index: 2;
-    left: 0; // Asegura que el sello esté alineado al inicio de la barra
+  left: 0; // Asegura que el sello esté alineado al inicio de la barra
 
   /* Puedes ajustar top según el tamaño del círculo */
 }
@@ -114,10 +122,22 @@
     border-bottom: none;
     padding: 0;
   }
+
   .table-cell {
-    display: table-cell;
-    padding: 8px;
+    display: flex;
+    align-items: center;
+    padding: 8px; // ajusta el padding según necesites
+    img {
+      margin-right: auto; // Sin margen para que la imagen quede pegada
+      width: 40px;
+      height: 40px;
+    }
+    .product-name {
+      margin: auto;
+      padding-left: 16px;
+    }
   }
+
   .hide-mobile {
     display: table-cell;
   }

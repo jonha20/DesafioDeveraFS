@@ -43,7 +43,7 @@ const Filters = ({setFilterProducto, data}) => {
         <div className="filters__center"></div>
         <div className="filters__right">
           <div className="filters__search">
-            <span className="filters__search-icon">&#128269;</span>
+            <span className="filters__search-icon"><img src="/icons/search.svg" alt="search_svg" /></span>
             <input
               type="text"
               className="filters__input"
@@ -54,7 +54,7 @@ const Filters = ({setFilterProducto, data}) => {
           </div>
 
           <a href="#" className="filters__export" onClick={e => { e.preventDefault(); exportToCSV(); }}>
-            <span role="img" aria-label="export" className="filters__export-icon">&#128190;</span>
+            <span role="img" aria-label="export" className="filters__export-icon"><img src="/icons/file_save.svg" alt="search_svg" /></span>
             <div className="filters__export__text">{t("Filter.export")}</div>
           </a>
 
