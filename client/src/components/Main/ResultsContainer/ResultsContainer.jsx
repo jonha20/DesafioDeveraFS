@@ -1,15 +1,18 @@
 import React, {useState , useEffect, useMemo} from "react";
 import axios from "axios";
-import NavProducts from "./NavProducts/NavProducts";
-import Filters from "./Filters/Filters";
-import ProductsTable from "./ProductsTable/ProductsTable";
+import Navbar from "./Navbar/Navbar";
+import Filters from "./Productos/Filters/Filters";
+import ProductsTable from "./Productos/ProductsTable/ProductsTable";
 import { v4 as uuidv4 } from "uuid";
 import { useTranslation } from "react-i18next";
-import { AgGridReact } from "ag-grid-react";
-import "ag-grid-community/styles/ag-grid.css";
-import "ag-grid-community/styles/ag-theme-alpine.css";
+
+
+  
+
+
 
 const Results = () => {
+  const [activeTab, setActiveTab] = useState('productos');
   const [productos, setProductos] = useState([]);
   const [filterProducto, setFilterProducto] = useState("");
   const [filterStatus, setFilterStatus] = useState("");
@@ -64,7 +67,7 @@ const filteredProductos = productos.filter((producto) => {
 
   return (
     <>
-      <NavProducts />
+      <Navbar setActiveTab={setActiveTab} activeTab={activeTab}/>
       <div className="results-container">
       
       <Filters  setFilterProducto={setFilterProducto} data={sortedProductos}/>

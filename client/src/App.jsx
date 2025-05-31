@@ -77,6 +77,8 @@ useEffect(() => {
         <Route path="/" element={<Main />} />
         <Route path="/form" element={<Form />} />
         <Route path="/home" element={<Home />} />
+       
+
       </Routes>
       {!hideHeader && <Footer />}
 

@@ -6,9 +6,11 @@ import { utils } from "xlsx";
 const Filters = ({setFilterProducto, data}) => {
   const { t } = useTranslation();
   const [entries, setEntries] = useState(10);
+  const csvLink = useRef(null);
   const [search, setSearch] = useState("");
   const [debouncedText] = useDebounce(search, 2000);
-  const csvLink = useRef(null);
+
+
 
   useEffect(() => {
     setFilterProducto(debouncedText);
@@ -28,6 +30,7 @@ const Filters = ({setFilterProducto, data}) => {
     csvLink.current.click();
     window.URL.revokeObjectURL(url);
   };
+
 
   return (
     <>
