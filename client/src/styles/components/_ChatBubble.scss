@@ -1,0 +1,53 @@
+@use '../utils/variables.scss' as variables;
+
+.bubble-container {
+  display: flex;
+  align-items: flex-start;
+  margin: 15px;
+
+  &.user {
+    justify-content: flex-end;
+  }
+
+  &.bot {
+    justify-content: flex-start;
+  }
+
+  .avatar-bot {
+    width: 40px;
+    height: 40px;
+    background: variables.$color-bg;
+    border: 2px solid variables.$color-primary;
+    border-radius: 50%;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+  }
+
+  .avatar-user {
+    width: 40px;
+    height: 40px;
+    background: variables.$color-bg;
+    border: 2px solid variables.$color-border;
+    border-radius: 50%;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+  }
+
+  .bubble {
+    max-width: 60%;
+    padding: 15px;
+    border-radius: variables.$radius;
+    box-shadow: variables.$shadow;
+    background-color: variables.$color-bot-bubble;
+
+    p {
+      margin: 0;
+    }
+  }
+}
