@@ -7,6 +7,7 @@ const cookieParser = require("cookie-parser");
 const cors = require('cors');
 app.use(express.json());
 const helmet = require('helmet'); // Importamos helmet para seguridad
+ 
 
 
 app.set('trust proxy', 1); // Habilitar el proxy para HTTPS
@@ -41,6 +42,23 @@ const formRoutes = require("./routes/form.routes")
 app.use('/users', userRoutes);
 app.use('/productos_impacto', tableRoutes);
 app.use("/form", formRoutes);
+
+
+
+const { scrapeProducts } = require('./scrapper/scraper.service');
+
+app.post('/scrapear', async (req, res) => {
+  const website = req.body.website;  
+  console.log('Scraping:', website);
+
+  try {
+    const products = await scrapeProducts(website);
+    res.json({ products });
+  } catch (error) {
+    console.error('Scraping error:', error);
+    res.status(500).json({ error: 'Scraping error' });
+  }
+});
 
 app.listen(port, () => {
   console.log(`Servidor corriendo en http://localhost:${port}`);
