@@ -3,7 +3,8 @@ const bcrypt = require("bcrypt");
 require("dotenv").config();
 const pool = require("../config/sqlConfig");
 const queries = require("../utils/queries");
-const { createUser } = require("../models/users.models"); // Importar la función createUser
+const saltRounds = 10;
+const { createUser, recoverPassword, restorePassword } = require("../models/users.models"); // Importar la función createUser
 
 async function register(req, res) {
   if (!req.body) {
@@ -216,4 +217,70 @@ async function refreshToken(req, res) {
   }
 }
 
-module.exports = { register, login, logout, refreshToken };
+const handleRecoverPassword = async (req, res) => {
+  const { email } = req.body;
+
+  try {
+    // Verifica que el usuario exista
+    const user = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
+
+    if (user.rows.length === 0) {
+      return res.status(404).json({ message: "Correo no registrado" });
+    }
+
+    // Generar token con vencimiento corto
+    const token = jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: "15m" });
+
+    // Generar enlace
+    const link = `http://localhost:5173/reset-password?token=${token}`;
+
+    // Aquí normalmente enviarías el enlace por email, pero por ahora lo devolvemos en JSON también:
+    res.status(200).json({
+      message: "Revisa tu correo para restablecer la contraseña",
+      resetLink: link, // <-- útil para pruebas en frontend también
+    });
+
+  } catch (error) {
+    console.error("Error en recuperación de contraseña:", error);
+    res.status(500).json({ message: "Error interno del servidor" });
+  }
+};
+
+
+const handleRestorePassword = async (req, res) => {
+  const { token, email, newPassword } = req.body;
+  if (!token) return res.status(401).json({ message: "Token requerido" });
+
+  try {
+    // Validar el token
+    const payload = jwt.verify(token, process.env.JWT_SECRET);
+    
+    // Verificar que el email del token coincide con el que envía el usuario
+    if (payload.email !== email) {
+      return res.status(403).json({ message: "Token no coincide con el email" });
+    }
+
+    // Hashear la nueva contraseña y actualizar en DB
+    const hashedPassword = await bcrypt.hash(newPassword, saltRounds);
+    await pool.query(queries.updateUserPassword, [hashedPassword, email]);
+    
+    res.status(200).json({ message: "Contraseña restablecida con éxito" });
+
+  } catch (error) {
+    console.error("Error al restablecer la contraseña:", error);
+    if (error.name === "TokenExpiredError") {
+      return res.status(401).json({ message: "Token expirado" });
+    }
+    res.status(500).json({ message: "Error interno del servidor" });
+  }
+};
+
+
+module.exports = { 
+ register,
+ login, 
+ logout, 
+ refreshToken,
+ handleRecoverPassword,
+ handleRestorePassword
+ };
