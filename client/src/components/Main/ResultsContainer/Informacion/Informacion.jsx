@@ -1,33 +1,36 @@
-
 import React from "react";
 import { useTranslation } from "react-i18next";
 import '../../../../styles/components/_Informacion.scss';
 
-const Informacion = () => {
+const Information = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="informacion-container">
+    <div className="information-container">
       
-      <div className="bloque">
-        <div className="bloque-header">
-          <h3>{t("InformacionPage.InformacionAportada")}</h3>
-          <span className="icono-editar"></span>
+      <div className="card">
+        <div className="card-header">
+          <h3>
+            <span>{t("InformacionPage.InformacionAportada")}</span>
+            <img src="/icons/edit-3.svg" alt="edit" className="icon-edit" />
+          </h3>
         </div>
-        <p>{t("InformacionPage.TextoAportado")}</p> 
+        <p>{t("InformacionPage.TextoAportado")}</p>
       </div>
 
-      <div className="bloque">
-        <div className="bloque-header">
-          <h3>{t("InformacionPage.CuestionarioEmpresa")}</h3>
-          <span className="icono-check"></span>
+      <div className="card">
+        <div className="card-header">
+          <h3>
+            <span>{t("InformacionPage.CuestionarioEmpresa")}</span>
+            <img src="/icons/check_circle.svg" alt="check" className="icon-check" />
+          </h3>
         </div>
         <p>{t("InformacionPage.TextoCuestionario")}</p>
 
-        <div className="botones">
-          <button className="btn-negro">{t("InformacionPage.InformarCambios")}</button>
-          <button className="btn-blanco">
-            <img src="/icons/download-icon.png" alt="icono" className="icono-descargar" />
+        <div className="buttons">
+          <button className="btn-black">{t("InformacionPage.InformarCambios")}</button>
+          <button className="btn-white">
+            <img src="/icons/file_save.svg" alt="icon" className="icon-download" />
             {t("InformacionPage.RealizarFormulario")}
           </button>
         </div>
@@ -37,4 +40,4 @@ const Informacion = () => {
   );
 };
 
-export default Informacion;
+export default Information;
