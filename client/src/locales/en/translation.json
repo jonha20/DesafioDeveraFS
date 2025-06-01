@@ -24,6 +24,18 @@
     "Descargar": "Download",
     "Archivos": "Files"
   },
+  "ArchivosPage": {
+  "AnadirArchivos": "Add more files",
+  "DescargarArchivos": "Download files"
+  },
+  "InformacionPage": {
+  "InformacionAportada": "Provided Information",
+  "TextoAportado": "Here will go the information extracted from the chat about sales, number of references, etc. It can be edited at any time, and new information can be added.",
+  "CuestionarioEmpresa": "Company Questionnaire",
+  "TextoCuestionario": "The questionnaire is already completed, if you need to modify information you can contact the chat or do it again.",
+  "InformarCambios": "Report changes",
+  "RealizarFormulario": "Complete form"
+  },
   "form": {
     "titulo": "Devera: Company Information",
     "intro": "Answer this questionnaire so we can assess your company’s sustainability policies. Based on the information provided and the carbon footprint we detect automatically, we will assign a sustainability score to your products.",

@@ -24,6 +24,18 @@
     "Descargar": "Descargar",
     "Archivos": "Archivos"
   },
+  "ArchivosPage": {
+  "AnadirArchivos": "Añadir más archivos",
+  "DescargarArchivos": "Descargar archivos"
+  },
+  "InformacionPage": {
+  "InformacionAportada": "Información aportada",
+  "TextoAportado": "Aquí irá la información extraída del chat sobre ventas, número de referencias, etc. Se podrá editar en todo momento, y añadir nueva información.",
+  "CuestionarioEmpresa": "Cuestionario de empresa",
+  "TextoCuestionario": "El cuestionario ya está cumplimentado, si necesitas modificar información puedes comunicarte con el chat o hacerlo de nuevo.",
+  "InformarCambios": "Informar cambios",
+  "RealizarFormulario": "Realizar formulario completo"
+  },
   "form": {
     "titulo": "Devera: Información empresa",
     "intro": "Contesta este cuestionario para que podamos evaluar las políticas de sostenibilidad de tu empresa. En base a la información aportada y a la huella de carbono que detectamos automáticamente, podremos asignar un score de sostenibilidad a tus productos.",

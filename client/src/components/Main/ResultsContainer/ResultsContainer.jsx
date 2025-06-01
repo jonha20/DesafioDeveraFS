@@ -1,14 +1,13 @@
-import React, {useState , useEffect, useMemo} from "react";
-import axios from "axios";
-import Navbar from "./Navbar/Navbar";
+import React, { useState, useEffect } from "react";
+import NavResults from "./Navbar/Navbar";
 import Filters from "./Productos/Filters/Filters";
 import ProductsTable from "./Productos/ProductsTable/ProductsTable";
+import Archivos from "./Archivos/Archivos";
+import Informacion from "./Informacion/Informacion";
+import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import { useTranslation } from "react-i18next";
 import ReactPaginate from 'react-paginate';
-
-  
-
 
 
 const Results = () => {
@@ -34,6 +33,7 @@ const fetchResults = async () => {
   useEffect(() => {
     fetchResults();
   }, []);
+
 
 useEffect(() => {
     const fetchProducts = async () => {
@@ -78,7 +78,6 @@ const uniqueProductos = [...filteredResults, ...filteredProductos].reduce((acc, 
     if (!sortField) return 0;
     let aValue = a[sortField];
     let bValue = b[sortField];
-    // Si es string, comparar como string
     if (typeof aValue === "string") {
       aValue = aValue.toLowerCase();
       bValue = bValue.toLowerCase();
@@ -88,7 +87,6 @@ const uniqueProductos = [...filteredResults, ...filteredProductos].reduce((acc, 
     return 0;
   });
 
-  // Handler para ordenar
   const handleSort = (field, order) => {
     setSortField(field);
     setSortOrder(order);
@@ -97,7 +95,7 @@ const uniqueProductos = [...filteredResults, ...filteredProductos].reduce((acc, 
   console.log(`Loading items from ${itemOffset} to ${endOffset}`);
   const currentItems = sortedProductos.slice(itemOffset, endOffset);
   const pageCount = Math.ceil(sortedProductos.length / entries);
-
+    
   // Invoke when user click to request another page.
   const handlePageClick = (event) => {
     const newOffset = (event.selected * entries) % sortedProductos.length;
@@ -106,8 +104,8 @@ const uniqueProductos = [...filteredResults, ...filteredProductos].reduce((acc, 
   return (
     <> 
       <Navbar setActiveTab={setActiveTab} activeTab={activeTab}/>
-      <div className="results-container">
-      
+      <div className="results-container">      
+        
       <Filters  setFilterProducto={setFilterProducto} data={sortedProductos} setPag={setEntries}/>
       <table className="results-table">
           <thead>
@@ -298,6 +296,8 @@ const uniqueProductos = [...filteredResults, ...filteredProductos].reduce((acc, 
   renderOnZeroPageCount={null}
       />
       </div>
+      {activeTab === 'archivos' && <Archivos />}
+      {activeTab === 'informacion' && <Informacion />}
     </>
   );
 };
