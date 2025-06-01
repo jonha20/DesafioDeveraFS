@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { FaPaperclip } from 'react-icons/fa';
 
 const InputBox = ({ onSend }) => {
   const [input, setInput] = useState('');
@@ -25,19 +24,19 @@ const InputBox = ({ onSend }) => {
       />
       <div className="icons">
         <img 
-            src="/public/paperclip.svg" 
+            src="/paperclip.svg" 
             alt="Attach" 
             width="24" 
             height="24" 
           />
         <img 
-          src="/public/smile.svg" 
+          src="/smile.svg" 
           alt="Smile" 
           width="24" 
           height="24" 
         />
         <img 
-          src="/public/send.svg" 
+          src="/send.svg" 
           alt="Send" 
           width="24" 
           height="24" 
