@@ -87,3 +87,28 @@
       word-break: break-word;
     }
   }
+
+  .dropzone-wrapper {
+    width: 100%;
+    max-width: 500px;
+    border: 2px dashed #26a68b;
+    border-radius: 10px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    background-color: #fafafa;
+  
+    &:hover {
+      border-color: #999;
+    }
+  }
+  
+  .dropzone-area {
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  .dropzone-area.activo {
+    border-color: #26a68b;
+    color: #555;
+  }
