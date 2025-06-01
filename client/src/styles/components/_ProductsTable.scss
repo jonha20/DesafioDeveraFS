@@ -13,25 +13,57 @@ table {
   justify-content: center;
 }
 
-.table-cell {
-  padding: 4px 0;
+ .table-cell {
+    display: flex;
+    justify-content: space-between; // Alinea el texto y el valor
+    width: 100%;
+    align-items: center;
+    padding: 8px 0;
+    font-size: 14px;
+    border-bottom: 1px solid #f0f0f0;
+    padding: 4px 0;
   word-break: break-word;
-}
+ img{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin-right: 8px; // Espacio entre imagen y nombre del producto
+  }
+    &:last-child {
+      border-bottom: none; // Elimina el borde inferior del último elemento
+    }
+
+    &::before {
+      content: attr(data-label); // Usa el atributo `data-label` para mostrar el nombre de la columna
+      font-weight: bold;
+      color: #555;
+      width: 100px; // Ancho fijo para el label
+    }
+  }
+
+  .results-table thead {
+    display: none; // Oculta las cabeceras de la tabla en móviles
+  }
 
 .score-bar-container {
   margin: 8px 0;
-  position: relative; // AÑADE ESTA LÍNEA
-  height: 32px; // Opcional: asegura espacio para el sello
+  position: relative;
+  height: 32px; // Asegura espacio suficiente para la barra y el badge
+  width: 50%; // Asegura que ocupe todo el ancho disponible
+  display: flex;
+  align-items: center; // Centra verticalmente el contenido
+  justify-content: center; // Centra horizontalmente la barra
+  box-sizing: border-box; // Asegura que padding y border no afecten el tamaño total
 }
 
 .score-bar {
   display: flex;
   height: 12px;
   border-radius: 6px;
-  top: 10px;
   overflow: hidden;
   background: #eee;
   position: relative;
+  width: 100%; // Asegura que la barra ocupe todo el ancho del contenedor
 }
 
 .score-bar-segment {
@@ -57,36 +89,28 @@ table {
 
 .score-badge {
   position: absolute;
-  top: 0; // Cambia de -10px a 0 para alinearlo justo encima de la barra
+  left: 0; // Asegura que el badge esté alineado al inicio de la barra
   transition: left 0.3s;
   z-index: 2;
-  left: 0; // Asegura que el sello esté alineado al inicio de la barra
 
-  /* Puedes ajustar top según el tamaño del círculo */
+  /* Ajusta el tamaño del badge */
+  .score-badge-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2.5px solid #222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 14px; // Reduce el tamaño de la fuente en móviles
+    color: #222;
+    box-shadow: 0 2px 8px #0002;
+  }
 }
 
-.score-badge-circle {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: #fff;
-  border: 2.5px solid #222;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 20px;
-  color: #222;
-  box-shadow: 0 2px 8px #0002;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
-/* Oculta columnas menos importantes en mobile */
-.hide-mobile {
-  display: none;
-}
 
 .status-badge {
   display: inline-block;
@@ -127,11 +151,12 @@ table {
     display: flex;
     align-items: center;
     padding: 8px; // ajusta el padding según necesites
-    img {
-      margin-right: auto; // Sin margen para que la imagen quede pegada
-      width: 40px;
-      height: 40px;
-    }
+    img{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin-right: 8px; // Espacio entre imagen y nombre del producto
+  }
     .product-name {
       margin: auto;
       padding-left: 16px;

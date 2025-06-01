@@ -5,6 +5,7 @@ import Filters from "./Productos/Filters/Filters";
 import ProductsTable from "./Productos/ProductsTable/ProductsTable";
 import { v4 as uuidv4 } from "uuid";
 import { useTranslation } from "react-i18next";
+import ReactPaginate from 'react-paginate';
 
   
 
@@ -15,15 +16,13 @@ const Results = () => {
   const [productos, setProductos] = useState([]);
   const [results, setResults] = useState([]);
   const [filterProducto, setFilterProducto] = useState("");
-  const [filterStatus, setFilterStatus] = useState("");
   const [sortField, setSortField] = useState("");
   const [sortOrder, setSortOrder] = useState("asc");
   const { t } = useTranslation();
+  const [itemOffset, setItemOffset] = useState(0);
+ const [entries, setEntries] = useState(10);
   
-  
-
-  useEffect(() => {
-    const fetchResults = async () => {
+const fetchResults = async () => {
       try {
         const response = await axios.get("https://desafiodeverafs.onrender.com/productos_impacto");
         setResults(response.data);
@@ -32,6 +31,7 @@ const Results = () => {
       }
     };
 
+  useEffect(() => {
     fetchResults();
   }, []);
 
@@ -47,20 +47,34 @@ useEffect(() => {
     fetchProducts();
 
 }, []);
-  console.log("Productos:", results);
 
 // Filtrado avanzado: busca el texto ingresado en cualquier campo del producto
-const filteredProductos = results.filter((producto) => {
+const filteredProductos = productos.filter((producto) => {
   const lowerFilter = filterProducto.toLowerCase();
   const matchAnyField = Object.values(producto).some((value) =>
     String(value).toLowerCase().includes(lowerFilter)
   );
-  const matchStatus = filterStatus ? producto.status === filterStatus : true;
-  return matchAnyField && matchStatus;
+  return matchAnyField;
 });
 
+const filteredResults = results.filter((result) => {
+  const lowerFilter = filterProducto.toLowerCase();
+  const matchAnyField = Object.values(result).some((value) =>
+    String(value).toLowerCase().includes(lowerFilter)
+  );
+  return matchAnyField;
+});
+const uniqueProductos = [...filteredResults, ...filteredProductos].reduce((acc, current) => {
+  const exists = acc.find(item => item.product_name === current.name);
+  if (!exists) {
+    acc.push(current);
+  }
+  return acc;
+}, []);
+
+
   // Ordenación
-  const sortedProductos = [...filteredProductos].sort((a, b) => {
+  const sortedProductos = uniqueProductos.sort((a, b) => {
     if (!sortField) return 0;
     let aValue = a[sortField];
     let bValue = b[sortField];
@@ -79,21 +93,30 @@ const filteredProductos = results.filter((producto) => {
     setSortField(field);
     setSortOrder(order);
   };
+  const endOffset = itemOffset + entries;
+  console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+  const currentItems = sortedProductos.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(sortedProductos.length / entries);
 
-
+  // Invoke when user click to request another page.
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * entries) % sortedProductos.length;
+    setItemOffset(newOffset);
+  };
   return (
     <> 
       <Navbar setActiveTab={setActiveTab} activeTab={activeTab}/>
       <div className="results-container">
       
-      <Filters  setFilterProducto={setFilterProducto} data={sortedProductos}/>
+      <Filters  setFilterProducto={setFilterProducto} data={sortedProductos} setPag={setEntries}/>
       <table className="results-table">
           <thead>
             <tr>
               <th>
-                <input type="checkbox" />
+                {t("TableTitles.Analizar")}
               </th>
               <th className="sortable-column">
+                <div className="column-header">
                 <span className="column-title">{t("TableTitles.Producto")}</span>
                 <span className="sort-icons">
                   <span
@@ -121,8 +144,10 @@ const filteredProductos = results.filter((producto) => {
                     <img src="/icons/arrow_down.svg" alt="arrow_down" />
                   </span>
                 </span>
+                </div>
               </th>
               <th className="sortable-column">
+                <div className="column-header">
                 <span className="column-title">{t("TableTitles.Huella de carbono")}</span>
                 <span className="sort-icons">
                   <span
@@ -150,8 +175,10 @@ const filteredProductos = results.filter((producto) => {
                     <img src="/icons/arrow_down.svg" alt="arrow_down" />
                   </span>
                 </span>
+                </div>
               </th>
               <th className="sortable-column">
+                <div className="column-header">
                 <span className="column-title">{t("TableTitles.Diferncia huella")}</span>
                 <span className="sort-icons">
                   <span
@@ -179,8 +206,10 @@ const filteredProductos = results.filter((producto) => {
                     <img src="/icons/arrow_down.svg" alt="arrow_down" />
                   </span>
                 </span>
+                </div>
               </th>
               <th className="sortable-column">
+                <div className="column-header">
                 <span className="column-title">{t("TableTitles.Score")}</span>
                 <span className="sort-icons">
                   <span
@@ -208,8 +237,10 @@ const filteredProductos = results.filter((producto) => {
                     <img src="/icons/arrow_down.svg" alt="arrow_down" />
                   </span>
                 </span>
+                </div>
               </th>
               <th className="sortable-column">
+                <div className="column-header">
                 <span className="column-title">{t("TableTitles.Status")}</span>
                 <span className="sort-icons">
                   <span
@@ -237,6 +268,7 @@ const filteredProductos = results.filter((producto) => {
                     <img src="/icons/arrow_down.svg" alt="arrow_down" />
                   </span>
                 </span>
+                </div>
               </th>
               <th>{t("TableTitles.Ver")}</th>
               <th>{t("TableTitles.Descargar")}</th>
@@ -244,12 +276,27 @@ const filteredProductos = results.filter((producto) => {
             </tr>
           </thead>
         <tbody>
-          {sortedProductos.map((producto) => (
-            productos.map((product) => (
-            <ProductsTable key={uuidv4()} results={producto} producto={product}  />
-          ))))}
+          {currentItems.map((producto) => (
+            <ProductsTable key={uuidv4()} producto={producto} onClick={fetchResults} />
+          ))}
         </tbody>
       </table>
+       <ReactPaginate
+         className="pagination"
+  pageClassName="pagination__page"
+  activeClassName="active"
+  disabledClassName="disabled"
+  previousClassName="pagination__previous"
+  nextClassName="pagination__next"
+  breakClassName="pagination__break"
+  breakLabel="..."
+  nextLabel=">"
+  onPageChange={handlePageClick}
+  pageRangeDisplayed={5}
+  pageCount={pageCount}
+  previousLabel="<"
+  renderOnZeroPageCount={null}
+      />
       </div>
     </>
   );
