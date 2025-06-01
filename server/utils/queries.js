@@ -47,7 +47,12 @@ inner join products p2 on p2.id_products = p1.id_products;`,
   INSERT INTO products_impacts_resume (id_products)
   VALUES ((SELECT id_products FROM new_product))
   RETURNING *;
-`
+`,
+
+   //RECOVER / RESET PASSWORD
+  getUserByEmail: `SELECT * FROM users WHERE email=$1;`,
+  updateUserPassword: `UPDATE users SET password=$1 WHERE email=$2;`,
+
   };
 
 module.exports = queries;

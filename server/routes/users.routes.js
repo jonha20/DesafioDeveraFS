@@ -1,15 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const { register, login, logout, refreshToken } = require('../controllers/users.controllers');
+const { register, login, logout, refreshToken, handleRecoverPassword, handleRestorePassword } = require('../controllers/users.controllers');
 //const auth = require("../middlewares/auth.middleware");
 
-
-
-// Recuperar contraseña
-// router.put('/recoverpassword', Userpgadmin.recoverPassword);
-
-// Restaurar contraseña
-// router.put('/restorepassword', Userpgadmin.restorePassword);
 
 // Registrar usuario
 router.post("/register", register);
@@ -24,8 +17,10 @@ router.post("/logout", logout);
 
 router.post("/refresh-token", refreshToken);
 
-// // Cambiar foto de perfil
-// router.put('/photo/:id', upload.single('image'), Userpgadmin.changePhoto);
+// Recuperar contraseña
+router.post('/recoverpassword', handleRecoverPassword);
 
+// Restaurar contraseña
+router.post('/restorepassword', handleRestorePassword);
 
 module.exports = router;
