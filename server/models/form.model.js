@@ -17,7 +17,10 @@ const insertForm = async (formData) => {
             equality_plan,
             wage_gap,
             conciliation_measures,
-            enps_measurement
+            enps_measurement,
+            proyectossociales = "",
+            otrainfo = "",
+            certificados = "",
           } = formData;
     
         const values = [
@@ -33,13 +36,19 @@ const insertForm = async (formData) => {
             equality_plan,
             wage_gap,
             conciliation_measures,
-            enps_measurement
+            enps_measurement,
+            proyectossociales,
+            otrainfo,
+            certificados
         ];
     
+        console.log("Valores insertados en la BBDD: ", values)
         const result = await pool.query(queries.insertForm, values)
+        console.log("Resultado de insert: ", result.rows)
         return result.rows[0];
     } catch (error){
-        console.error(error)
+        console.error("Error al insertar formulario en la BBDD", error)
+        throw error;
     }
    
 }

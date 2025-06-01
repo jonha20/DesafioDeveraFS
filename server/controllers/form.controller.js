@@ -41,6 +41,7 @@ const createForm = async (req, res) => {
             })
         }
 
+        console.log("Datos recibidos en backend: ", req.body)
         //Insertar en la BBDD
         await formModel.insertForm(formData);
         res.status(201).json({ message: "Formulario enviado con éxito"})
