@@ -7,39 +7,74 @@ import Informacion from "./Informacion/Informacion";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import { useTranslation } from "react-i18next";
+import ReactPaginate from 'react-paginate';
+
 
 const Results = () => {
   const [activeTab, setActiveTab] = useState('productos');
   const [productos, setProductos] = useState([]);
+  const [results, setResults] = useState([]);
   const [filterProducto, setFilterProducto] = useState("");
-  const [filterStatus, setFilterStatus] = useState("");
   const [sortField, setSortField] = useState("");
   const [sortOrder, setSortOrder] = useState("asc");
   const { t } = useTranslation();
-
-  useEffect(() => {
-    const fetchResults = async () => {
+  const [itemOffset, setItemOffset] = useState(0);
+ const [entries, setEntries] = useState(10);
+  
+const fetchResults = async () => {
       try {
         const response = await axios.get("https://desafiodeverafs.onrender.com/productos_impacto");
-        setProductos(response.data);
+        setResults(response.data);
       } catch (error) {
         console.error("Error fetching results:", error);
       }
     };
 
+  useEffect(() => {
     fetchResults();
   }, []);
 
-  const filteredProductos = productos.filter((producto) => {
-    const lowerFilter = filterProducto.toLowerCase();
-    const matchAnyField = Object.values(producto).some((value) =>
-      String(value).toLowerCase().includes(lowerFilter)
-    );
-    const matchStatus = filterStatus ? producto.status === filterStatus : true;
-    return matchAnyField && matchStatus;
-  });
 
-  const sortedProductos = [...filteredProductos].sort((a, b) => {
+useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get("/data.json");
+        setProductos(response.data);
+      } catch (error) {
+        console.error("Error fetching results:", error);
+      }
+    };
+    fetchProducts();
+
+}, []);
+
+// Filtrado avanzado: busca el texto ingresado en cualquier campo del producto
+const filteredProductos = productos.filter((producto) => {
+  const lowerFilter = filterProducto.toLowerCase();
+  const matchAnyField = Object.values(producto).some((value) =>
+    String(value).toLowerCase().includes(lowerFilter)
+  );
+  return matchAnyField;
+});
+
+const filteredResults = results.filter((result) => {
+  const lowerFilter = filterProducto.toLowerCase();
+  const matchAnyField = Object.values(result).some((value) =>
+    String(value).toLowerCase().includes(lowerFilter)
+  );
+  return matchAnyField;
+});
+const uniqueProductos = [...filteredResults, ...filteredProductos].reduce((acc, current) => {
+  const exists = acc.find(item => item.product_name === current.name);
+  if (!exists) {
+    acc.push(current);
+  }
+  return acc;
+}, []);
+
+
+  // Ordenación
+  const sortedProductos = uniqueProductos.sort((a, b) => {
     if (!sortField) return 0;
     let aValue = a[sortField];
     let bValue = b[sortField];
@@ -56,92 +91,211 @@ const Results = () => {
     setSortField(field);
     setSortOrder(order);
   };
-
+  const endOffset = itemOffset + entries;
+  console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+  const currentItems = sortedProductos.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(sortedProductos.length / entries);
+    
+  // Invoke when user click to request another page.
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * entries) % sortedProductos.length;
+    setItemOffset(newOffset);
+  };
   return (
-    <>
-      <NavResults setActiveTab={setActiveTab} activeTab={activeTab} />
-
-      {activeTab === 'productos' && (
-        <div className="results-container">
-          <Filters setFilterProducto={setFilterProducto} data={sortedProductos} />
-          <table className="results-table">
-            <thead>
-              <tr>
-                <th><input type="checkbox" /></th>
-                <th>{t("TableTitles.Producto")}
-                  <span className="sort-icons">
-                    <span
-                      style={{ cursor: "pointer", color: sortField === "product_name" && sortOrder === "asc" ? "#1976d2" : undefined }}
-                      onClick={() => handleSort("product_name", "asc")}
-                    >▲</span>
-                    <span
-                      style={{ cursor: "pointer", color: sortField === "product_name" && sortOrder === "desc" ? "#1976d2" : undefined }}
-                      onClick={() => handleSort("product_name", "desc")}
-                    >▼</span>
+    <> 
+      <Navbar setActiveTab={setActiveTab} activeTab={activeTab}/>
+      <div className="results-container">      
+        
+      <Filters  setFilterProducto={setFilterProducto} data={sortedProductos} setPag={setEntries}/>
+      <table className="results-table">
+          <thead>
+            <tr>
+              <th>
+                {t("TableTitles.Analizar")}
+              </th>
+              <th className="sortable-column">
+                <div className="column-header">
+                <span className="column-title">{t("TableTitles.Producto")}</span>
+                <span className="sort-icons">
+                  <span
+                    className="sort-icon"
+                    onClick={() => handleSort("product_name", "asc")}
+                    style={{
+                      color:
+                        sortField === "product_name" && sortOrder === "asc"
+                          ? "#1976d2"
+                          : "inherit",
+                    }}
+                  >
+                    <img src="/icons/arrow_up.svg" alt="arrow_up" />
                   </span>
-                </th>
-                <th>{t("TableTitles.Huella de carbono")}
-                  <span className="sort-icons">
-                    <span
-                      style={{ cursor: "pointer", color: sortField === "co2_firgerprint" && sortOrder === "asc" ? "#1976d2" : undefined }}
-                      onClick={() => handleSort("co2_firgerprint", "asc")}
-                    >▲</span>
-                    <span
-                      style={{ cursor: "pointer", color: sortField === "co2_firgerprint" && sortOrder === "desc" ? "#1976d2" : undefined }}
-                      onClick={() => handleSort("co2_firgerprint", "desc")}
-                    >▼</span>
+                  <span
+                    className="sort-icon"
+                    onClick={() => handleSort("product_name", "desc")}
+                    style={{
+                      color:
+                        sortField === "product_name" && sortOrder === "desc"
+                          ? "#1976d2"
+                          : "inherit",
+                    }}
+                  >
+                    <img src="/icons/arrow_down.svg" alt="arrow_down" />
                   </span>
-                </th>
-                <th>{t("TableTitles.Diferncia huella")}
-                  <span className="sort-icons">
-                    <span
-                      style={{ cursor: "pointer", color: sortField === "pct_benchmark" && sortOrder === "asc" ? "#1976d2" : undefined }}
-                      onClick={() => handleSort("pct_benchmark", "asc")}
-                    >▲</span>
-                    <span
-                      style={{ cursor: "pointer", color: sortField === "pct_benchmark" && sortOrder === "desc" ? "#1976d2" : undefined }}
-                      onClick={() => handleSort("pct_benchmark", "desc")}
-                    >▼</span>
+                </span>
+                </div>
+              </th>
+              <th className="sortable-column">
+                <div className="column-header">
+                <span className="column-title">{t("TableTitles.Huella de carbono")}</span>
+                <span className="sort-icons">
+                  <span
+                    className="sort-icon"
+                    onClick={() => handleSort("co2_firgerprint", "asc")}
+                    style={{
+                      color:
+                        sortField === "co2_firgerprint" && sortOrder === "asc"
+                          ? "#1976d2"
+                          : "inherit",
+                    }}
+                  >
+                    <img src="/icons/arrow_up.svg" alt="arrow_up" />
                   </span>
-                </th>
-                <th>{t("TableTitles.Score")}
-                  <span className="sort-icons">
-                    <span
-                      style={{ cursor: "pointer", color: sortField === "score" && sortOrder === "asc" ? "#1976d2" : undefined }}
-                      onClick={() => handleSort("score", "asc")}
-                    >▲</span>
-                    <span
-                      style={{ cursor: "pointer", color: sortField === "score" && sortOrder === "desc" ? "#1976d2" : undefined }}
-                      onClick={() => handleSort("score", "desc")}
-                    >▼</span>
+                  <span
+                    className="sort-icon"
+                    onClick={() => handleSort("co2_firgerprint", "desc")}
+                    style={{
+                      color:
+                        sortField === "co2_firgerprint" && sortOrder === "desc"
+                          ? "#1976d2"
+                          : "inherit",
+                    }}
+                  >
+                    <img src="/icons/arrow_down.svg" alt="arrow_down" />
                   </span>
-                </th>
-                <th>{t("TableTitles.Status")}
-                  <span className="sort-icons">
-                    <span
-                      style={{ cursor: "pointer", color: sortField === "status" && sortOrder === "asc" ? "#1976d2" : undefined }}
-                      onClick={() => handleSort("status", "asc")}
-                    >▲</span>
-                    <span
-                      style={{ cursor: "pointer", color: sortField === "status" && sortOrder === "desc" ? "#1976d2" : undefined }}
-                      onClick={() => handleSort("status", "desc")}
-                    >▼</span>
+                </span>
+                </div>
+              </th>
+              <th className="sortable-column">
+                <div className="column-header">
+                <span className="column-title">{t("TableTitles.Diferncia huella")}</span>
+                <span className="sort-icons">
+                  <span
+                    className="sort-icon"
+                    onClick={() => handleSort("pct_benchmark", "asc")}
+                    style={{
+                      color:
+                        sortField === "pct_benchmark" && sortOrder === "asc"
+                          ? "#1976d2"
+                          : "inherit",
+                    }}
+                  >
+                    <img src="/icons/arrow_up.svg" alt="arrow_up" />
                   </span>
-                </th>
-                <th>{t("TableTitles.Ver")}</th>
-                <th>{t("TableTitles.Descargar")}</th>
-                <th>{t("TableTitles.Archivos")}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {sortedProductos.map((producto) => (
-                <ProductsTable key={uuidv4()} producto={producto} />
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
-
+                  <span
+                    className="sort-icon"
+                    onClick={() => handleSort("pct_benchmark", "desc")}
+                    style={{
+                      color:
+                        sortField === "pct_benchmark" && sortOrder === "desc"
+                          ? "#1976d2"
+                          : "inherit",
+                    }}
+                  >
+                    <img src="/icons/arrow_down.svg" alt="arrow_down" />
+                  </span>
+                </span>
+                </div>
+              </th>
+              <th className="sortable-column">
+                <div className="column-header">
+                <span className="column-title">{t("TableTitles.Score")}</span>
+                <span className="sort-icons">
+                  <span
+                    className="sort-icon"
+                    onClick={() => handleSort("score", "asc")}
+                    style={{
+                      color:
+                        sortField === "score" && sortOrder === "asc"
+                          ? "#1976d2"
+                          : "inherit",
+                    }}
+                  >
+                    <img src="/icons/arrow_up.svg" alt="arrow_up" />
+                  </span>
+                  <span
+                    className="sort-icon"
+                    onClick={() => handleSort("score", "desc")}
+                    style={{
+                      color:
+                        sortField === "score" && sortOrder === "desc"
+                          ? "#1976d2"
+                          : "inherit",
+                    }}
+                  >
+                    <img src="/icons/arrow_down.svg" alt="arrow_down" />
+                  </span>
+                </span>
+                </div>
+              </th>
+              <th className="sortable-column">
+                <div className="column-header">
+                <span className="column-title">{t("TableTitles.Status")}</span>
+                <span className="sort-icons">
+                  <span
+                    className="sort-icon"
+                    onClick={() => handleSort("status", "asc")}
+                    style={{
+                      color:
+                        sortField === "status" && sortOrder === "asc"
+                          ? "#1976d2"
+                          : "inherit",
+                    }}
+                  >
+                    <img src="/icons/arrow_up.svg" alt="arrow_up" />
+                  </span>
+                  <span
+                    className="sort-icon"
+                    onClick={() => handleSort("status", "desc")}
+                    style={{
+                      color:
+                        sortField === "status" && sortOrder === "desc"
+                          ? "#1976d2"
+                          : "inherit",
+                    }}
+                  >
+                    <img src="/icons/arrow_down.svg" alt="arrow_down" />
+                  </span>
+                </span>
+                </div>
+              </th>
+              <th>{t("TableTitles.Ver")}</th>
+              <th>{t("TableTitles.Descargar")}</th>
+              <th>{t("TableTitles.Archivos")}</th>
+            </tr>
+          </thead>
+        <tbody>
+          {currentItems.map((producto) => (
+            <ProductsTable key={uuidv4()} producto={producto} onClick={fetchResults} />
+          ))}
+        </tbody>
+      </table>
+       <ReactPaginate
+         className="pagination"
+  pageClassName="pagination__page"
+  activeClassName="active"
+  disabledClassName="disabled"
+  previousClassName="pagination__previous"
+  nextClassName="pagination__next"
+  breakClassName="pagination__break"
+  breakLabel="..."
+  nextLabel=">"
+  onPageChange={handlePageClick}
+  pageRangeDisplayed={5}
+  pageCount={pageCount}
+  previousLabel="<"
+  renderOnZeroPageCount={null}
+      />
+      </div>
       {activeTab === 'archivos' && <Archivos />}
       {activeTab === 'informacion' && <Informacion />}
     </>

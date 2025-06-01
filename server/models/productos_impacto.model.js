@@ -16,6 +16,22 @@ const getAllProducts = async () => {
     return result
 }
 
+const createProduct = async (product) => {
+    let client, result;
+    try {
+        client = await pool.connect(); // Espera a abrir conexion
+        const { product_name, href, id_brand } = product;
+        result = await client.query(queries.createProduct, [product_name, href, id_brand]);
+    } catch (err) {
+        console.log(err);
+        throw err;
+    } finally {
+        client.release();
+    }
+    return result.rows[0];
+}
+
 module.exports = {
-    getAllProducts
+    getAllProducts,
+    createProduct
 };

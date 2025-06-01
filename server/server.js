@@ -14,7 +14,7 @@ app.set('trust proxy', 1); // Habilitar el proxy para HTTPS
 app.use(cors({
   origin: [
     "https://deveraai.netlify.app",
-    "http://localhost:5173"
+    "http://localhost:5173",
   ],
   credentials: true
 }));
@@ -36,9 +36,11 @@ app.get('/ready', (req, res) => {
 });
 const userRoutes = require('./routes/users.routes');
 const tableRoutes = require('./routes/productos_impacto.routes');
+const formRoutes = require("./routes/form.routes")
 
 app.use('/users', userRoutes);
 app.use('/productos_impacto', tableRoutes);
+app.use("/form", formRoutes);
 
 app.listen(port, () => {
   console.log(`Servidor corriendo en http://localhost:${port}`);

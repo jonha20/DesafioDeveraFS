@@ -14,6 +14,7 @@
     "export": "Exportar listado CSV"
   },
   "TableTitles":{
+    "Analizar": "Analizar",
     "Producto": "Producto",
     "Huella de carbono": "Huella de carbono",
     "Diferncia huella": "Diferencia huella",

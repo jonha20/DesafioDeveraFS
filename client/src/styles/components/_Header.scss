@@ -1,4 +1,4 @@
-@use '../utils/variables.scss' as vars;
+@use "../utils/variables.scss" as vars;
 
 .header {
   width: 100%;
@@ -54,11 +54,10 @@
       object-fit: cover;
       border: 2px solid #e0e0e0;
     }
-    
   }
-.header__burger {
-  display: none; // Oculto en mobile
-}
+  .header__burger {
+    display: none; // Oculto en mobile
+  }
 
   // Menú hamburguesa (Material UI Menu)
   .MuiMenu-paper {
@@ -110,6 +109,16 @@
 .header__nav {
   display: none; // Oculto en mobile
 }
+.header__icon {
+  font-size: 1.2rem;
+  margin-right: 5px;
+  [alt="home"] {
+    margin-top: 4px;
+  }
+  [alt="chat"] {
+    margin-top: 10px;
+  }
+}
 // Desktop layout
 @media (min-width: 900px) {
   .header {
@@ -117,29 +126,35 @@
     &__left {
       flex: 0 0 auto;
     }
-   .header__nav {
-    display: flex;
-    flex: 1 1 auto;
-    justify-content: center;
-    align-items: center;
-    gap: 2.5rem;
-    .header__nav-link {
+    .header__nav {
       display: flex;
+      flex: 1 1 auto;
+      justify-content: center;
       align-items: center;
-      gap: 0.4rem;
-      font-size: 1.1rem;
-      color: #bdbdbd;
-      text-decoration: none;
-      font-weight: 500;
-      &--active {
-        color: #25a488;
-        font-weight: 700;
-      }
-      .header__icon {
-        font-size: 1.2rem;
+      gap: 2.5rem;
+      .header__nav-link {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 1.1rem;
+        color: #bdbdbd;
+        text-decoration: none;
+        font-weight: 500;
+        &--active {
+          color: #25a488;
+          font-weight: 700;
+        }
+        .header__icon {
+          font-size: 1.2rem;
+          [alt="home"] {
+            margin-top: 8px;
+          }
+          [alt="chat"] {
+            margin-top: 10px;
+          }
+        }
       }
     }
-  }
     &__right {
       flex: 0 0 auto;
       gap: 1.3rem;
@@ -161,7 +176,7 @@
     font-weight: 500;
     vertical-align: middle;
   }
-  .header__menu-links{
+  .header__menu-links {
     display: none;
   }
 }
