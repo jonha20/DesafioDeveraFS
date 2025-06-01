@@ -13,6 +13,7 @@ import ReactPaginate from 'react-paginate';
 const Results = () => {
   const [activeTab, setActiveTab] = useState('productos');
   const [productos, setProductos] = useState([]);
+  const [singleProducto, setSingleProducto] = useState("");
   const [results, setResults] = useState([]);
   const [filterProducto, setFilterProducto] = useState("");
   const [sortField, setSortField] = useState("");
@@ -276,7 +277,7 @@ const uniqueProductos = [...filteredResults, ...filteredProductos].reduce((acc, 
           </thead>
         <tbody>
           {currentItems.map((producto) => (
-            <ProductsTable key={uuidv4()} producto={producto} onClick={fetchResults} />
+            <ProductsTable key={uuidv4()} producto={producto} onClick={fetchResults} setSingleProducto={setSingleProducto} setActiveSection={setActiveTab}/>
           ))}
         </tbody>
       </table>
@@ -299,7 +300,7 @@ const uniqueProductos = [...filteredResults, ...filteredProductos].reduce((acc, 
       </div>
       </>
       )}
-      {activeTab === 'archivos' && <Archivos />}
+      {activeTab === 'archivos' && <Archivos singleProducto={singleProducto}/>}
       {activeTab === 'informacion' && <Informacion />}
     </>
   );
