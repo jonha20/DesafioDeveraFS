@@ -4,7 +4,7 @@ import axios from "axios";
 import { useTranslation } from "react-i18next";
 
 
-const ProductsTable = ({ producto ,onClick}) => {
+const ProductsTable = ({ producto ,onClick, setSingleProducto, setActiveSection}) => {
   const { user } = useContext(UserContext);
   const percent = Math.max(0, Math.min(100, producto.impact_score));
   const left = `calc(${percent}% - 16px)`;
@@ -28,6 +28,10 @@ const postProducto = async () => {
     console.error("Error posting producto:", error);
   }
 };
+const handleArchivosClick = () => {
+    setActiveSection("archivos"); // Cambia la sección activa a "archivos"
+    setSingleProducto(producto); // Establece el producto seleccionado
+  };
 
 
   // DESKTOP: Table row
@@ -100,6 +104,7 @@ const postProducto = async () => {
           <button
             title="Archivos"
             style={{ background: "none", border: "none", cursor: "pointer" }}
+            onClick={handleArchivosClick}
           >
             <img src="/icons/attach_file.svg" alt="attach_file" />
           </button>

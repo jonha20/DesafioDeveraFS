@@ -42,5 +42,11 @@ COPY . .
 # Instalar dependencias de Python
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
-# Comando para ejecutar la aplicación
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Copiar el entrypoint y dar permisos
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+# Usar entrypoint para arrancar la app con uvicorn en el puerto indicado por $PORT
+ENTRYPOINT ["/entrypoint.sh"]
+
+

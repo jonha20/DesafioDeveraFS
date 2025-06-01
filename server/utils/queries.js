@@ -40,8 +40,8 @@ inner join products p2 on p2.id_products = p1.id_products;`,
   // PRODUCTS 
    createProduct: `
   WITH new_product AS (
-    INSERT INTO products (product_name, href, id_brand)
-    VALUES ($1, $2, $3)
+    INSERT INTO products (product_name, href, id_brand, product_folder)
+    VALUES ($1, $2, $3, $4)
     RETURNING id_products
   )
   INSERT INTO products_impacts_resume (id_products)
