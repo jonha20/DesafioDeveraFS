@@ -3,19 +3,10 @@ import '../../../../styles/components/_Archivos.scss';
 import { useTranslation } from "react-i18next";
 import { useDropzone } from "react-dropzone";
 
-// Este es un listado inicial simulado de archivos
-const archivosIniciales = [
-  { id: 1, nombre: "apollo-cosmetics-IT.csv" },
-  { id: 2, nombre: "apollo-cosmetics-MX.csv" },
-  { id: 3, nombre: "apollo-fashionDE.csv" },
-  { id: 4, nombre: "app.clever_gy_products_1.csv" },
-  { id: 5, nombre: "app.clever_gy_products_2.csv" },
-  { id: 6, nombre: "app.nastaeco_products_XYZ.csv" }
-];
-
 const Archivos = () => {
-  const [archivos, setArchivos] = useState(archivosIniciales);
+  const [archivos, setArchivos] = useState([]);
   const { t } = useTranslation();
+
 
   const onDrop = useCallback((acceptedFiles) => {
     const nuevosArchivos = acceptedFiles.map((file, index) => ({ 
@@ -30,7 +21,11 @@ const Archivos = () => {
     onDrop,
     noClick: true, //Desactiva el click automático en el área de soltar archivos
     noKeyboard: true, //Evita la activación con el teclado
-    accept: { "text/csv": [".csv"]} //Restringe de momento solo archivos csv
+    accept: { 
+      "text/csv": [".csv"],
+      "application/pdf": [".pdf"],
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": [".xlsx"]
+    }
   })
 
   const handleDescargarArchivos = () => {
