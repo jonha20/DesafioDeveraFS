@@ -11,7 +11,6 @@ from selenium.common.exceptions import NoSuchElementException, ElementClickInter
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 import os
-port = int(os.getenv("PORT", 10000))
 
 
 load_dotenv()
@@ -19,9 +18,11 @@ api_key = os.getenv("api_key")
 # --------------------------------------- FUNCIONES PARA SCRAPEAR -------------------------------------------------
 
 def scrapear_web(web):
-    driver_path = os.getenv("CHROMEDRIVER_PATH", "./bin/chromedriver")
+    driver_path = os.getenv("CHROMEDRIVER_PATH", "/usr/bin/chromedriver")
+    chrome_path = os.getenv("CHROME_BIN", "/usr/bin/google-chrome")
     
     options = Options()
+    options.binary_location = chrome_path
     options.add_argument("--headless")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
@@ -37,7 +38,7 @@ def scrapear_web(web):
     try:
         driver.get(web)
         print("Cargando página...")
-        time.sleep(5)  
+        time.sleep(5) 
 
         # Manejo de cookies
         try:
