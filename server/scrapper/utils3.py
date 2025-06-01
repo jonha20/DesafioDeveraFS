@@ -19,7 +19,7 @@ api_key = os.getenv("api_key")
 # --------------------------------------- FUNCIONES PARA SCRAPEAR -------------------------------------------------
 
 def scrapear_web(web):
-    driver_path = os.getenv("CHROMEDRIVER_PATH", "/usr/bin/chromedriver")
+    driver_path = os.getenv("CHROMEDRIVER_PATH", "./bin/chromedriver")
     
     options = Options()
     options.add_argument("--headless")
