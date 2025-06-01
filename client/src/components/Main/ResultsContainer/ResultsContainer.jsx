@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import NavResults from "./Navbar/Navbar";
+import Navbar from "./Navbar/Navbar";
 import Filters from "./Productos/Filters/Filters";
 import ProductsTable from "./Productos/ProductsTable/ProductsTable";
 import Archivos from "./Archivos/Archivos";
