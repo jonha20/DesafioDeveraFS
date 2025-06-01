@@ -22,15 +22,17 @@ def scrapear_web(web):
     driver_path = os.getenv("CHROMEDRIVER_PATH", "/usr/bin/chromedriver")
     
     options = Options()
-    options.add_argument("--headless") 
-    options.add_argument("--no-sandbox")  
-    options.add_argument("--disable-dev-shm-usage")  
-    options.add_argument("--disable-gpu")  
-    options.add_argument("--window-size=1920,1080")   
+    options.add_argument("--headless")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--window-size=1920,1080")
 
-    # Configurar el servicio con la ruta correcta
-    service = Service(driver_path)
-    driver = webdriver.Chrome(service=service, options=options)
+    try:
+        service = Service(driver_path)
+        driver = webdriver.Chrome(service=service, options=options)
+    except Exception as e:
+        raise Exception(f"Error al cargar el controlador de Chrome: {e}")
 
     try:
         driver.get(web)
