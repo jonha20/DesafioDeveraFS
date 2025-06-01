@@ -15,7 +15,6 @@ import "./i18n";
 import "normalize.css";
 function App() {
   const [user, setUser] = useState({});
-  const [loading, setLoading] = useState(true); // Estado de carga
   const location = useLocation();
 
   useEffect(() => {
@@ -40,7 +39,6 @@ function App() {
       } else {
         setUser(null);
       }
-      setLoading(false); // Finaliza la carga después de procesar el token
     };
 
     checkToken();
@@ -49,10 +47,7 @@ function App() {
   const hideHeader =
     location.pathname === "/login" || location.pathname === "/signup";
 
-  if (loading) {
-    // Muestra un indicador de carga mientras se procesa el token
-    return <div>Cargando...</div>;
-  }
+
 
   return (
     <>
