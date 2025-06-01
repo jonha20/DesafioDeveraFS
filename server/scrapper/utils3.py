@@ -20,8 +20,10 @@ api_key = os.getenv("api_key")
 
 def scrapear_web(web):
     driver_path = os.getenv("CHROMEDRIVER_PATH", "./bin/chromedriver")
+    chrome_path = os.getenv("CHROME_PATH", "/usr/bin/google-chrome")
     
     options = Options()
+    options.binary_location = chrome_path
     options.add_argument("--headless")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
