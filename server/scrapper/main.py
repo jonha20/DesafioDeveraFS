@@ -7,6 +7,7 @@ from typing import List, Optional
 import json
 from fastapi.responses import JSONResponse
 from fastapi import FastAPI
+
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
