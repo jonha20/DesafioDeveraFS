@@ -104,8 +104,9 @@ const uniqueProductos = [...filteredResults, ...filteredProductos].reduce((acc, 
   return (
     <> 
       <Navbar setActiveTab={setActiveTab} activeTab={activeTab}/>
+       {activeTab === 'productos' && (<>
       <div className="results-container">      
-        
+      
       <Filters  setFilterProducto={setFilterProducto} data={sortedProductos} setPag={setEntries}/>
       <table className="results-table">
           <thead>
@@ -294,8 +295,10 @@ const uniqueProductos = [...filteredResults, ...filteredProductos].reduce((acc, 
   pageCount={pageCount}
   previousLabel="<"
   renderOnZeroPageCount={null}
-      />
+      /> 
       </div>
+      </>
+      )}
       {activeTab === 'archivos' && <Archivos />}
       {activeTab === 'informacion' && <Informacion />}
     </>
