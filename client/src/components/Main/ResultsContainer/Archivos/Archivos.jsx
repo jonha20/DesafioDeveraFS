@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import '../../../../styles/components/_Archivos.scss';
 import { useTranslation } from "react-i18next";
+import { useDropzone } from "react-dropzone";
 
 // Este es un listado inicial simulado de archivos
 const archivosIniciales = [
@@ -16,11 +17,21 @@ const Archivos = () => {
   const [archivos, setArchivos] = useState(archivosIniciales);
   const { t } = useTranslation();
 
-  const handleAnadirArchivos = () => {
-    // Esto es solo un simulacro. Aquí en el futuro podrías abrir el file picker.
-    const nuevoArchivo = { id: archivos.length + 1, nombre: `nuevo-archivo-${archivos.length + 1}.csv` };
-    setArchivos([...archivos, nuevoArchivo]);
-  };
+  const onDrop = useCallback((acceptedFiles) => {
+    const nuevosArchivos = acceptedFiles.map((file, index) => ({ 
+      id: archivos.length + index + 1,
+      nombre: file.name
+    }))
+    setArchivos(prev => [...prev, ...nuevosArchivos])
+  }, [archivos])
+
+  //Hook con picker y drop habilitados
+  const { getRootProps, getInputProps, isDragActive, open} = useDropzone({
+    onDrop,
+    noClick: true, //Desactiva el click automático en el área de soltar archivos
+    noKeyboard: true, //Evita la activación con el teclado
+    accept: { "text/csv": [".csv"]} //Restringe de momento solo archivos csv
+  })
 
   const handleDescargarArchivos = () => {
     alert("Simulando descarga de archivos...");
@@ -31,13 +42,28 @@ const Archivos = () => {
 
       {/* Botones */}
       <div className="archivos-buttons">
-      <button className="btn-anadir" onClick={handleAnadirArchivos}>
-        {t("ArchivosPage.AnadirArchivos")}
-      </button>
-      <button className="btn-descargar" onClick={handleDescargarArchivos}>
-        <img src="/icons/download-icon.png" alt="icono descargar" className="icono-descargar" />
-        {t("ArchivosPage.DescargarArchivos")}
-      </button>
+        {/* Botón normal que abre file picker programáticamente */}
+        <button className="btn-anadir" type="button" onClick={open}>
+          {t("ArchivosPage.AnadirArchivos")}
+        </button>
+
+        {/* Botón para descargar archivos */}
+        <button className="btn-descargar" onClick={handleDescargarArchivos}>
+          <img src="/icons/download-icon.png" alt="icono descargar" className="icono-descargar" />
+          {t("ArchivosPage.DescargarArchivos")}
+        </button>
+      </div>
+
+      {/* Área separada para drag and drop */}
+      <div className="dropzone-wrapper" {...getRootProps()}>
+        <input {...getInputProps()} />
+        <div className={`dropzone-area ${isDragActive ? 'activo' : ''}`}>
+          <p>
+            {isDragActive
+              ? t("ArchivosPage.SueltaParaSubir")
+              : t("ArchivosPage.PlaceholderArrastra")}
+          </p>
+        </div>
       </div>
 
       {/* Lista de archivos */}
