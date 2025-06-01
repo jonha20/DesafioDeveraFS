@@ -1,5 +1,7 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useContext } from "react";
 import { useTranslation } from "react-i18next";
+import axios from "axios";
+import { UserContext } from "@/src/context/userContext";
 
 const Form = () => {
   const initialFormData = { //Estado inicial del formulario
@@ -23,6 +25,7 @@ const Form = () => {
   const fieldRefs = useRef({})
   const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState(initialFormData);
+  const {user} = useContext(UserContext)
 
   const requiredFields = [
     "empresa",
@@ -63,37 +66,56 @@ const Form = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  let id_brand = user.id_brand
+  const mapFormDataToApi = () => ({
+    id_brand: id_brand,
+    company_name: formData.empresa,
+    employees: formData.empleados,
+    sustainability_report: formData.memoria === "Si",
+    percent_renewable_sources: formData.energia,
+    plan_carbon_footprint: formData.carbono,
+    percent_virgin_material: formData.materiaVirgen,
+    distance_providers: formData.proveedores,
+    news_sustainability: formData.criticas,
+    equality_plan: formData.igualdad,
+    wage_gap: formData.brechaSalarial,
+    conciliation_measures: formData.conciliacion,
+    enps_measurement: formData.enps,
+    proyectossociales: formData.proyectosSociales,
+    otrainfo: formData.otraInfo,
+    certificados: formData.certificados
+  })
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const { isValid, firstErrorKey } = validate();
-  
+
     if (isValid) {
-      console.log("Datos enviados:", formData);
-      alert(t("form.enviado"));
-      setFormData(initialFormData);
+      const dataToSend = mapFormDataToApi();
+
+      //http://localhost:3000/form
+      //https://desafiodeverafs.onrender.com/form
+
+      try {
+        const response = await axios.post("http://localhost:3000/form", dataToSend, {
+          withCredentials: true,
+        });
+        alert(t("form.enviado"));
+        console.log("Respuesta del servidor:", response.data);
+        setFormData(initialFormData);
+        setErrors({});
+      } catch (error) {
+        console.error("Error al enviar el formulario:", error.response?.data || error.message);
+        alert(t("form.errorServidor") || "Error al enviar el formulario");
+      }
     } else {
-
-      const radioFields = [
-        "empresa",
-        "empleados",
-        "memoria",
-        "energia",
-        "carbono",
-        "materiaVirgen",
-        "proveedores",
-        "criticas",
-        "igualdad",
-        "brechaSalarial",
-        "conciliacion",
-        "enps",
-      ];
-
-      if (radioFields.includes(firstErrorKey)){ //Alert por si no se selecciona una opción
-        alert(t("form.alertaRadios"))
+      const radioFields = requiredFields;
+      if (radioFields.includes(firstErrorKey)) {
+        alert(t("form.alertaRadios"));
       }
 
-      const errorElement = fieldRefs.current[firstErrorKey]; //Scroll para que nos lleve al campo obligatorio vacío
-      if (errorElement && errorElement.scrollIntoView) {
+      const errorElement = fieldRefs.current[firstErrorKey];
+      if (errorElement?.scrollIntoView) {
         errorElement.scrollIntoView({ behavior: "smooth", block: "center" });
         errorElement.focus?.();
       }

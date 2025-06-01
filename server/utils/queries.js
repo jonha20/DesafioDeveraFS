@@ -26,10 +26,13 @@ inner join products p2 on p2.id_products = p1.id_products;`,
   equality_plan,
   wage_gap,
   conciliation_measures,
-  enps_measurement
+  enps_measurement,
+  proyectossociales,
+  otrainfo,
+  certificados
   ) VALUES (
   $1, $2, $3, $4, $5, $6, $7,
-  $8, $9, $10, $11, $12, $13
+  $8, $9, $10, $11, $12, $13, $14, $15, $16
   )
   RETURNING *;
   `,
