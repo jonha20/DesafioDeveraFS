@@ -70,7 +70,7 @@ const Archivos = () => {
       <div className="archivos-listado">
         {archivos.map((archivo) => (
           <div key={archivo.id} className="archivo-item">
-            <img src="/icons/csv-icon.png" alt="icono archivo" className="archivo-icono" />
+            <img src="/icons/attach_file.svg" alt="icono archivo" className="archivo-icono" />
             <p className="archivo-nombre">{archivo.nombre}</p>
           </div>
         ))}

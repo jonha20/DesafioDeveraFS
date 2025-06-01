@@ -24,19 +24,19 @@ const InputBox = ({ onSend }) => {
       />
       <div className="icons">
         <img 
-            src="/paperclip.svg" 
+            src="icons/paperclip.svg" 
             alt="Attach" 
             width="24" 
             height="24" 
           />
         <img 
-          src="/smile.svg" 
+          src="icons/smile.svg" 
           alt="Smile" 
           width="24" 
           height="24" 
         />
         <img 
-          src="/send.svg" 
+          src="icons/send.svg" 
           alt="Send" 
           width="24" 
           height="24" 
