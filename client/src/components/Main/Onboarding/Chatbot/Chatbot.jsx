@@ -1,18 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import ChatBubble from './ChatContainer/ChatBubble/ChatBubble';
 import ChatContainer from './ChatContainer/ChatContainer';
 import InputBox from './ChatContainer/InputBox/InputBox';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from "@/src/context/userContext";
+
 
 // URL scraper desplegado en Railway
 const BASE_URL = 'https://generous-tenderness-scrapper-app.up.railway.app';
-// const BASE_URL = 'http://localhost:8000'; // Pon aquí tu endpoint real si estás en deploy
 
 const Chatbot = () => {
+  const { setProductsScraped } = useContext(UserContext);
   const [step, setStep] = useState(1);
   const [website, setWebsite] = useState('');
-  const [products, setProducts] = useState([]); 
+  //const [products, setProducts] = useState([]); 
   const navigate = useNavigate();
 
   const handleUserInput = async (input) => {
@@ -23,7 +25,7 @@ const Chatbot = () => {
       axios.post(`${BASE_URL}/scrapear`, { url: input })
         .then((response) => {
           console.log('Extracted products:', response.data);
-          setProducts(response.data);
+          setProductsScraped(response.data);
         })
         .catch((error) => {
           console.error('Scraping error:', error);
@@ -38,7 +40,6 @@ const Chatbot = () => {
     navigate('/form');
   };
 
-  console.log(products);
 
   return (
     <ChatContainer>
