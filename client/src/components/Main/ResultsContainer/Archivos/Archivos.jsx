@@ -129,9 +129,6 @@ const handleUpload = async () => {
   }
 };
 
-  const handleDescargarArchivos = () => {
-    alert("Simulando descarga de archivos...");
-  };
 
   return (
     <>
@@ -162,10 +159,6 @@ const handleUpload = async () => {
           </button>
         </div>
 
-        {/* Botón para subir archivos a Cloudinary */}
-        {/* <button className="btn-subir" onClick={handleUpload}>
-        {t("ArchivosPage.SubirArchivos")}
-      </button> */}
 
         {/* Área separada para drag and drop */}
         <div className="dropzone-wrapper" {...getRootProps()}>
