@@ -18,6 +18,7 @@ import "normalize.css";
 
 function App() {
   const [user, setUser] = useState({});
+  const [productsScraped, setProductsScraped] = useState([]);
   const location = useLocation();
 
   useEffect(() => {
@@ -56,7 +57,7 @@ function App() {
 
   return (
     <>
-      <UserContext.Provider value={{ user }}>
+      <UserContext.Provider value={{ user, productsScraped, setProductsScraped }}>
         {!hideHeader && <Header />}
         <Routes>
           <Route path="/login" element={<LogIn />} />
