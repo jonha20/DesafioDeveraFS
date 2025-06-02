@@ -11,32 +11,42 @@ const ForgotPassword = () => {
 
   const handleRecover = async (e) => {
     e.preventDefault();
-   try {
-  const response = await axios.post(
-    "http://localhost:3000/users/recoverpassword",
-    { email }
-  );
 
-  const { message, resetLink } = response.data;
-  console.log("resetLink recibido:", resetLink);
+    
+       const emailValidation = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+       if (!emailValidation.test(email)) {
+      notify("El correo no tiene un formato válido", "error");
+      return;
+      }
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/users/recoverpassword",
+        { email }
+      );
 
-  const url = new URL(resetLink);
-  const token = url.searchParams.get("token");
+      const { message, resetLink } = response.data;
+      console.log("Respuesta completa:", response.data);
+      console.log("Reset Link:", resetLink);
 
-  if (!token) {
-    throw new Error("Token inválido o no encontrado");
-  }
+      setMessage(message);
+      notify(message, "success");
 
-  notify(message, "success");
+      const url = new URL(resetLink);
+      const token = url.searchParams.get("token");
 
-  setTimeout(() => {
-    navigate(`/reset-password?token=${token}`);
-  }, 1000);
-} catch (error) {
-  console.error(error);
-  notify("Error al enviar correo de recuperación", "error");
-}
+      if (token) {
+        sessionStorage.setItem("resetToken", token); // Guardar en memoria
+        setTimeout(() => {
+          navigate(`/reset-password?token=${token}`);
+        }, 2000);
+      } else {
+        notify("No se pudo obtener el token", "error");
+      }
 
+    } catch (error) {
+      console.error(error);
+      notify("Error al enviar correo de recuperación", "error");
+    }
   };
 
   return (
