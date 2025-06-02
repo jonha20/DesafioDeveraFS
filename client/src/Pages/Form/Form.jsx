@@ -30,7 +30,9 @@ const Form = () => {
   const fieldRefs = useRef({})
   const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState(initialFormData);
-  const {user} = useContext(UserContext)
+  const {user} = useContext(UserContext);
+  const navigate = useNavigate();
+  
 
   const requiredFields = [
     "empresa",
@@ -102,14 +104,19 @@ const Form = () => {
       //https://desafiodeverafs.onrender.com/form
 
       try {
-        const response = await axios.post("http://localhost:3000/form", dataToSend, {
+        const response = await axios.post("https://desafiodeverafs.onrender.com/form", dataToSend, {
           withCredentials: true,
         });
-        notify(t("form.enviado"), "success"); 
-        console.log("Respuesta del servidor:", response.data);
+        alert(t("form.enviado"));
+
         setFormData(initialFormData);
         setErrors({});
-        navigate("/home"); // Redirige al usuario a la página de inicio después de enviar el formulario
+
+        setTimeout(() => {
+          navigate("/home");
+        }, 1000);
+
+
       } catch (error) {
         notify(t("form.errorServidor"), "error");
         console.error("Error al enviar el formulario:", error.response?.data || error.message);
