@@ -3,6 +3,7 @@ import { UserContext } from "@/src/context/userContext";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 import CloudConvert from "cloudconvert";
+import { ToastContainer, toast } from "react-toastify";
 
 const ProductsTable = ({
   producto,
@@ -15,6 +16,7 @@ const ProductsTable = ({
   const left = `calc(${percent}% - 16px)`;
   const { t } = useTranslation();
   console.log("Producto:", producto);
+  const notify = (message, type) => toast[type](message);
 
   const postProducto = async () => {
     try {
@@ -46,7 +48,7 @@ const ProductsTable = ({
       const cloudConvert = new CloudConvert(
         `${import.meta.env.VITE_CLOUDCONVERT_API_KEY}`
       );
-
+try{
       let job = await cloudConvert.jobs.create({
         tasks: {
           "product-import": {
@@ -82,7 +84,11 @@ const ProductsTable = ({
 
       // Abre el archivo en una nueva ventana para descargarlo
       window.open(file.url, "_blank");
-   
+      notify("Archivo convertido y descargado exitosamente", "success");
+    } catch (error) {
+      console.error("Error converting DOCX to PDF:", error);
+      notify("Error al convertir el archivo: " + error.message, "error");
+    }
   };
 
   // DESKTOP: Table row
@@ -114,11 +120,11 @@ const ProductsTable = ({
       <td className="table-cell" data-label={t("TableTitles.Score")}>
         <div className="score-bar-container">
           <div className="score-bar">
-            <div className="score-bar-segment green" />
-            <div className="score-bar-segment lime" />
-            <div className="score-bar-segment yellow" />
-            <div className="score-bar-segment orange" />
             <div className="score-bar-segment red" />
+            <div className="score-bar-segment orange" />
+            <div className="score-bar-segment yellow" />
+            <div className="score-bar-segment lime" />
+            <div className="score-bar-segment green" />
           </div>
           <div className="score-badge" style={{ left }}>
             <span className="score-badge-circle">{producto.seal}</span>
@@ -131,7 +137,7 @@ const ProductsTable = ({
             "status-badge " +
             (producto.status === "Processing"
               ? "status-analisis"
-              : producto.status === "Finalized"
+              : producto.status === "Completed"
               ? "status-finalizado"
               : producto.status === "Pending"
               ? "status-pendiente"
@@ -142,14 +148,16 @@ const ProductsTable = ({
         </span>
       </td>
       <td className="table-cell" data-label={t("TableTitles.Ver")}>
+        {producto.product_pdf !== null && (
         <button
           title="Ver"
           style={{ background: "none", border: "none", cursor: "pointer" }}
         >
           <img src="/icons/eye.svg" alt="eye" />
-        </button>
+        </button>)}
       </td>
       <td className="table-cell" data-label={t("TableTitles.Descargar")}>
+        {producto.product_pdf !== null && (
         <button
           title="Descargar"
           style={{ background: "none", border: "none", cursor: "pointer" }}
@@ -157,9 +165,10 @@ const ProductsTable = ({
         >
           <img src="/icons/file_save.svg" alt="file_save" />
         </button>
+         )}
       </td>
       <td className="table-cell" data-label={t("TableTitles.Archivos")}>
-        {producto.status !== "Finalized" && (
+        {producto.status !== "Completed" && (
           <button
             title="Archivos"
             style={{ background: "none", border: "none", cursor: "pointer" }}
