@@ -2,6 +2,7 @@ import React, { useRef, useState, useContext } from "react";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import { UserContext } from "@/src/context/userContext";
+import { useNavigate } from "react-router-dom";
 
 const Form = () => {
   const initialFormData = { //Estado inicial del formulario
@@ -25,7 +26,9 @@ const Form = () => {
   const fieldRefs = useRef({})
   const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState(initialFormData);
-  const {user} = useContext(UserContext)
+  const {user} = useContext(UserContext);
+  const navigate = useNavigate();
+  
 
   const requiredFields = [
     "empresa",
@@ -97,13 +100,18 @@ const Form = () => {
       //https://desafiodeverafs.onrender.com/form
 
       try {
-        const response = await axios.post("http://localhost:3000/form", dataToSend, {
+        const response = await axios.post("https://desafiodeverafs.onrender.com/form", dataToSend, {
           withCredentials: true,
         });
         alert(t("form.enviado"));
-        console.log("Respuesta del servidor:", response.data);
+
         setFormData(initialFormData);
         setErrors({});
+
+        setTimeout(() => {
+          navigate("/home");
+        }, 1000);
+
       } catch (error) {
         console.error("Error al enviar el formulario:", error.response?.data || error.message);
         alert(t("form.errorServidor") || "Error al enviar el formulario");
