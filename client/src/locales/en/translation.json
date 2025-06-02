@@ -26,7 +26,10 @@
   },
   "ArchivosPage": {
   "AnadirArchivos": "Add more files",
-  "DescargarArchivos": "Download files"
+  "DescargarArchivos": "Download files",
+  "SueltaParaSubir": "Drop the files here",
+  "SubirArchivos": "Upload files",
+  "PlaceholderArrastra": "Drag to upload your files"
   },
   "InformacionPage": {
   "InformacionAportada": "Provided Information",

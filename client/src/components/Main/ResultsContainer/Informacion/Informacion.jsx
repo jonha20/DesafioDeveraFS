@@ -1,9 +1,10 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import '../../../../styles/components/_Informacion.scss';
+import { useNavigate } from "react-router-dom";
 
 const Information = () => {
   const { t } = useTranslation();
+  const navigation = useNavigate();
 
   return (
     <div className="information-container">
@@ -29,7 +30,7 @@ const Information = () => {
 
         <div className="buttons">
           <button className="btn-black">{t("InformacionPage.InformarCambios")}</button>
-          <button className="btn-white">
+          <button className="btn-white" onClick={() => navigation("/form")}>
             <img src="/icons/file_save.svg" alt="icon" className="icon-download" />
             {t("InformacionPage.RealizarFormulario")}
           </button>

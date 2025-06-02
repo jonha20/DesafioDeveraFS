@@ -26,7 +26,10 @@
   },
   "ArchivosPage": {
   "AnadirArchivos": "Añadir más archivos",
-  "DescargarArchivos": "Descargar archivos"
+  "DescargarArchivos": "Descargar archivos",
+  "SubirArchivos": "Subir archivos",
+  "SueltaParaSubir": "Suelta para subir los archivos",
+  "PlaceholderArrastra": "Arrastra aquí tus archivos"
   },
   "InformacionPage": {
   "InformacionAportada": "Información aportada",

@@ -11,8 +11,11 @@ import Onboarding from "./components/Main/Onboarding/Onboarding";
 import { UserContext } from "./context/userContext";
 import {jwtDecode} from "jwt-decode";
 import Home from "./components/Main/ResultsContainer/ResultsContainer";
+import ResetPassword from "./Pages/ChangePassword/ChangePassword";
+import ForgotPassword from "./Pages/ForgotPassword/ForgotPassword";
 import "./i18n";
 import "normalize.css";
+
 function App() {
   const [user, setUser] = useState({});
   const location = useLocation();
@@ -27,7 +30,6 @@ function App() {
         token = sessionStorage.getItem("access_token");
       }
 
-      console.log("Token en cookie:", token);
       if (token) {
         try {
           const decoded = jwtDecode(token);
@@ -45,7 +47,10 @@ function App() {
   }, [location]);
 
   const hideHeader =
-    location.pathname === "/login" || location.pathname === "/signup";
+    location.pathname === "/login" || 
+    location.pathname === "/signup" ||
+     location.pathname === "/forgot"||
+    location.pathname === "/reset-password"
 
 
 
@@ -60,6 +65,8 @@ function App() {
           <Route path="/" element={<Main />} />
           <Route path="/form" element={<Form />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/forgot" element={<ForgotPassword/>} />
+          <Route path="/reset-password" element={<ResetPassword />} />
         </Routes>
         {!hideHeader && <Footer />}
       </UserContext.Provider>

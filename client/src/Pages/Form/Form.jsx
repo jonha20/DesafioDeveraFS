@@ -2,9 +2,13 @@ import React, { useRef, useState, useContext } from "react";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import { UserContext } from "@/src/context/userContext";
+import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 const Form = () => {
+  const navigate = useNavigate();
+  //Toastify para notificaciones
+  const notify = (message, type) => toast[type](message);
   const initialFormData = { //Estado inicial del formulario
     empresa: "",
     empleados: "",
@@ -56,7 +60,7 @@ const Form = () => {
 
     requiredFields.forEach((field) => {
       if (formData[field] === undefined || formData[field] === ""){
-        newErrors[field] = t("form.seleccione");
+        newErrors[field] = t(notify("form.seleccione", "error"));
         if(!firstErrorKey){
           firstErrorKey = field;
         }
@@ -112,14 +116,16 @@ const Form = () => {
           navigate("/home");
         }, 1000);
 
+
       } catch (error) {
+        notify(t("form.errorServidor"), "error");
         console.error("Error al enviar el formulario:", error.response?.data || error.message);
-        alert(t("form.errorServidor") || "Error al enviar el formulario");
+        notify(t("form.errorServidor") || "Error al enviar el formulario", "error");
       }
     } else {
       const radioFields = requiredFields;
       if (radioFields.includes(firstErrorKey)) {
-        alert(t("form.alertaRadios"));
+        notify(t("form.alertaRadios"), "warning");
       }
 
       const errorElement = fieldRefs.current[firstErrorKey];
@@ -156,6 +162,8 @@ const Form = () => {
   );
 
   return (
+    <>
+    <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} closeOnClick pauseOnFocusLoss draggable pauseOnHover />
     <form className="devera-form" onSubmit={handleSubmit} noValidate>
       <img src="/devera_ai_logo.png" className="logo-devera" alt="Logo Devera" />
       <h2>{t("form.titulo")}</h2>
@@ -225,6 +233,7 @@ const Form = () => {
 
       <button type="submit">{t("form.enviar")}</button>
     </form>
+    </>
   );
 };
 
