@@ -20,7 +20,7 @@ const ForgotPassword = () => {
       }
     try {
       const response = await axios.post(
-        "http://localhost:3000/users/recoverpassword",
+        `${import.meta.env.VITE_RENDER_BACKEND_URL}/users/recoverpassword`,
         { email }
       );
 

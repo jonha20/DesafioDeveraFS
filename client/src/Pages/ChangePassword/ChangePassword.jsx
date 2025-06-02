@@ -89,7 +89,7 @@ useEffect(() => {
     setLoading(true);
 
     try {
-      const response = await axios.post("http://localhost:3000/users/restorepassword", {
+      const response = await axios.post(`${import.meta.env.VITE_RENDER_BACKEND_URL}/users/restorepassword`, {
         email,
         newPassword: password,
         token,
