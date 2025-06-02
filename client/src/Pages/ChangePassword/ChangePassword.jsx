@@ -1,21 +1,63 @@
-import React, { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import React, { useState, useEffect} from "react";
+import { useNavigate, useLocation} from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 
 const ResetPassword = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const token = queryParams.get("token");
-  
+ // const queryParams = new URLSearchParams(location.search);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [token, setToken] = useState(null);
+  const [checkingToken, setCheckingToken] = useState(true);
+
 
   const notify = (msg, type) => toast[type](msg);
+
+  const TOKEN_EXPIRATION_MS = 15 * 60 * 1000; // 15 minutos
+
+useEffect(() => {
+  const queryParams = new URLSearchParams(location.search);
+  const tokenFromUrl = queryParams.get("token");
+
+  if (tokenFromUrl) {
+    const expiration = Date.now() + TOKEN_EXPIRATION_MS;
+    sessionStorage.setItem("resetToken", tokenFromUrl);
+    sessionStorage.setItem("resetTokenExpiry", expiration.toString());
+    setToken(tokenFromUrl);
+   window.history.replaceState(null, "", window.location.pathname);
+    setCheckingToken(false);
+  } else {
+    const storedToken = sessionStorage.getItem("resetToken");
+    const expiry = sessionStorage.getItem("resetTokenExpiry");
+
+    if (storedToken && expiry && Date.now() < parseInt(expiry)) {
+      setToken(storedToken);
+    } else {
+      sessionStorage.removeItem("resetToken");
+      sessionStorage.removeItem("resetTokenExpiry");
+      setToken(null);
+    }
+    setCheckingToken(false);
+  }
+}, [location]);
+
+useEffect(() => {
+  if (!checkingToken && !token) {
+    toast.error("Acceso inválido. Solicita un nuevo correo de recuperación.");
+    navigate("/forgot");
+  }
+}, [checkingToken, token, navigate]);
+
+
+
+  const emailValidation = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  const passwordValidation =
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!"#$%&'()*+,\-./:;<=>@[\\\]^_`{|}~]).{8,}$/;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,8 +67,22 @@ const ResetPassword = () => {
       return;
     }
 
+      if (!emailValidation.test(email)) {
+    notify("El correo no tiene un formato válido", "error");
+    return;
+    }
+
+
+    if (!passwordValidation.test(password)) {
+    notify(
+      "La contraseña debe contener al menos una minúscula, una mayúscula, un número y un carácter especial",
+      "error"
+    );
+    return;
+    }
+
     if (!token) {
-      notify("Token no encontrado en la URL", "error");
+      notify("Token no disponible. Solicita un nuevo correo de recuperación.", "error");
       return;
     }
 
