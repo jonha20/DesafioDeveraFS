@@ -78,5 +78,14 @@
       "SinMedicion": "No hay plan de medición",
       "Otro": "Otro"
     }
-  }
+  },
+  "NavDetailProduct": {
+  "Resumen": "Resumen",
+  "Conclusiones": "Conclusiones",
+  "DetallesCategoria": "Detalles de categoría",
+  "Comparativa": "Comparativa",
+  "SustenibilidadDeLaMarca": "Sostenibilidad de la marca",
+  "InformacionMarketing": "Información de marketing"
+}
+
 }
