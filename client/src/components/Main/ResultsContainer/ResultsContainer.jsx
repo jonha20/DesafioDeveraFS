@@ -14,7 +14,6 @@ import { UserContext } from "@/src/context/userContext";
 const Results = () => {
   const { productsScraped } = useContext(UserContext);
   const [activeTab, setActiveTab] = useState("productos");
-  //const [productos, setProductos] = useState([]);
   const [singleProducto, setSingleProducto] = useState("");
   const [results, setResults] = useState([]);
   const [filterProducto, setFilterProducto] = useState("");
@@ -26,9 +25,7 @@ const Results = () => {
 
   const fetchResults = async () => {
     try {
-      const response = await axios.get(
-        "https://desafiodeverafs.onrender.com/productos_impacto"
-      );
+      const response = await axios.get(`${import.meta.env.VITE_RENDER_BACKEND_URL}/productos_impacto`);
       setResults(response.data);
     } catch (error) {
       console.error("Error fetching results:", error);
@@ -38,19 +35,6 @@ const Results = () => {
   useEffect(() => {
     fetchResults();
   }, []);
-
-  // useEffect(() => {
-  //     const fetchProducts = async () => {
-  //       try {
-  //         const response = await axios.get("/data.json");
-  //         setProductos(response.data);
-  //       } catch (error) {
-  //         console.error("Error fetching results:", error);
-  //       }
-  //     };
-  //     fetchProducts();
-
-  // }, []);
 
   // Filtrado avanzado: busca el texto ingresado en cualquier campo del producto
   const filteredProductos = productsScraped.filter((producto) => {

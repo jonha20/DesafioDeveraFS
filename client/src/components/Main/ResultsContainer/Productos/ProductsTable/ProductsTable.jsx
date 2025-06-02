@@ -18,7 +18,7 @@ const postProducto = async () => {
 
     console.log("Datos enviados:", { product_name, href, id_brand });
 
-    await axios.post("https://desafiodeverafs.onrender.com/productos_impacto", {
+    await axios.post(`${import.meta.env.VITE_RENDER_BACKEND_URL}/productos_impacto`, {
       product_name,
       href,
       id_brand

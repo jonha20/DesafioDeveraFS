@@ -11,14 +11,18 @@ const ForgotPassword = () => {
 
   const handleRecover = async (e) => {
     e.preventDefault();
-   try {
-  const response = await axios.post(
-    "https://desafiodeverafs.onrender.com/users/recoverpassword",
-    { email }
-  );
 
+       const emailValidation = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+       if (!emailValidation.test(email)) {
+      notify("El correo no tiene un formato válido", "error");
+      return;
+      }
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_RENDER_BACKEND_URL}/users/recoverpassword`,
+        { email }
+      );
   const { message, resetLink } = response.data;
-  console.log("resetLink recibido:", resetLink);
 
   const url = new URL(resetLink);
   const token = url.searchParams.get("token");

@@ -36,7 +36,7 @@ const SignUp = () => {
     if (!regex) return; // Bloquea el submit si hay errores
     try {
       const request = await axios.post(
-       "https://desafiodeverafs.onrender.com/users/register",
+       `${import.meta.env.VITE_RENDER_BACKEND_URL}/users/register`,
        //  "http://localhost:3000/users/register",
         { name, email, password },
         { withCredentials: true }
