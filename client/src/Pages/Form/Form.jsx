@@ -6,7 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 const Form = () => {
-  const navigate = useNavigate();
+  
   //Toastify para notificaciones
   const notify = (message, type) => toast[type](message);
   const initialFormData = { //Estado inicial del formulario

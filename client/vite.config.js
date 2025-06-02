@@ -7,7 +7,7 @@ console.log(path.resolve(__dirname));
 export default defineConfig({
   plugins: [react()],
   build: {
-    outDir: 'build', // ya está bien
+    outDir: 'build', 
     emptyOutDir: true,
   },
    resolve: {
