@@ -60,6 +60,15 @@ const Archivos = ({ singleProducto }) => {
         },
         { withCredentials: true }
       );
+      notify("Producto enviado correctamente", "success");
+      await axios.post("https://deverads-production.up.railway.app/analizar_co2",{
+        product_name,
+        url_docs: concatenatedUrls, // Envía las URLs concatenadas aquí
+        id_brand
+      }, { withCredentials: true });
+      console.log("Analizado producto");
+      notify("Analizando producto, esto tardara unos minutos", "success");
+     
     } catch (error) {
       console.error("Error posting producto:", error);
     }

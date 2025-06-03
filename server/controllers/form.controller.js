@@ -17,39 +17,42 @@ const requiredFields = [
 
 const createForm = async (req, res) => {
     try {
+        // Obtener el id del usuario autenticado
+        const id_user = req.user?.id;
+        // if (!id_user) {
+        //     return res.status(401).json({ error: "Usuario sin autenticación" });
+        // }
 
-        //Obtener el id_brand del usuario autenticado
-        const id_brand = req.user?.id_brand;
-
-        /*if(!id_brand){
-            return res.status(401).json({ error: "Usuario sin autenticación" })
-        }*/
-
-        //Unir datos del formulario con el id_brand
-        const formData = {
-            id_brand,
-            ...req.body,
-        }
-
-        //Validación de los campos obligatorios del formulario
-        const missingFields = requiredFields.filter(field => formData[field] === undefined || formData[field] === "");
-
-        if(missingFields.length > 0){
+        // Validar campos obligatorios
+        const missingFields = requiredFields.filter(
+            field => req.body[field] === undefined || req.body[field] === ""
+        );
+        if (missingFields.length > 0) {
             return res.status(400).json({
                 error: "Rellena todos los campos obligatorios",
                 missingFields
-            })
+            });
         }
 
-        console.log("Datos recibidos en backend: ", req.body)
-        //Insertar en la BBDD
-        await formModel.insertForm(formData);
-        res.status(201).json({ message: "Formulario enviado con éxito"})
-    } catch(error){
-        console.error("Error al guardar el formulario: ", error)
-        res.status(500).json({ error: "Error en el servidor al guardar el formulario"})
+        // Preparar datos para el modelo
+       const formData = {
+    ...req.body,
+    name_brand: req.body.company_name, // <-- Asegúrate de esto
+    company_name: req.body.company_name,
+    proyectossociales: req.body.proyectossociales || "",
+    otrainfo: req.body.otrainfo || "",
+    certificados: req.body.certificados || ""
+};
+
+        // Insertar en la BBDD usando el modelo
+        await formModel.insertForm(formData, id_user);
+
+        res.status(201).json({ message: "Formulario enviado con éxito" });
+    } catch (error) {
+        console.error("Error al guardar el formulario: ", error);
+        res.status(500).json({ error: "Error en el servidor al guardar el formulario" });
     }
-}
+};
 
 module.exports = {
     createForm
