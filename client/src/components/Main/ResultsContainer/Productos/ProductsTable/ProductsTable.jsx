@@ -1,9 +1,10 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { UserContext } from "@/src/context/userContext";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 import CloudConvert from "cloudconvert";
 import { ToastContainer, toast } from "react-toastify";
+import ProductDetail from "../ProductDetail/ProductDetail";
 
 const ProductsTable = ({
   producto,
@@ -15,7 +16,7 @@ const ProductsTable = ({
   const percent = Math.max(0, Math.min(100, producto.impact_score));
   const left = `calc(${percent}% - 16px)`;
   const { t } = useTranslation();
-  console.log("Producto:", producto);
+  const [showDetail, setShowDetail] = useState(false);
   const notify = (message, type) => toast[type](message);
 
   const postProducto = async () => {
@@ -47,21 +48,8 @@ const ProductsTable = ({
   const handleDetailClick = () => {
     console.log("Producto detallado:", producto);
     setActiveSection("detalle");
-
-    const structuredProduct = {
-      products: {
-        product_name: producto.product_name,
-        href: "",
-        modelo: "-",
-        categoria: "-",
-        marca: "-",
-      },
-      products_impacts_resume: {
-        impact_score: producto.impact_score ?? 0,
-        seal: producto.seal ?? "-",
-      },
-    };
-    setSingleProducto(structuredProduct);
+    setShowDetail(true);
+    setSingleProducto(producto); // Establece el producto seleccionado
   }
 
   const docxToPdf = async (producto) => {
@@ -113,7 +101,7 @@ try{
   };
 
   // DESKTOP: Table row
-  return (
+  return (<>
     <tr className="table-row">
       <td className="table-cell">
         <input type="checkbox" onClick={postProducto} />
@@ -201,6 +189,8 @@ try{
         )}
       </td>
     </tr>
+     
+    </>
   );
 };
 

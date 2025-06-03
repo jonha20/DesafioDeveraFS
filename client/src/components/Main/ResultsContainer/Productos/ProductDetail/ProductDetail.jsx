@@ -2,7 +2,6 @@ import React, {useState, useEffect} from "react";
 import HeadProduct from "./HeadProduct/HeadProduct";
 import InfoProducto from "./InfoProduct/InfoProduct";
 import NavDetailProduct from "./NavDetailProduct/NavDetailProduct";
-import axios from "axios";
 
 const ProductDetail = ({ singleProducto }) => {
 const [activeTab, setActiveTab] = useState("resumen");
