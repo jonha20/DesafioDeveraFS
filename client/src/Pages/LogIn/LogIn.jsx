@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import { UserContext } from "@/src/context/userContext";
 
 const LogIn = ({}) => {
   const [email, setEmail] = useState("");
@@ -9,29 +10,34 @@ const LogIn = ({}) => {
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
   const notify = (message, type) => toast[type](message);
-  const handleLogIn = async (e) => {
-    e.preventDefault();
-    try {
-      const request = await axios.post(
-       `${import.meta.env.VITE_RENDER_BACKEND_URL}/users/login`,
-        // "http://localhost:3000/users/login",
-        { email, password },
-        { withCredentials: true }
-      );
-      setMessage(request.data.msg);
-      if (request.status === 200 && request.data.token) {
-        sessionStorage.setItem("access_token", request.data.token);
+    const { setCookie } = useContext(UserContext);
+
+
+const handleLogIn = async (e) => {
+  e.preventDefault();
+  try {
+    const request = await axios.post(
+      `${import.meta.env.VITE_RENDER_BACKEND_URL}/users/login`,
+      { email, password },
+      { withCredentials: true }
+    );
+    if (request.status === 200) {
+      sessionStorage.setItem("access_token", request.data.token);
+      setCookie(request.data.token); // Actualiza el contexto global
+
+     setTimeout(() => {
         navigate("/onboarding");
-      }
-    } catch (error) {
-      console.log(error.message);
-      if (error.response && error.response.status === 401) {
-        notify("Invalid email or password", "error");
-      } else {
-        notify("An error occurred during login", "error");
-      }
+      }, 2000);
     }
-  };
+  } catch (error) {
+    console.log(error.message);
+    if (error.response && error.response.status === 401) {
+      notify("Invalid email or password", "error");
+    } else {
+      notify("An error occurred during login", "error");
+    }
+  }
+};
   useEffect(() => {
     if (message) {
       setTimeout(() => {
