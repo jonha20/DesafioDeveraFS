@@ -89,6 +89,14 @@
     "Descargar reporte": "Download report",
     "Adjuntar archivo": "Attach file",
     "IMPACT SCORE": "IMPACT SCORE"
-  }
+  },
+  "NavDetailProduct": {
+  "Resumen": "Summary",
+  "Conclusiones": "Conclusions",
+  "DetallesCategoria": "Category Details",
+  "Comparativa": "Comparison",
+  "SostenibilidadDeLaMarca": "Brand Sustainability",
+  "InformacionMarketing": "Marketing Information"
+}
 
 }

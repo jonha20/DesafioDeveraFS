@@ -33,8 +33,17 @@ const Results = () => {
     }
   };
 
-  useEffect(() => {
+    useEffect(() => {
+    // Llama a fetchResults inmediatamente al montar el componente
     fetchResults();
+
+    // Configura un intervalo para refrescar los resultados cada 10 segundos
+    const interval = setInterval(() => {
+      fetchResults();
+    }, 10000); // 10 segundos
+
+    // Limpia el intervalo cuando el componente se desmonte
+    return () => clearInterval(interval);
   }, []);
 
   // Filtrado avanzado: busca el texto ingresado en cualquier campo del producto
