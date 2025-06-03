@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import Navbar from "./Navbar/Navbar";
 import Filters from "./Productos/Filters/Filters";
 import ProductsTable from "./Productos/ProductsTable/ProductsTable";
+import ProductDetail from "./Productos/ProductDetail";
 import Archivos from "./Archivos/Archivos";
 import Informacion from "./Informacion/Informacion";
 import axios from "axios";
@@ -315,6 +316,7 @@ const Results = () => {
       )}
       {activeTab === "archivos" && <Archivos singleProducto={singleProducto} />}
       {activeTab === "informacion" && <Informacion />}
+      {activeTab === "detalle" &&  singleProducto && (<ProductDetail singleProducto={singleProducto}/>)}
     </>
   );
 };

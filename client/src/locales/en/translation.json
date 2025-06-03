@@ -78,6 +78,17 @@
       "SinMedicion": "No measurement plan",
       "Otro": "Other"
     }
+  },
+  "HeadProduct": {
+    "Sin imagen": "No image",
+    "Modelo": "Model",
+    "Categoría": "Category",
+    "Marca": "Brand",
+    "Enlace": "Link",
+    "Ver reporte": "View report",
+    "Descargar reporte": "Download report",
+    "Adjuntar archivo": "Attach file",
+    "IMPACT SCORE": "IMPACT SCORE"
   }
 
 }

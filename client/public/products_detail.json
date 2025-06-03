@@ -1,0 +1,218 @@
+{
+  "products": {
+    "product_name": "Paleta de sombras",
+    "total_weight": 10,
+    "transporting_distance": 17000,
+    "pct_recycling": 0,
+    "transporting_type": "camión"
+  },
+  "products_processes": [
+    {
+      "name_process": "Moldeo de plástico",
+      "quantity_energy": 1.2,
+      "country": "España",
+      "type_consumption": "eléctrico",
+      "quantity_water": 10,
+      "co2_impact": 0.2796
+    },
+    {
+      "name_process": "Ensamblaje",
+      "quantity_energy": 0.5,
+      "country": "España",
+      "type_consumption": "eléctrico",
+      "quantity_water": 2,
+      "co2_impact": 0.1165
+    },
+    {
+      "name_process": "Limpieza final",
+      "quantity_energy": 0.3,
+      "country": "España",
+      "type_consumption": "eléctrico",
+      "quantity_water": 5,
+      "co2_impact": 0.0699
+    }
+  ],
+  "products_materials": [
+    {
+      "name_material": "Mica",
+      "quantity": 0.3,
+      "pct_recycling": 0,
+      "pct_product": 8,
+      "country": "España",
+      "co2_impact": 0.3
+    },
+    {
+      "name_material": "Silica",
+      "quantity": 0.5,
+      "pct_recycling": 0,
+      "pct_product": 10,
+      "country": "España",
+      "co2_impact": 0.5
+    },
+    {
+      "name_material": "Zinc Stearate",
+      "quantity": 0.4,
+      "pct_recycling": 0,
+      "pct_product": 5,
+      "country": "España",
+      "co2_impact": 0.4
+    },
+    {
+      "name_material": "Tricaprylin",
+      "quantity": 0.4,
+      "pct_recycling": 0,
+      "pct_product": 17,
+      "country": "España",
+      "co2_impact": 0.4
+    },
+    {
+      "name_material": "Trilaurin",
+      "quantity": 0.7,
+      "pct_recycling": 0,
+      "pct_product": 5,
+      "country": "España",
+      "co2_impact": 0.7
+    },
+    {
+      "name_material": "Butyrospermum Parkii Butter",
+      "quantity": 0.5,
+      "pct_recycling": 0,
+      "pct_product": 10,
+      "country": "España",
+      "co2_impact": 0.5
+    },
+    {
+      "name_material": "Trihydroxystearin",
+      "quantity": 0.5,
+      "pct_recycling": 0,
+      "pct_product": 10,
+      "country": "España",
+      "co2_impact": 0.5
+    },
+    {
+      "name_material": "Macadamia Integrifolia/Tetraphylla Seed Oil",
+      "quantity": 0.4,
+      "pct_recycling": 0,
+      "pct_product": 3,
+      "country": "España",
+      "co2_impact": 0.4
+    },
+    {
+      "name_material": "Glyceryl Caprylate",
+      "quantity": 0.5,
+      "pct_recycling": 0,
+      "pct_product": 4,
+      "country": "España",
+      "co2_impact": 0.5
+    },
+    {
+      "name_material": "Aroma",
+      "quantity": 0.6,
+      "pct_recycling": 0,
+      "pct_product": 6,
+      "country": "España",
+      "co2_impact": 0.6
+    },
+    {
+      "name_material": "p-Anisic Acid",
+      "quantity": 0.7,
+      "pct_recycling": 0,
+      "pct_product": 3,
+      "country": "España",
+      "co2_impact": 0.7
+    },
+    {
+      "name_material": "Glycine Soja Oil",
+      "quantity": 0.5,
+      "pct_recycling": 0,
+      "pct_product": 2,
+      "country": "España",
+      "co2_impact": 0.5
+    },
+    {
+      "name_material": "Tocopherol",
+      "quantity": 0.7,
+      "pct_recycling": 0,
+      "pct_product": 3,
+      "country": "España",
+      "co2_impact": 0.7
+    },
+    {
+      "name_material": "Beta-sitosterol",
+      "quantity": 0.5,
+      "pct_recycling": 0,
+      "pct_product": 8,
+      "country": "España",
+      "co2_impact": 0.5
+    },
+    {
+      "name_material": "Squalene",
+      "quantity": 0.5,
+      "pct_recycling": 0,
+      "pct_product": 6,
+      "country": "España",
+      "co2_impact": 0.5
+    }
+  ],
+  "products_packing": [
+    {
+      "packing_name": "Caja cartón",
+      "packing_weight": 0.2,
+      "packing_material": "Cartón reciclado",
+      "pct_recycling": 100,
+      "country": "España",
+      "type_use": "Secundario"
+    },
+    {
+      "packing_name": "Film plástico",
+      "packing_weight": 0.05,
+      "packing_material": "Plástico LDPE",
+      "pct_recycling": 0,
+      "country": "España",
+      "type_use": "Secundario"
+    },
+    {
+      "packing_name": "Envase plastico pvc",
+      "packing_weight": 0.8,
+      "packing_material": "Plástico pvc",
+      "pct_recycling": 20,
+      "country": "España",
+      "type_use": "Primario"
+    }
+  ],
+  "products_impacts": {
+    "raw_materials": 8.7,
+    "manufacturing": 0.466,
+    "transport": 20.4,
+    "packaging": 0.66,
+    "product_use": 0,
+    "end_of_life": -0.048
+  },
+  "products_impacts_resume": {
+    "co2_fingerprint": 29.978,
+    "pct_benchmark": 100,
+    "impact_score": 30,
+    "seal": "C",
+    "status": "Normal"
+  },
+  "products_conclusions": {
+    "general_summary": "El Análisis de Ciclo de Vida (ACV) de la paleta de sombras revela que el transporte es el contribuyente más significativo a su huella de carbono, seguido por la extracción y procesamiento de materias primas. La huella de carbono total del producto es de 29.978 kg CO₂. El posicionamiento ambiental del producto podría mejorarse optimizando la logística y seleccionando materiales con menor impacto ambiental.",    
+    "strong_points": [
+      "El uso de cartón reciclado en el embalaje secundario es una práctica positiva.",
+      "La fabricación se realiza en España, lo que podría facilitar la optimización de la cadena de suministro."
+    ],
+    "areas_for_improvement": [
+      "Reducir la distancia de transporte o utilizar medios más eficientes.",
+      "Investigar alternativas de materiales con menor huella de carbono para los componentes de la paleta.",
+      "Aumentar el porcentaje de material reciclado en el envase primario."
+    ]
+  },
+  "stage_analysis": {
+    "raw_materials": "El impacto de las materias primas es considerable debido a la energía requerida para su extracción y procesamiento. La selección de proveedores con prácticas sostenibles y la investigación de alternativas de origen biológico o reciclado podrían reducir significativamente este impacto. Es crucial analizar la trazabilidad de cada material para identificar puntos críticos y oportunidades de mejora. Priorizar materiales con certificaciones ambientales y fomentar la economía circular son estrategias clave para mitigar el impacto de esta etapa.",
+    "Manufacturing": "El consumo energético en la fabricación, aunque relativamente bajo, presenta oportunidades de mejora. La implementación de tecnologías más eficientes, la optimización de los procesos y el uso de energías renovables podrían reducir la huella de carbono de esta etapa. Realizar auditorías energéticas periódicas y establecer objetivos de reducción de consumo son prácticas recomendables. La gestión eficiente del agua también es importante, buscando reducir el consumo y reutilizar el agua siempre que sea posible.",
+    "Transport": "El transporte es un factor clave en la huella de carbono del producto, debido a la gran distancia recorrida. Se recomienda explorar alternativas de transporte más eficientes, como el transporte marítimo o ferroviario, o la consolidación de envíos para reducir el número de viajes. La optimización de las rutas y la colaboración con proveedores logísticos que utilicen vehículos de bajas emisiones también pueden contribuir a reducir el impacto ambiental del transporte.",
+    "Packaging": "El embalaje, aunque necesario para proteger el producto, contribuye a la huella de carbono. Se recomienda reducir la cantidad de material utilizado, utilizar materiales reciclados o de origen biológico, y diseñar embalajes que sean fácilmente reciclables o compostables. La colaboración con proveedores de embalaje para desarrollar soluciones innovadoras y sostenibles es fundamental. Informar a los consumidores sobre cómo desechar correctamente el embalaje también es importante para fomentar la economía circular.",
+    "Use Phase": "No aplica, ya que el producto no requiere energía durante su uso.",
+    "End of Life": "El final de la vida útil del producto presenta oportunidades para reducir su impacto ambiental. Fomentar el reciclaje de los componentes de la paleta y del embalaje es fundamental. La implementación de programas de recogida selectiva y la colaboración con empresas de reciclaje pueden aumentar las tasas de reciclaje. El diseño del producto debe facilitar el desmontaje y la separación de los materiales para facilitar su reciclaje."
+  }
+}
