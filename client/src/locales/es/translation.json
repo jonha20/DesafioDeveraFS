@@ -80,12 +80,12 @@
     }
   },
   "NavDetailProduct": {
-  "Resumen": "Resumen",
-  "Conclusiones": "Conclusiones",
-  "DetallesCategoria": "Detalles de categoría",
-  "Comparativa": "Comparativa",
-  "SustenibilidadDeLaMarca": "Sostenibilidad de la marca",
-  "InformacionMarketing": "Información de marketing"
-}
+    "Resumen": "Resumen",
+    "Conclusiones": "Conclusiones",
+    "DetallesCategoria": "Detalles de categoría",
+    "Comparativa": "Comparativa",
+    "SostenibilidadDeLaMarca": "Sostenibilidad de la marca",
+    "InformacionMarketing": "Información de marketing"
+  }
 
 }

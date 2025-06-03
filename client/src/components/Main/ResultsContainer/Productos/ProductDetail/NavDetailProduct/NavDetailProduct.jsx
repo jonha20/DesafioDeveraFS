@@ -11,37 +11,37 @@ const NavDetailProduct = ({ setActiveTab, activeTab }) => {
           className={activeTab === "resumen" ? "active" : ""}
           onClick={() => setActiveTab("resumen")}
         >
-          {t("NavProductos.Resumen")}
+          {t("NavDetailProduct.Resumen")}
         </h2>
         <h2
           className={activeTab === "conclusions" ? "active" : ""}
           onClick={() => setActiveTab("conclusions")}
         >
-          {t("NavProductos.Conclusiones")}
+          {t("NavDetailProduct.Conclusiones")}
         </h2>
         <h2
           className={activeTab === "detailsCat" ? "active" : ""}
           onClick={() => setActiveTab("detailsCat")}
         >
-          {t("NavProductos.DetallesCategoria")}
+          {t("NavDetailProduct.DetallesCategoria")}
         </h2>
         <h2
           className={activeTab === "comparative" ? "active" : ""}
           onClick={() => setActiveTab("comparative")}
         >
-          {t("NavProductos.Comparativa")}
+          {t("NavDetailProduct.Comparativa")}
         </h2>
         <h2
           className={activeTab === "sustainability" ? "active" : ""}
-          onClick={() => setActiveTab("sustainabilityt")}
+          onClick={() => setActiveTab("sustainability")}
         >
-          {t("NavProductos.SustenibilidadDeLaMarca")}
+          {t("NavDetailProduct.SostenibilidadDeLaMarca")}
         </h2>
         <h2
           className={activeTab === "infoMarketing" ? "active" : ""}
           onClick={() => setActiveTab("infoMarketing")}
         >
-          {t("NavProductos.InformacionMarketing")}
+          {t("NavDetailProduct.InformacionMarketing")}
         </h2>
       </div>
       <div className="navbar-underline"></div>
