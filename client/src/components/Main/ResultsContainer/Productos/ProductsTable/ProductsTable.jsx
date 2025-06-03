@@ -43,6 +43,27 @@ const ProductsTable = ({
     setSingleProducto(producto); // Establece el producto seleccionado
   };
 
+  //Función para ver el detalle del producto
+  const handleDetailClick = () => {
+    console.log("Producto detallado:", producto);
+    setActiveSection("detalle");
+
+    const structuredProduct = {
+      products: {
+        product_name: producto.product_name,
+        href: "",
+        modelo: "-",
+        categoria: "-",
+        marca: "-",
+      },
+      products_impacts_resume: {
+        impact_score: producto.impact_score ?? 0,
+        seal: producto.seal ?? "-",
+      },
+    };
+    setSingleProducto(structuredProduct);
+  }
+
   const docxToPdf = async (producto) => {
    
       const cloudConvert = new CloudConvert(
@@ -151,6 +172,7 @@ try{
         {producto.product_pdf !== null && (
         <button
           title="Ver"
+          onClick={handleDetailClick}
           style={{ background: "none", border: "none", cursor: "pointer" }}
         >
           <img src="/icons/eye.svg" alt="eye" />
