@@ -8,7 +8,7 @@ const DetalleCategorias = ({ jsonData, productData }) => {
           <div className="materias-primas-header">
             <h2>Materias Primas</h2>
             <img src="/icons/arrow_circle_right.svg" alt="arrow_circle_righ" />
-            {/* <p>{productData.impact_score}</p> */}
+            <p>{jsonData.products_impacts_resume.co2_fingerprint} kg/CO₂</p>
           </div>
           <div className="materias-primas-content">
             <p>{jsonData.stage_analysis.raw_materials}</p>
@@ -18,7 +18,7 @@ const DetalleCategorias = ({ jsonData, productData }) => {
           <div className="materias-primas-header">
             <h2>Fabricacion</h2>
             <img src="/icons/arrow_circle_right.svg" alt="arrow_circle_righ" />
-            {/* <p>{productData.impact_score}</p> */}
+            <p>{jsonData.products_impacts_resume.co2_fingerprint} kg/CO₂</p>
           </div>
           <div className="fabricacion-content">
             <p>{jsonData.stage_analysis.Manufacturing}</p>
@@ -28,7 +28,7 @@ const DetalleCategorias = ({ jsonData, productData }) => {
           <div className="materias-primas-header">
             <h2>Transporte</h2>
             <img src="/icons/arrow_circle_right.svg" alt="arrow_circle_righ" />
-            {/* <p>{productData.impact_score}</p> */}
+            <p>{jsonData.products_impacts_resume.co2_fingerprint} kg/CO₂</p>
           </div>
           <div className="transporte-content">
             <p>{jsonData.stage_analysis.Transport}</p>
@@ -38,7 +38,7 @@ const DetalleCategorias = ({ jsonData, productData }) => {
           <div className="materias-primas-header">
            <h2>Emabalaje</h2>
             <img src="/icons/arrow_circle_right.svg" alt="arrow_circle_righ" />
-            {/* <p>{productData.impact_score}</p> */}
+           <p>{jsonData.products_impacts_resume.co2_fingerprint} kg/CO₂</p>
           </div>
           <div className="emabalaje-content">
             <p>{jsonData.stage_analysis.Packaging}</p>
@@ -48,7 +48,7 @@ const DetalleCategorias = ({ jsonData, productData }) => {
           <div className="materias-primas-header">
             <h2>Uso</h2>
             <img src="/icons/arrow_circle_right.svg" alt="arrow_circle_righ" />
-            {/* <p>{productData.impact_score}</p> */}
+            <p>{jsonData.products_impacts_resume.co2_fingerprint} kg/CO₂</p>
           </div>
           <div className="uso-content">
             <p>{jsonData.stage_analysis["Use Phase"]}</p>
@@ -58,7 +58,7 @@ const DetalleCategorias = ({ jsonData, productData }) => {
           <div className="materias-primas-header">
             <h2>Fin de Vida</h2>
             <img src="/icons/arrow_circle_right.svg" alt="arrow_circle_righ" />
-            {/* <p>{productData.impact_score}</p> */}
+            <p>{jsonData.products_impacts_resume.co2_fingerprint} kg/CO₂</p>
           </div>
           <div className="fin-de-vida-content">
             <p>{jsonData.stage_analysis["End of Life"]}</p>

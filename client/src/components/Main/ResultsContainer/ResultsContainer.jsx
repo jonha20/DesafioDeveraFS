@@ -92,7 +92,6 @@ const Results = () => {
     setSortOrder(order);
   };
   const endOffset = itemOffset + entries;
-  console.log(`Loading items from ${itemOffset} to ${endOffset}`);
   const currentItems = sortedProductos.slice(itemOffset, endOffset);
   const pageCount = Math.ceil(sortedProductos.length / entries);
 
@@ -325,7 +324,7 @@ const Results = () => {
       )}
       {activeTab === "archivos" && <Archivos singleProducto={singleProducto} />}
       {activeTab === "informacion" && <Informacion />}
-      {activeTab === "detalle" &&  singleProducto && (<ProductDetail singleProducto={singleProducto}/>)}
+      {activeTab === "detalle" &&  singleProducto && (<ProductDetail singleProducto={singleProducto} />)}
     </>
   );
 };
