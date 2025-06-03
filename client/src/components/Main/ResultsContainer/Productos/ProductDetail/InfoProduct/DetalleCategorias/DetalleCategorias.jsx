@@ -1,6 +1,6 @@
 import React from "react";
 
-const DetalleCategorias = ({ jsonData, productData }) => {
+const DetalleCategorias = ({ jsonData }) => {
   return (
     <>
       <section>

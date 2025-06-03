@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import HeadProduct from "./HeadProduct/HeadProduct";
 import InfoProducto from "./InfoProduct/InfoProduct";
 import NavDetailProduct from "./NavDetailProduct/NavDetailProduct";

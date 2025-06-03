@@ -61,10 +61,10 @@ const Archivos = ({ singleProducto }) => {
         { withCredentials: true }
       );
       notify("Producto enviado correctamente", "success");
-      await axios.post("https://deverads-production.up.railway.app/analizar_co2",{
-        product_name,
+      await axios.post("https://proyectogit-production.up.railway.app/analizar_co2",{
+        product_name : product_name,
         url_docs: concatenatedUrls, // Envía las URLs concatenadas aquí
-        id_brand
+        id_brand: id_brand,
       }, { withCredentials: true });
       console.log("Analizado producto");
       notify("Analizando producto, esto tardara unos minutos", "success");

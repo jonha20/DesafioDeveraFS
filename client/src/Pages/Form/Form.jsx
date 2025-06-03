@@ -32,7 +32,6 @@ const Form = () => {
   const [formData, setFormData] = useState(initialFormData);
   const {user} = useContext(UserContext);
   const navigate = useNavigate();
-  
 
   const requiredFields = [
     "empresa",
@@ -73,9 +72,7 @@ const Form = () => {
     }
   };
 
-  let id_brand = user.id_brand
   const mapFormDataToApi = () => ({
-    id_brand: id_brand,
     company_name: formData.empresa,
     employees: formData.empleados,
     sustainability_report: formData.memoria === "Si",
@@ -90,7 +87,8 @@ const Form = () => {
     enps_measurement: formData.enps,
     proyectossociales: formData.proyectosSociales,
     otrainfo: formData.otraInfo,
-    certificados: formData.certificados
+    certificados: formData.certificados,
+    user_id :user.id
   })
 
   const handleSubmit = async (e) => {
@@ -101,13 +99,11 @@ const Form = () => {
       const dataToSend = mapFormDataToApi();
 
       //http://localhost:3000/form
-      //https://desafiodeverafs.onrender.com/form
-
       try {
-        const response = await axios.post(`${import.meta.env.VITE_RENDER_BACKEND_URL}/form`, dataToSend, {
-          withCredentials: true,
-        });
-        alert(t("form.enviado"));
+        await axios.post(`${import.meta.env.VITE_RENDER_BACKEND_URL}/form`, dataToSend, {
+  withCredentials: true,
+});
+        notify(t("form.enviado"), "success");
 
         setFormData(initialFormData);
         setErrors({});

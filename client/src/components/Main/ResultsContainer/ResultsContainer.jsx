@@ -13,7 +13,7 @@ import { UserContext } from "@/src/context/userContext";
 
 
 const Results = () => {
-  const { productsScraped } = useContext(UserContext);
+  const { productsScraped, user } = useContext(UserContext);
   const [activeTab, setActiveTab] = useState("productos");
   const [singleProducto, setSingleProducto] = useState("");
   const [results, setResults] = useState([]);
@@ -24,9 +24,11 @@ const Results = () => {
   const [itemOffset, setItemOffset] = useState(0);
   const [entries, setEntries] = useState(10);
 
+
   const fetchResults = async () => {
     try {
-      const response = await axios.get(`${import.meta.env.VITE_RENDER_BACKEND_URL}/productos_impacto`);
+      const response = await axios.get(`${import.meta.env.VITE_RENDER_BACKEND_URL}/productos_impacto/${user.id_brand}`, {
+        withCredentials: true});  
       setResults(response.data);
     } catch (error) {
       console.error("Error fetching results:", error);

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
 import Footer from "./components/Footer/Footer";
@@ -15,20 +15,24 @@ import ResetPassword from "./Pages/ChangePassword/ChangePassword";
 import ForgotPassword from "./Pages/ForgotPassword/ForgotPassword";
 import "./i18n";
 import "normalize.css";
+import axios from "axios";
 
 function App() {
   const [user, setUser] = useState({});
+  const [cookie, setCookie] = useState("");
   const [productsScraped, setProductsScraped] = useState([]);
   const location = useLocation();
+  const navigate = useNavigate();
+  console.log("Location:", user);
 
   useEffect(() => {
     const checkToken = async () => {
-      let token = sessionStorage.getItem("access_token");
+      let token = cookie || sessionStorage.getItem("access_token");
 
       // Espera hasta que el token esté disponible
       while (!token) {
         await new Promise((resolve) => setTimeout(resolve, 100)); // Espera 100ms
-        token = sessionStorage.getItem("access_token");
+        token = cookie || sessionStorage.getItem("access_token");
       }
 
       if (token) {
@@ -47,6 +51,35 @@ function App() {
     checkToken();
   }, [location]);
 
+useEffect(() => {
+ const refreshToken = async () => {
+  let token = sessionStorage.getItem("access_token");
+  if (token) {
+    try {
+      const response = await axios.post(
+        `http://localhost:3000/users/refresh-token`,
+        {},
+        {
+          withCredentials: true,
+        }
+      );
+
+      if (response.data.token) {
+        sessionStorage.setItem("access_token", response.data.token);
+        const decoded = jwtDecode(response.data.token);
+        setUser(decoded);
+      }
+    } catch (error) {
+      console.error("Error refreshing token:", error);
+      setUser(null);
+      navigate("/login"); // Redirige al login si falla
+    }
+  }
+};
+ //refreshToken();
+}, [location]);
+
+
   const hideHeader =
     location.pathname === "/login" || 
     location.pathname === "/signup" ||
@@ -57,7 +90,7 @@ function App() {
 
   return (
     <>
-      <UserContext.Provider value={{ user, productsScraped, setProductsScraped }}>
+      <UserContext.Provider value={{ user, setUser,setCookie, productsScraped, setProductsScraped }}>
         {!hideHeader && <Header />}
         <Routes>
           <Route path="/login" element={<LogIn />} />
