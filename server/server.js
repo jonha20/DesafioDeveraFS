@@ -45,21 +45,6 @@ app.use("/form", formRoutes);
 
 
 
-const { scrapeProducts } = require('./scrapper/scraper.service');
-
-app.post('/scrapear', async (req, res) => {
-  const website = req.body.website;  
-  console.log('Scraping:', website);
-
-  try {
-    const products = await scrapeProducts(website);
-    res.json({ products });
-  } catch (error) {
-    console.error('Scraping error:', error);
-    res.status(500).json({ error: 'Scraping error' });
-  }
-});
-
 app.listen(port, () => {
   console.log(`Servidor corriendo en http://localhost:${port}`);
 });

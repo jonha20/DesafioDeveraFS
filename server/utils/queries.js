@@ -8,7 +8,8 @@ const queries = {
 
   // PRODUCTS
   getAllProducts: `SELECT p2.product_name, p1.* FROM public.products_impacts_resume p1
-inner join products p2 on p2.id_products = p1.id_products;`,
+inner join products p2 on p2.id_products = p1.id_products
+where id_brand = $1;`,
 
   //FORM
   beginForm:
