@@ -8,7 +8,7 @@ import { UserContext } from "@/src/context/userContext";
 
 
 // URL scraper desplegado en Railway
-const BASE_URL = 'https://generous-tenderness-scrapper-app.up.railway.app';
+const BASE_URL = 'https://deverads-production.up.railway.app';
 
 const Chatbot = () => {
   const { setProductsScraped } = useContext(UserContext);

@@ -9,13 +9,20 @@ import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { v4 as uuidv4 } from "uuid";
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID,
-  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
+  // apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  // authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  // projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  // storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  // messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  // appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  // measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
+  apiKey: "AIzaSyDG74mnKQtfL91ZMNeLSb-K0-mVzeAqWgs",
+  authDomain: "deveraai.firebaseapp.com",
+  projectId: "deveraai",
+  storageBucket: "deveraai.firebasestorage.app",
+  messagingSenderId: "950675463777",
+  appId: "1:950675463777:web:519c3130ac24c1cabe9420",
+  measurementId: "G-FXLWLGS5XE"
 };
 
 // Initialize Firebase
@@ -60,6 +67,15 @@ const Archivos = ({ singleProducto }) => {
         },
         { withCredentials: true }
       );
+      notify("Producto enviado correctamente", "success");
+      await axios.post("https://deverads-production.up.railway.app/analizar_co2",{
+        product_name,
+        url_docs: concatenatedUrls, // Envía las URLs concatenadas aquí
+        id_brand
+      }, { withCredentials: true });
+      console.log("Analizado producto");
+      notify("Analizando producto, esto tardara unos minutos", "success");
+     
     } catch (error) {
       console.error("Error posting producto:", error);
     }
