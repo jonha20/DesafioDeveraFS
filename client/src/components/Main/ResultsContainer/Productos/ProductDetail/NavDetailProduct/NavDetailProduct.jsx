@@ -14,32 +14,32 @@ const NavDetailProduct = ({ setActiveTab, activeTab }) => {
           {t("NavDetailProduct.Resumen")}
         </h2>
         <h2
-          className={activeTab === "conclusions" ? "active" : ""}
-          onClick={() => setActiveTab("conclusions")}
+          className={activeTab === "conclusiones" ? "active" : ""}
+          onClick={() => setActiveTab("conclusiones")}
         >
           {t("NavDetailProduct.Conclusiones")}
         </h2>
         <h2
-          className={activeTab === "detailsCat" ? "active" : ""}
-          onClick={() => setActiveTab("detailsCat")}
+          className={activeTab === "detalle_categorias" ? "active" : ""}
+          onClick={() => setActiveTab("detalle_categorias")}
         >
           {t("NavDetailProduct.DetallesCategoria")}
         </h2>
         <h2
-          className={activeTab === "comparative" ? "active" : ""}
-          onClick={() => setActiveTab("comparative")}
+          className={activeTab === "comparativa" ? "active" : ""}
+          onClick={() => setActiveTab("comparativa")}
         >
           {t("NavDetailProduct.Comparativa")}
         </h2>
         <h2
-          className={activeTab === "sustainability" ? "active" : ""}
-          onClick={() => setActiveTab("sustainability")}
+          className={activeTab === "sostenibilidad_marca" ? "active" : ""}
+          onClick={() => setActiveTab("sostenibilidad_marca")}
         >
           {t("NavDetailProduct.SostenibilidadDeLaMarca")}
         </h2>
         <h2
-          className={activeTab === "infoMarketing" ? "active" : ""}
-          onClick={() => setActiveTab("infoMarketing")}
+          className={activeTab === "informacion_marketing" ? "active" : ""}
+          onClick={() => setActiveTab("informacion_marketing")}
         >
           {t("NavDetailProduct.InformacionMarketing")}
         </h2>
