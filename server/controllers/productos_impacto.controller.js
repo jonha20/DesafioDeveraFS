@@ -1,8 +1,9 @@
 const querieProduct = require("../models/productos_impacto.model");
 
 const getAllProducts = async (req, res) => {
+   const { id_brand } = req.params;
   try {
-    const products = await querieProduct.getAllProducts();
+    const products = await querieProduct.getAllProducts(id_brand);
     res.status(200).json(products);
   } catch (error) {
     res.status(500).json({ error: "Error en la BBDD" });

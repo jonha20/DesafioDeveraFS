@@ -1,11 +1,12 @@
 const pool = require("../config/sqlConfig");
 const queries = require("../utils/queries"); // Queries SQL
 
-const getAllProducts = async () => {
+const getAllProducts = async (id_brand) => {
     let client, result;
+
     try {
         client = await pool.connect(); // Espera a abrir conexion
-        const data = await client.query(queries.getAllProducts);
+        const data = await client.query(queries.getAllProducts, [id_brand]);
         result = data.rows
     } catch (err) {
         console.log(err);
