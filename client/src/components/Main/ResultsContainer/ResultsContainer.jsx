@@ -103,6 +103,7 @@ const Results = () => {
   return (
     <>
       <Navbar setActiveTab={setActiveTab} activeTab={activeTab} />
+      <NavDetailProduct setActiveTab={setActiveTab} activeTab={activeTab} />
       {activeTab === "productos" && (
         <>
           <div className="results-container">
