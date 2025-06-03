@@ -97,6 +97,37 @@
   "Comparativa": "Comparison",
   "SostenibilidadDeLaMarca": "Brand Sustainability",
   "InformacionMarketing": "Marketing Information"
-}
+},
+"DetallesCategoria": {
+   "MateriasPrimas": "Raw Materials",
+   "Fabricacion": "Manufacturing",
+    "Transporte": "Transport",
+    "Emabalaje": "Packaging",
+    "Uso": "Use",
+    "FinDeVida": "End of Life"
+  },
+   "Comparativa": {
+    "Titulo": "Difference in footprint compared to the average",
+    "Subtitulo": " Interpretation of the graph",
+    "TituloChart": " Distribution of carbon footprint"
+  },
+  "SostenibilidadDeLaMarca": {
+    "Titulo": "Brand Sustainability",
+    "Subtitulo": "Sustainability of the brand",
+    "Certificaciones": "Certifications",
+    "PoliticasSostenibilidad": "Sustainability Policies",
+    "ProyectosSociales": "Social Projects",
+    "CriticasPublicas": "Public Criticism"
+  },
+  "Chart":{
+    "Titulo": "Carbon Footprint Distribution",
+    "Subtitulo": "This chart shows the carbon footprint distribution of the product compared to the average of its category.",
+    "EjeX": "Distribution of Carbon Footprint",
+    "EjeY": "Carbon Footprint (kgCO2e)",
+    "Leyenda": {
+      "Media": "Average",
+      "Producto": "Product"
+    }
+  }
 
 }

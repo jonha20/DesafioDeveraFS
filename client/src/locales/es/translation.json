@@ -97,6 +97,46 @@
     "Comparativa": "Comparativa",
     "SostenibilidadDeLaMarca": "Sostenibilidad de la marca",
     "InformacionMarketing": "Información de marketing"
+  },
+  "DetallesCategoria": {
+    "MateriasPrimas": "Materias primas",
+    "Fabricacion": "Fabricación",
+    "Transporte": "Transporte",
+    "Emabalaje": "Embalaje",
+    "Uso": "Uso",
+    "FinDeVida": "Fin de vida"
+  },
+  "Comparativa": {
+    "Titulo": "Diferencia huella con respecto a la media",
+    "Subtitulo": "Interpretación del gráfico",
+    "TituloChart": "Distribución de huella de carbono"
+  },
+  "SostenibilidadDeLaMarca": {
+    "Titulo": "Sostenibilidad de la marca",
+    "Subtitulo": "Información sobre la sostenibilidad de la marca del producto",
+    "Certificados": "Certificados",
+    "MemoriaSostenibilidad": "Memoria de sostenibilidad",
+    "EnergiaRenovable": "Energía renovable",
+    "EmisionesCarbono": "Emisiones de carbono",
+    "MateriaVirgen": "Materia virgen no renovable",
+    "ProveedoresCercanos": "Proveedores cercanos",
+    "ProyectosSociales": "Proyectos sociales",
+    "CriticasPublicas": "Críticas públicas",
+    "PlanIgualdad": "Plan de igualdad",
+    "BrechaSalarial": "Brecha salarial por género",
+    "ConciliacionLaboral": "Conciliación laboral",
+    "SatisfaccionEmpleado": "Satisfacción del empleado"
+  },
+  "Chart":{
+    "Titulo": "Distribución de huella de carbono",
+    "Subtitulo": "Interpretación del gráfico",
+    "EjeX": "Distribución de la huella de carbono",
+    "EjeY": "Huella de carbono (kg CO2e)",
+    "Leyenda": {
+      "Media": "Media",
+      "Producto": "Producto"
+    }
   }
+
 
 }

@@ -27,6 +27,7 @@ const Results = () => {
 
   const fetchResults = async () => {
     try {
+      
       const response = await axios.get(`${import.meta.env.VITE_RENDER_BACKEND_URL}/productos_impacto/${user.id_brand}`, {
         withCredentials: true});  
       setResults(response.data);
@@ -34,7 +35,6 @@ const Results = () => {
       console.error("Error fetching results:", error);
     }
   };
-
     useEffect(() => {
     // Llama a fetchResults inmediatamente al montar el componente
     fetchResults();
