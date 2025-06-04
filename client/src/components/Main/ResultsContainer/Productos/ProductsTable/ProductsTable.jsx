@@ -117,10 +117,13 @@ try{
         className="table-cell"
         data-label={t("TableTitles.Huella de carbono")}
       >
-        {producto.co2_firgerprint}
+        <div className="carbon-footprint-container">
+    <b>{producto.co2_firgerprint}</b>
+    <p> kg CO₂ eq</p>
+  </div>
       </td>
       <td className="table-cell" data-label={t("TableTitles.Diferncia huella")}>
-        {producto.pct_benchmark}%
+        <b>{producto.pct_benchmark}%</b>
       </td>
       <td className="table-cell" data-label={t("TableTitles.Score")}>
         <div className="score-bar-container">

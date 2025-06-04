@@ -13,6 +13,19 @@ table {
   justify-content: center;
 }
 
+.carbon-footprint-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center; /* Centra los elementos horizontalmente */
+  p {
+  margin: 0; /* Elimina el margen del párrafo */
+  font-size: 0.9rem; /* Tamaño más pequeño para los kg */
+}
+}
+b {
+  font-size: 1.2rem; /* Tamaño más grande para la huella */
+  margin-bottom: 0.2rem; /* Espaciado entre la huella y los kg */
+}
  .table-cell {
     display: flex;
     justify-content: space-between; // Alinea el texto y el valor
@@ -166,4 +179,13 @@ table {
   .hide-mobile {
     display: table-cell;
   }
+  .carbon-footprint-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra los elementos horizontalmente */
+  p {
+  margin: 0; /* Elimina el margen del párrafo */
+  font-size: 0.9rem; /* Tamaño más pequeño para los kg */
+}
+}
 }
