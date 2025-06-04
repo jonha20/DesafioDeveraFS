@@ -26,7 +26,7 @@ const Results = () => {
 
   const fetchResults = async () => {
     try {
-      const response = await axios.get(`${import.meta.env.VITE_RENDER_BACKEND_URL}/productos_impacto`);
+      const response = await axios.get(`${import.meta.env.VITE_RENDER_BACKEND_URL}/productos_impacto/1`);
       setResults(response.data);
     } catch (error) {
       console.error("Error fetching results:", error);
