@@ -1,5 +1,4 @@
 import React, {useContext} from "react";
-import axios from "axios";
 import Comparativa from "./Comparativa/Comparativa";
 import Conclusiones from "./Conclusiones/Conclusiones";
 import DetalleCategorias from "./DetalleCategorias/DetalleCategorias";
