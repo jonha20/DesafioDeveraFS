@@ -7,7 +7,12 @@ const cookieParser = require("cookie-parser");
 const cors = require('cors');
 app.use(express.json());
 const helmet = require('helmet'); // Importamos helmet para seguridad
- 
+const swaggerUi = require('swagger-ui-express');
+const swaggerSpec = require('./swaggger.json');
+
+// Documentación Swagger en: http://localhost:3000/api-docs
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 
 
 app.set('trust proxy', 1); // Habilitar el proxy para HTTPS

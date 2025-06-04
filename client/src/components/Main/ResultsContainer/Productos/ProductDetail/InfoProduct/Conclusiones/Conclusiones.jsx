@@ -1,8 +1,11 @@
 import React from "react";
 import { v4 as uuidv4 } from 'uuid';
+import { useTranslation } from "react-i18next";
 
 const Conclusiones = ({ jsonData }) => {
-  if (!jsonData?.products_conclusions) return <p>Cargando datos...</p>;
+  const { t } = useTranslation();
+
+  if (!jsonData?.products_conclusions) return <p>{t("conclusions.loading")}</p>;
 
   const { general_summary, strong_points, areas_for_improvement } = jsonData.products_conclusions;
 
@@ -11,7 +14,7 @@ const Conclusiones = ({ jsonData }) => {
       {/* Resumen General */}
       <article>
         <div className="materias-primas-header">
-          <h2>Resumen General</h2>
+          <h2>{t("conclusions.general_summary_title")}</h2>
           <img src="/icons/arrow_circle_right.svg" alt="arrow_icon" />
         </div>
         <div className="materias-primas-content">
@@ -22,12 +25,12 @@ const Conclusiones = ({ jsonData }) => {
       {/* Puntos Fuertes */}
       <article>
         <div className="materias-primas-header">
-          <h2>Puntos Fuertes</h2>
+          <h2>{t("conclusions.strong_points_title")}</h2>
           <img src="/icons/arrow_circle_right.svg" alt="arrow_icon" />
         </div>
         <div className="materias-primas-content">
           <ul>
-            {strong_points.map((point, index) => (
+            {strong_points.map((point) => (
               <li key={uuidv4()}>{point}</li>
             ))}
           </ul>
@@ -37,12 +40,12 @@ const Conclusiones = ({ jsonData }) => {
       {/* Áreas de Mejora */}
       <article>
         <div className="materias-primas-header">
-          <h2>Áreas de Mejora</h2>
+          <h2>{t("conclusions.improvement_areas_title")}</h2>
           <img src="/icons/arrow_circle_right.svg" alt="arrow_icon" />
         </div>
         <div className="materias-primas-content">
           <ul>
-            {areas_for_improvement.map((area, index) => (
+            {areas_for_improvement.map((area) => (
               <li key={uuidv4()}>{area}</li>
             ))}
           </ul>

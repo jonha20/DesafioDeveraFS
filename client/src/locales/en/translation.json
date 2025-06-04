@@ -136,6 +136,11 @@
     "TotalWeight": "Total product weight",
     "Reciclado": "Product recycling percentage",
     "Transporte": "Transport method and distance"
+  },
+  "conclusions": {
+    "general_summary_title": "General Summary",
+    "strong_points_title": "Strong Points",
+    "improvement_areas_title": "Areas for Improvement",
+    "loading": "Loading data..."
   }
-
 }
