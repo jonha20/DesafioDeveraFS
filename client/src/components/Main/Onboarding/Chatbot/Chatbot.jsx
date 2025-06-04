@@ -55,7 +55,9 @@ const Chatbot = () => {
       {step === 2 && (
         <div>
           <ChatBubble isUser={false} message="Mientras analizamos tus productos, rellena el formulario para optimizar el proceso." />
-          <button onClick={handleStartForm}>Comenzar</button>
+         <div className='button-container'>
+          <button onClick={handleStartForm}>Rellenar Formulario</button>
+          </div>
         </div>
       )}
 
