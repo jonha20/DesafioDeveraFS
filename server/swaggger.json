@@ -1,0 +1,188 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Devera",
+    "version": "1.0.0",
+    "description": "Documentación de la API de Devera"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "paths": {
+    "/form": {
+      "post": {
+        "summary": "Enviar formulario de sostenibilidad",
+        "tags": ["Formularios"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FormInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Formulario enviado con éxito"
+          },
+          "400": {
+            "description": "Campos obligatorios faltantes"
+          },
+          "500": {
+            "description": "Error en el servidor al guardar el formulario"
+          }
+        }
+      }
+    },
+    "/productos_impacto/{id_brand}": {
+      "get": {
+        "summary": "Obtener productos por marca",
+        "tags": ["Productos"],
+        "parameters": [
+          {
+            "name": "id_brand",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID de la marca"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de productos obtenida con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Product"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error en la base de datos"
+          }
+        }
+      }
+    },
+    "/productos_impacto": {
+      "post": {
+        "summary": "Crear un producto",
+        "tags": ["Productos"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Producto creado con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Faltan datos del producto"
+          },
+          "500": {
+            "description": "Error al crear el producto"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "FormInput": {
+        "type": "object",
+        "required": [
+          "company_name",
+          "employees",
+          "sustainability_report",
+          "percent_renewable_sources",
+          "plan_carbon_footprint",
+          "percent_virgin_material",
+          "distance_providers",
+          "news_sustainability",
+          "equality_plan",
+          "wage_gap",
+          "conciliation_measures",
+          "enps_measurement",
+          "user_id"
+        ],
+        "properties": {
+          "company_name": { "type": "string" },
+          "employees": { "type": "integer" },
+          "sustainability_report": { "type": "boolean" },
+          "percent_renewable_sources": { "type": "number" },
+          "plan_carbon_footprint": { "type": "boolean" },
+          "percent_virgin_material": { "type": "number" },
+          "distance_providers": { "type": "number" },
+          "news_sustainability": { "type": "string" },
+          "equality_plan": { "type": "boolean" },
+          "wage_gap": { "type": "number" },
+          "conciliation_measures": { "type": "string" },
+          "enps_measurement": { "type": "boolean" },
+          "proyectossociales": { "type": "string" },
+          "otrainfo": { "type": "string" },
+          "certificados": { "type": "string" },
+          "user_id": { "type": "number" }
+        }
+      },
+      "Product": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "product_name": { "type": "string" },
+          "href": { "type": "string" },
+          "id_brand": { "type": "integer" },
+          "links": { "type": "string" },
+          "img_url": { "type": "string" }
+        }
+      },
+      "ProductInput": {
+        "type": "object",
+        "required": ["product_name", "href"],
+        "properties": {
+          "product_name": {
+            "type": "string",
+            "example": "Serum Facial"
+          },
+          "href": {
+            "type": "string",
+            "example": "https://miweb.com/producto/serum"
+          },
+          "id_brand": {
+            "type": "integer",
+            "example": 2
+          },
+          "links": {
+            "type": "string",
+            "example": "https://ejemplo.com/info"
+          },
+          "img_url": {
+            "type": "string",
+            "example": "https://ejemplo.com/imagen.jpg"
+          }
+        }
+      }
+    }
+  }
+}

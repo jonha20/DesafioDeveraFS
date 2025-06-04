@@ -1,5 +1,5 @@
 {
-  "welcome": "Bientenido",
+  "welcome": "Bienvenido",
   "Inicio": "Inicio",
   "Onboarding": "Chat de incorporación",
   "NavProductos":{
@@ -145,8 +145,14 @@
     "Transporte": "Método y distancia de transporte"
   }
 
- 
-
+  
+},
+"conclusions": {
+    "general_summary_title": "Resumen General",
+    "strong_points_title": "Puntos Fuertes",
+    "improvement_areas_title": "Áreas de Mejora",
+    "loading": "Cargando datos..."
+  }
 
   },
   "ResumenPage": {
@@ -165,4 +171,5 @@
   },
 
   "CargandoDatos": "Cargando datos..."
+
 }
