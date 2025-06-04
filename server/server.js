@@ -10,10 +10,7 @@ const helmet = require('helmet'); // Importamos helmet para seguridad
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./swaggger.json');
 
-// Documentación Swagger en: http://localhost:3000/api-docs
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-
-
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.set('trust proxy', 1); // Habilitar el proxy para HTTPS
 
@@ -30,7 +27,6 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 // Serve the static files from the React app
 app.use(express.static(path.join(__dirname, '../client')));
-
 
 // Handles any requests that don't match the ones above
 app.get('/', (req, res) => {
@@ -51,5 +47,5 @@ app.use("/form", formRoutes);
 
 
 app.listen(port, () => {
-  console.log(`Servidor corriendo en http://localhost:${port}`);
+  console.log(`Servidor iniciado`);
 });
