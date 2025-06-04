@@ -26,7 +26,7 @@ const handleLogIn = async (e) => {
       setCookie(request.data.token); // Actualiza el contexto global
 
      setTimeout(() => {
-        navigate("/onboarding");
+        navigate("/home");
       }, 2000);
     }
   } catch (error) {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const InputBox = ({ onSend }) => {
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState('https://saigucosmetics.com/collections/all-products');
 
   const handleSend = () => {
     if (!input.trim()) return;
@@ -19,6 +19,7 @@ const InputBox = ({ onSend }) => {
         type="text" 
         placeholder="Type a new message here"
         value={input}
+        readOnly
         onChange={(e) => setInput(e.target.value)}
         onKeyPress={handleKeyPress}
       />
