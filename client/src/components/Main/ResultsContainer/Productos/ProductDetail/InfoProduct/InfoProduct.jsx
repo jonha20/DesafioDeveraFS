@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useContext} from "react";
 import axios from "axios";
 import Comparativa from "./Comparativa/Comparativa";
 import Conclusiones from "./Conclusiones/Conclusiones";
@@ -6,30 +6,20 @@ import DetalleCategorias from "./DetalleCategorias/DetalleCategorias";
 import InformacionMarketing from "./InformacionMarketing/InformacionMarketing";
 import Resumen from "./Resumen/Resumen";
 import SostenibilidadMarca from "./SotenibilidadMarca/SotenibilidadMarca";
+import { UserContext } from "@/src/context/userContext";
 
 const InfoProduct = ({activeTab, productData}) => {
-const [jsonData, setJsonData] = useState([]);
+const { productoAnalizado } = useContext(UserContext);
 
-const getData = async () => {
-  try {
-    const response = await axios.get(
-      `/products_detail.json` 
-    );
-    setJsonData(response.data);
-  } catch (error) {
-    console.error("Error fetching product data:", error);
-  }
-}
-getData();
 
   return (
   <>
-    {activeTab === "resumen" && <Resumen jsonData={jsonData} />}
-    {activeTab === "comparativa" && <Comparativa jsonData={jsonData} productData={productData}/>}
-    {activeTab === "conclusiones" && <Conclusiones jsonData={jsonData} />}
-    {activeTab === "detalle_categorias" && <DetalleCategorias jsonData={jsonData} productData={productData}/>}
-    {activeTab === "informacion_marketing" && <InformacionMarketing jsonData={jsonData} productData={productData} />}
-    {activeTab === "sostenibilidad_marca" && <SostenibilidadMarca jsonData={jsonData} />}
+    {activeTab === "resumen" && <Resumen jsonData={productoAnalizado} />}
+    {activeTab === "comparativa" && <Comparativa jsonData={productoAnalizado} productData={productData}/>}
+    {activeTab === "conclusiones" && <Conclusiones jsonData={productoAnalizado} />}
+    {activeTab === "detalle_categorias" && <DetalleCategorias jsonData={productoAnalizado} productData={productData}/>}
+    {activeTab === "informacion_marketing" && <InformacionMarketing jsonData={productoAnalizado} productData={productData} />}
+    {activeTab === "sostenibilidad_marca" && <SostenibilidadMarca jsonData={productoAnalizado} />}
 
   </>
   );

@@ -23,7 +23,7 @@ const app = initializeApp(firebaseConfig);
 export const storage = getStorage(app);
 
 const Archivos = ({ singleProducto }) => {
-  const { user } = useContext(UserContext);
+  const { user, setProductoAnalizado } = useContext(UserContext);
   const [archivos, setArchivos] = useState([]);
   const { t } = useTranslation();
   const notify = (message, type) => toast[type](message);
@@ -64,11 +64,12 @@ const Archivos = ({ singleProducto }) => {
         { withCredentials: true }
       );
       notify("Producto enviado correctamente", "success");
-      await axios.post("https://proyectogit-production.up.railway.app/analizar_co2",{
-        product_name : product_name,
-        url_docs: concatenatedUrls, // Envía las URLs concatenadas aquí
-        id_brand: id_brand,
-      }, { withCredentials: true });
+       const response = await axios.post(
+  `https://proyectogit-production.up.railway.app/analizar_co2?product_name=${encodeURIComponent(product_name)}&url_docs=${encodeURIComponent(concatenatedUrls)}&id_brand=${encodeURIComponent(id_brand)}`,
+  {},
+  { withCredentials: true }
+);
+setProductoAnalizado(response.data); // <-- aquí guardas la respuesta
       console.log("Analizado producto");
       notify("Analizando producto, esto tardara unos minutos", "success");
      

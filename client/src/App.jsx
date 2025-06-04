@@ -21,6 +21,7 @@ function App() {
   const [user, setUser] = useState({});
   const [cookie, setCookie] = useState("");
   const [productsScraped, setProductsScraped] = useState([]);
+  const [productoAnalizado, setProductoAnalizado] = useState([]);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -96,7 +97,7 @@ useEffect(() => {
 
   return (
     <>
-      <UserContext.Provider value={{ user, setUser,setCookie, productsScraped, setProductsScraped }}>
+      <UserContext.Provider value={{ user, setUser,setCookie, productsScraped, setProductsScraped, productoAnalizado, setProductoAnalizado }}>
         {!hideHeader && <Header />}
         <Routes>
           <Route path="/login" element={<LogIn />} />
