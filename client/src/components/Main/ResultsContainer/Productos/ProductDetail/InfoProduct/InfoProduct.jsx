@@ -25,7 +25,7 @@ getData();
   return (
   <>
     {activeTab === "resumen" && <Resumen jsonData={jsonData} />}
-    {activeTab === "comparativa" && <Comparativa jsonData={jsonData} />}
+    {activeTab === "comparativa" && <Comparativa jsonData={jsonData} productData={productData}/>}
     {activeTab === "conclusiones" && <Conclusiones jsonData={jsonData} />}
     {activeTab === "detalle_categorias" && <DetalleCategorias jsonData={jsonData} productData={productData}/>}
     {activeTab === "informacion_marketing" && <InformacionMarketing jsonData={jsonData} productData={productData} />}

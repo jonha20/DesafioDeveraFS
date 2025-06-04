@@ -7,7 +7,7 @@ const queries = {
             VALUES ($1,$2,$3,$4);`,
 
   // PRODUCTS
-  getAllProducts: `SELECT p2.product_name, p1.* FROM public.products_impacts_resume p1
+  getAllProducts: `SELECT p2.product_name,p2.img_url, p1.* FROM public.products_impacts_resume p1
 inner join products p2 on p2.id_products = p1.id_products
 where id_brand = $1;`,
 
@@ -87,8 +87,8 @@ COMMIT;
   // PRODUCTS
   createProduct: `
   WITH new_product AS (
-    INSERT INTO products (product_name, href, id_brand, product_folder)
-    VALUES ($1, $2, $3, $4)
+    INSERT INTO products (product_name, href, id_brand, product_folder,img_url)
+    VALUES ($1, $2, $3, $4, $5)
     RETURNING id_products
   )
   INSERT INTO products_impacts_resume (id_products)

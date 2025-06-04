@@ -6,47 +6,47 @@ const NavDetailProduct = ({ setActiveTab, activeTab }) => {
 
   return (
     <>
-      <div className="navbar">
-        <h2
-          className={activeTab === "resumen" ? "active" : ""}
+      <div className="navbar-detail-product">
+        <button
+          className={`navbar-item ${activeTab === "resumen" ? "active" : ""}`}
           onClick={() => setActiveTab("resumen")}
         >
           {t("NavDetailProduct.Resumen")}
-        </h2>
-        <h2
-          className={activeTab === "conclusiones" ? "active" : ""}
+        </button>
+        <button
+          className={`navbar-item ${activeTab === "conclusiones" ? "active" : ""}`}
           onClick={() => setActiveTab("conclusiones")}
         >
           {t("NavDetailProduct.Conclusiones")}
-        </h2>
-        <h2
-          className={activeTab === "detalle_categorias" ? "active" : ""}
+        </button>
+        <button
+          className={`navbar-item ${activeTab === "detalle_categorias" ? "active" : ""}`}
           onClick={() => setActiveTab("detalle_categorias")}
         >
           {t("NavDetailProduct.DetallesCategoria")}
-        </h2>
-        <h2
-          className={activeTab === "comparativa" ? "active" : ""}
+        </button>
+        <button
+          className={`navbar-item ${activeTab === "comparativa" ? "active" : ""}`}
           onClick={() => setActiveTab("comparativa")}
         >
           {t("NavDetailProduct.Comparativa")}
-        </h2>
-        <h2
-          className={activeTab === "sostenibilidad_marca" ? "active" : ""}
+        </button>
+        <button
+          className={`navbar-item ${activeTab === "sostenibilidad_marca" ? "active" : ""}`}
           onClick={() => setActiveTab("sostenibilidad_marca")}
         >
           {t("NavDetailProduct.SostenibilidadDeLaMarca")}
-        </h2>
-        <h2
-          className={activeTab === "informacion_marketing" ? "active" : ""}
+        </button>
+        <button
+          className={`navbar-item ${activeTab === "informacion_marketing" ? "active" : ""}`}
           onClick={() => setActiveTab("informacion_marketing")}
         >
           {t("NavDetailProduct.InformacionMarketing")}
-        </h2>
+        </button>
       </div>
       <div className="navbar-underline"></div>
     </>
-)
+  );
 };
 
 export default NavDetailProduct;

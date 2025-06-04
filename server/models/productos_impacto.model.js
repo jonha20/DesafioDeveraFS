@@ -21,8 +21,8 @@ const createProduct = async (product) => {
     let client, result;
     try {
         client = await pool.connect(); // Espera a abrir conexion
-        const { product_name, href, id_brand, links } = product;
-        result = await client.query(queries.createProduct, [product_name, href, id_brand, links]);
+        const { product_name, href, id_brand, links, img_url } = product;
+        result = await client.query(queries.createProduct, [product_name, href, id_brand, links, img_url]);
     } catch (err) {
         console.log(err);
         throw err;

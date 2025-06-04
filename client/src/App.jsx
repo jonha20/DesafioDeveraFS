@@ -23,7 +23,6 @@ function App() {
   const [productsScraped, setProductsScraped] = useState([]);
   const location = useLocation();
   const navigate = useNavigate();
-  console.log("Location:", user);
 
   useEffect(() => {
     const checkToken = async () => {
@@ -52,32 +51,39 @@ function App() {
   }, [location]);
 
 useEffect(() => {
- const refreshToken = async () => {
-  let token = sessionStorage.getItem("access_token");
-  if (token) {
-    try {
-      const response = await axios.post(
-        `http://localhost:3000/users/refresh-token`,
-        {},
-        {
-          withCredentials: true,
-        }
-      );
+  const refreshToken = async () => {
+    let token = sessionStorage.getItem("access_token");
+    if (token) {
+      try {
+        const response = await axios.post(
+          `${import.meta.env.VITE_RENDER_BACKEND_URL}/users/refresh-token`,
+          { id: user.id },
+          {
+            withCredentials: true,
+          }
+        );
 
-      if (response.data.token) {
-        sessionStorage.setItem("access_token", response.data.token);
-        const decoded = jwtDecode(response.data.token);
-        setUser(decoded);
+        if (response.data.token) {
+          sessionStorage.setItem("access_token", response.data.token);
+          const decoded = jwtDecode(response.data.token);
+          setUser(decoded);
+        }
+      } catch (error) {
+        console.error("Error refreshing token:", error);
+        setUser(null);
+        navigate("/login"); // Redirige al login si falla
       }
-    } catch (error) {
-      console.error("Error refreshing token:", error);
-      setUser(null);
-      navigate("/login"); // Redirige al login si falla
     }
-  }
-};
- //refreshToken();
-}, [location]);
+  };
+
+  // Configura un intervalo para refrescar el token cada 15 minutos
+  const interval = setInterval(() => {
+    refreshToken();
+  }, 15 * 60 * 1000); // 15 minutos
+
+  // Limpia el intervalo cuando el componente se desmonte
+  return () => clearInterval(interval);
+}, []);
 
 
   const hideHeader =

@@ -42,12 +42,15 @@ const Archivos = ({ singleProducto }) => {
       let id_brand = user.id_brand;
       let product_name = singleProducto.name || singleProducto.product_name;
       let href = singleProducto.href;
+      let img_url = singleProducto.img_url || singleProducto.image;
+
 
       console.log("Datos enviados:", {
         product_name,
         href,
         id_brand,
         links: concatenatedUrls,
+        img_url
       });
 
       await axios.post(

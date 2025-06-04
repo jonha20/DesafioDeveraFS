@@ -112,10 +112,28 @@
       grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
       gap: 0.5rem;
       font-size: 0.85rem;
-
-      a {
-        color: #1976d2;
-        text-decoration: underline;
+      div{
+        display: flex;
+        flex-direction: column;
+        text-decoration: none;
+        color: #000;
+        font-weight: 500;
+        
+        strong {
+          margin: auto;
+        }
+        p{
+          margin: auto;
+        }
+        a {
+          margin: auto;
+          text-decoration: underline; // Solo subrayado
+      color: #000; // Negro
+      &:hover {
+        text-decoration: underline; // Mantén el subrayado al pasar el cursor
+        color: #000; // Mantén el color negro al pasar el cursor
+      }
+      }
       }
     }
   }
