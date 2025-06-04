@@ -144,6 +144,7 @@
     "Reciclado": "Porcentaje reciclado del producto",
     "Transporte": "Método y distancia de transporte"
   }
+
   
 },
 "conclusions": {
@@ -152,4 +153,23 @@
     "improvement_areas_title": "Áreas de Mejora",
     "loading": "Cargando datos..."
   }
+
+  },
+  "ResumenPage": {
+    "HuellaCarbono": "Huella de Carbono",
+    "MateriaPrima": "Materia prima",
+    "Fabricacion": "Fabricación",
+    "Transporte": "Transporte",
+    "Embalaje": "Embalaje",
+    "Uso": "Uso",
+    "FinVida": "Fin de vida",
+    "DiferenciaHuella": "Diferencia de huella respecto a la media",
+    "HuellaMediaProducto": "Huella media del producto",
+    "PuntuacionSostenibilidad": "Puntuación de sostenibilidad",
+    "HuellaProductoMercado": "Huella del producto respecto al mercado",
+    "SostenibilidadMarca": "Sostenibilidad de la marca"
+  },
+
+  "CargandoDatos": "Cargando datos..."
+
 }

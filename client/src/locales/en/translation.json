@@ -137,6 +137,7 @@
     "Reciclado": "Product recycling percentage",
     "Transporte": "Transport method and distance"
   },
+
   "conclusions": {
     "general_summary_title": "General Summary",
     "strong_points_title": "Strong Points",
@@ -144,3 +145,24 @@
     "loading": "Loading data..."
   }
 }
+
+
+  "ResumenPage": {
+    "HuellaCarbono": "Carbon Footprint",
+    "MateriaPrima": "Raw Materials",
+    "Fabricacion": "Manufacturing",
+    "Transporte": "Transport",
+    "Embalaje": "Packaging",
+    "Uso": "Use",
+    "FinVida": "End of Life",
+    "DiferenciaHuella": "Difference in footprint compared to the average",
+    "HuellaMediaProducto": "Average product footprint",
+    "PuntuacionSostenibilidad": "Sustainability Score",
+    "HuellaProductoMercado": "Product footprint compared to the market",
+    "SostenibilidadMarca": "Brand Sustainability"
+  },
+
+  "CargandoDatos": "Loading data..."
+
+}
+
