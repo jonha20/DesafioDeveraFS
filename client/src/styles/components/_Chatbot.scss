@@ -10,3 +10,32 @@
     font-family: variables.$font-main;
   }
 
+.button-container {
+  display: flex;
+  justify-content: center; // Centra horizontalmente
+  align-items: center; // Centra verticalmente
+  margin-top: 1rem; // Espaciado superior
+  width: 100%; // Ocupa todo el ancho en mobile
+
+  button {
+    background-color: variables.$primary-color; // Color de fondo del botón
+    color: #fff; // Color del texto
+    border: none;
+    border-radius: 5px; // Bordes redondeados
+    padding: 0.8rem 1.5rem; // Tamaño del botón
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    
+  }
+
+  @media (min-width: 768px) {
+    margin-top: 2rem; // Espaciado superior más grande en pantallas grandes
+    button {
+      font-size: 1.2rem; // Tamaño de fuente más grande en pantallas grandes
+      padding: 1rem 2rem; // Botón más grande en pantallas grandes
+    }
+  }
+}

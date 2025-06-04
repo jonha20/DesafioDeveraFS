@@ -52,7 +52,7 @@ const Archivos = ({ singleProducto }) => {
         links: concatenatedUrls,
         img_url
       });
-
+    notify("Analizando producto, esto tardara unos minutos", "success");
       await axios.post(
         `${import.meta.env.VITE_RENDER_BACKEND_URL}/productos_impacto`,
         {
@@ -60,6 +60,7 @@ const Archivos = ({ singleProducto }) => {
           href,
           id_brand,
           links: concatenatedUrls, // Envía las URLs concatenadas aquí
+          img_url
         },
         { withCredentials: true }
       );
@@ -71,7 +72,7 @@ const Archivos = ({ singleProducto }) => {
 );
 setProductoAnalizado(response.data); // <-- aquí guardas la respuesta
       console.log("Analizado producto");
-      notify("Analizando producto, esto tardara unos minutos", "success");
+      notify("Producto analizado", "success");
      
     } catch (error) {
       console.error("Error posting producto:", error);

@@ -85,10 +85,10 @@
     "Categoría": "Category",
     "Marca": "Brand",
     "Enlace": "Link",
-    "Ver reporte": "View report",
+    "Ver reporte": "Go back",
     "Descargar reporte": "Download report",
     "Adjuntar archivo": "Attach file",
-    "IMPACT SCORE": "IMPACT SCORE"
+    "impact_score": "IMPACT SCORE"
   },
   "NavDetailProduct": {
   "Resumen": "Summary",
@@ -135,7 +135,11 @@
     "TituloResumenImpacto": "This product stands out for:",
     "TotalWeight": "Total product weight",
     "Reciclado": "Product recycling percentage",
-    "Transporte": "Transport method and distance"
+    "Transporte": "Transport method and distance",
+    "HuellaCarbono": "Carbon footprint",
+    "PuntuaciónSostenibilidad": "Sustainability score",
+    "QR": "Add QR code to your products"
+
   },
 
   "conclusions": {
@@ -143,10 +147,7 @@
     "strong_points_title": "Strong Points",
     "improvement_areas_title": "Areas for Improvement",
     "loading": "Loading data..."
-  }
-}
-
-
+  },
   "ResumenPage": {
     "HuellaCarbono": "Carbon Footprint",
     "MateriaPrima": "Raw Materials",

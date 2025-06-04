@@ -63,7 +63,12 @@ const Comparativa = ({ jsonData, productData }) => {
       <section>
         <article>
           <div className="diferencia">
-          <h2>{t("Comparativa.Titulo")}</h2>
+          <div className="materias-primas-header">
+            <h2>{t("Comparativa.Titulo")}</h2>
+            <img src="/icons/arrow_circle_right.svg" alt="arrow_circle_right" />
+            <p>{productData.impact_score}%</p>
+          </div>
+          
           <p>The Sange daily cream (400 ml), with a carbon footprint of {jsonData.products_impacts_resume.co2_fingerprint} kg CO₂eq, is below the mean and median, highlighting its lower environmental impact compared to other analyzed products. This reinforces its strengths in energy efficiency, use of recycled packaging materials, and optimized transport, key elements of its sustainable approach.
 Despite its advantages, the graph suggests room for improvement in areas such as ingredient selection and end-of-life packaging management, which could further reduce its impact. Overall, Sange daily cream stands as a benchmark in sustainability within the cosmetics industry</p>
           </div>

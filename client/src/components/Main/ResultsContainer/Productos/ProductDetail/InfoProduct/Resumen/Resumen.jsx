@@ -1,10 +1,10 @@
 import React from "react";
-import "../../../../../../../styles/components/_Resumen.scss";
 import { useTranslation } from "react-i18next";
 
 
-const Resumen = ({ jsonData }) => {
+const Resumen = ({ jsonData ,productData}) => {
   const { t } = useTranslation();
+  console.log("jsonData", productData);
 
   if (!jsonData || jsonData.length === 0) {
     return <p>{t("CargandoDatos", "Cargando datos...")}</p>;
@@ -33,7 +33,7 @@ const Resumen = ({ jsonData }) => {
             <span className="arrow">
               <img src="/icons/arrow_circle_right.svg" alt="Flecha" />
             </span>
-            <span className="value">{totalCarbon}</span>
+            <span className="value">{productData.impact_score}</span>
             <span className="unit">kg CO₂ eq</span>
             <span className="icon-co2">
               <img src="/icons/CO2.png" alt="Nube CO₂" />

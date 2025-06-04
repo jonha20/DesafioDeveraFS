@@ -46,7 +46,7 @@ const InformacionMarketing = ({ productData, jsonData }) => {
         {/* Columna derecha (datos reales por props) */}
         <aside className="marketing-info__sidebar">
           <div className="impact-score">
-            <span className="impact-score__label">{t("IMPACT SCORE")}</span>
+            <span className="impact-score__label">{t("HeadProduct.impact_score")}</span>
             <div className="impact-score__bar-wrapper">
               <div
                 className="impact-score__seal-wrapper"
@@ -60,10 +60,14 @@ const InformacionMarketing = ({ productData, jsonData }) => {
 
           <div className="marketing-info__metrics">
             <div>
-              <strong>{t("Huella de carbono del producto")}:</strong> {co2} kg CO₂
+              <strong>{t("InformacionMarketing.HuellaCarbono")}:</strong> {co2} kg CO₂
             </div>
             <div>
-              <strong>{t("Puntuación de sostenibilidad")}:</strong> {pct_benchmark}%
+              <strong>{t("InformacionMarketing.PuntuaciónSostenibilidad")}:</strong> {pct_benchmark}%
+            </div>
+             <div className="marketing-info__qr">
+              <h4>{t("InformacionMarketing.QR")}</h4>
+              <img src="qrpng.png" alt="" />
             </div>
           </div>
         </aside>
