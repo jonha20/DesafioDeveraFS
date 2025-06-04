@@ -97,6 +97,14 @@
     "Comparativa": "Comparativa",
     "SostenibilidadDeLaMarca": "Sostenibilidad de la marca",
     "InformacionMarketing": "Información de marketing"
+  },
+  "InformacionMarketing": {
+    "PotenciaTitulo": "Potencia el marketing de tus productos",
+    "PotenciaTexto": "Este informe te ayuda a mejorar la transparencia con los grupos de interés y respaldar tus comunicaciones con datos concretos. Esta sección recopila los aspectos clave que puedes resaltar.",
+    "TituloResumenImpacto": "Este producto es especial por:",
+    "TotalWeight": "Peso total del producto",
+    "Reciclado": "Porcentaje reciclado del producto",
+    "Transporte": "Método y distancia de transporte"
   }
 
 }

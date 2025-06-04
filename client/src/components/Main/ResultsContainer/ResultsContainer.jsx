@@ -27,7 +27,7 @@ const Results = () => {
 
   const fetchResults = async () => {
     try {
-      const response = await axios.get(`${import.meta.env.VITE_RENDER_BACKEND_URL}/productos_impacto/${user.id_brand}`, {
+      const response = await axios.get(`${import.meta.env.VITE_RENDER_BACKEND_URL}/productos_impacto/1`, {
         withCredentials: true});  
       setResults(response.data);
     } catch (error) {
