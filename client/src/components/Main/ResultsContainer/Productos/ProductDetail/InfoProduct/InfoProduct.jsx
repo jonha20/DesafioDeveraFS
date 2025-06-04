@@ -28,7 +28,7 @@ getData();
     {activeTab === "comparativa" && <Comparativa jsonData={jsonData} />}
     {activeTab === "conclusiones" && <Conclusiones jsonData={jsonData} />}
     {activeTab === "detalle_categorias" && <DetalleCategorias jsonData={jsonData} productData={productData}/>}
-    {activeTab === "informacion_marketing" && <InformacionMarketing jsonData={jsonData} />}
+    {activeTab === "informacion_marketing" && <InformacionMarketing jsonData={jsonData} productData={productData} />}
     {activeTab === "sostenibilidad_marca" && <SostenibilidadMarca jsonData={jsonData} />}
 
   </>

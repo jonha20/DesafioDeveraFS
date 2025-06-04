@@ -207,7 +207,12 @@ async function refreshToken(req, res) {
   try {
     const payload = jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET);
     const newAccessToken = jwt.sign(
-      { id: payload.id, email: payload.email, name: payload.name },
+      { id: payload.id,
+        email: payload.email,
+        logged: payload.logged,
+        name: payload.name,
+        image: payload.image_url || null, // Asegúrate de que 'image' sea opcional
+        id_brand: payload.id_brand, },
       process.env.JWT_SECRET,
       { expiresIn: "1h" }
     );

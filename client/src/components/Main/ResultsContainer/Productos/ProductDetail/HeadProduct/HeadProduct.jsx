@@ -3,15 +3,16 @@ import { useTranslation } from "react-i18next";
 
 const HeadProduct = ({ productData, onAttachFile, onViewReport, onDownloadReport }) => {
   const { t } = useTranslation();
-
+  console.log(productData);
+  
   // Validación para que productData y sus propiedades existan
   const product = productData?.products || {};
   const resume = productData?.products_impacts_resume || {};
 
-  const product_name = product.product_name || "Producto sin nombre";
-  const href = product.href || "";
-  const impact_score = resume.impact_score ?? 0;
-  const seal = resume.seal || "-";
+  const product_name = productData.product_name || "Producto sin nombre";
+  const href = productData.href || "";
+  const impact_score = productData.impact_score ?? 0;
+  const seal = productData.seal || "-";
 
   return (
     <div className="head-product">
