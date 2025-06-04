@@ -7,7 +7,12 @@
   },
   "servers": [
     {
-      "url": "http://localhost:3000"
+      "url": "https://desafiodeverafs.onrender.com",
+      "description": "Servidor remoto en Render"
+    },
+    {
+      "url": "http://localhost:3000",
+      "description": "Servidor local"
     }
   ],
   "paths": {
@@ -44,7 +49,7 @@
         "tags": ["Productos"],
         "parameters": [
           {
-            "name": "id_brand",
+            "name": "id_brand", "example": 30,
             "in": "path",
             "required": true,
             "schema": {
@@ -75,34 +80,55 @@
     },
     "/productos_impacto": {
       "post": {
-        "summary": "Crear un producto",
-        "tags": ["Productos"],
+        "summary": "Crear un producto con impacto",
+        "description": "Endpoint para crear un producto con impacto utilizando los datos proporcionados.",
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ProductInput"
+                "$ref": "#/components/schemas/ProductImpactInput"
+              },
+              "example": {
+                "product_name": "EcoProduct",
+                "href": "https://example.com/product",
+                "id_brand": 34,
+                "links": "https://example.com/file1.pdf | https://example.com/file2.pdf",
+                "img_url": "https://example.com/image.jpg"
               }
             }
           }
         },
         "responses": {
-          "201": {
-            "description": "Producto creado con éxito",
+          "200": {
+            "description": "Producto creado exitosamente",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Product"
+                "example": {
+                  "message": "Producto creado exitosamente"
                 }
               }
             }
           },
           "400": {
-            "description": "Faltan datos del producto"
+            "description": "Faltan datos del producto",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Faltan datos obligatorios"
+                }
+              }
+            }
           },
           "500": {
-            "description": "Error al crear el producto"
+            "description": "Error al crear el producto",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Error interno del servidor"
+                }
+              }
+            }
           }
         }
       }
@@ -113,6 +139,7 @@
       "FormInput": {
         "type": "object",
         "required": [
+          "name_brand",
           "company_name",
           "employees",
           "sustainability_report",
@@ -128,22 +155,23 @@
           "user_id"
         ],
         "properties": {
-          "company_name": { "type": "string" },
-          "employees": { "type": "integer" },
-          "sustainability_report": { "type": "boolean" },
-          "percent_renewable_sources": { "type": "number" },
-          "plan_carbon_footprint": { "type": "boolean" },
-          "percent_virgin_material": { "type": "number" },
-          "distance_providers": { "type": "number" },
-          "news_sustainability": { "type": "string" },
-          "equality_plan": { "type": "boolean" },
-          "wage_gap": { "type": "number" },
-          "conciliation_measures": { "type": "string" },
-          "enps_measurement": { "type": "boolean" },
-          "proyectossociales": { "type": "string" },
-          "otrainfo": { "type": "string" },
-          "certificados": { "type": "string" },
-          "user_id": { "type": "number" }
+          "name_brand": { "type": "string", "example": "EcoBrand" },
+          "company_name": { "type": "string", "example": "EcoCompany" },
+          "employees": { "type": "integer", "example": 150 },
+          "sustainability_report": { "type": "boolean", "example": true },
+          "percent_renewable_sources": { "type": "number", "example": 75.5 },
+          "plan_carbon_footprint": { "type": "boolean", "example": true },
+          "percent_virgin_material": { "type": "number", "example": 20.3 },
+          "distance_providers": { "type": "number", "example": 120.5 },
+          "news_sustainability": { "type": "string", "example": "We launched a new eco-friendly product line." },
+          "equality_plan": { "type": "boolean", "example": true },
+          "wage_gap": { "type": "number", "example": 5.2 },
+          "conciliation_measures": { "type": "boolean", "example": true },
+          "enps_measurement": { "type": "number", "example": 85 },
+          "proyectossociales": { "type": "string", "example": "Community recycling program" },
+          "otrainfo": { "type": "string", "example": "Additional sustainability certifications" },
+          "certificados": { "type": "string", "example": "ISO 14001" },
+          "user_id": { "type": "number", "example": 8 }
         }
       },
       "Product": {
@@ -180,6 +208,38 @@
           "img_url": {
             "type": "string",
             "example": "https://ejemplo.com/imagen.jpg"
+          }
+        }
+      },
+      "ProductImpactInput": {
+        "type": "object",
+        "required": [
+          "product_name",
+          "href",
+          "id_brand",
+          "links",
+          "img_url"
+        ],
+        "properties": {
+          "product_name": {
+            "type": "string",
+            "example": "EcoProduct"
+          },
+          "href": {
+            "type": "string",
+            "example": "https://example.com/product"
+          },
+          "id_brand": {
+            "type": "integer",
+            "example": 34
+          },
+          "links": {
+            "type": "string",
+            "example": "https://example.com/file1.pdf | https://example.com/file2.pdf"
+          },
+          "img_url": {
+            "type": "string",
+            "example": "https://example.com/image.jpg"
           }
         }
       }
