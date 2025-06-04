@@ -8,7 +8,8 @@ const HeadProduct = ({
   onDownloadReport,
 }) => {
   const { t } = useTranslation();
-
+  console.log(productData);
+  
   // Validación para que productData y sus propiedades existan
 
   const product_name = productData.product_name || "Producto sin nombre";

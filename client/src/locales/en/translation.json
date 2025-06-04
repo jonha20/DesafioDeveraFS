@@ -128,6 +128,14 @@
       "Media": "Average",
       "Producto": "Product"
     }
+  },
+  "InformacionMarketing": {
+    "PotenciaTitulo": "Boost your product marketing",
+    "PotenciaTexto": "This report helps improve transparency with stakeholders and support your communication with concrete data. This section highlights the key aspects you can showcase.",
+    "TituloResumenImpacto": "This product stands out for:",
+    "TotalWeight": "Total product weight",
+    "Reciclado": "Product recycling percentage",
+    "Transporte": "Transport method and distance"
   }
 
 }
