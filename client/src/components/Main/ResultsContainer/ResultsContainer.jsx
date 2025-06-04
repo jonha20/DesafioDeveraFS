@@ -27,8 +27,8 @@ const Results = () => {
 
   const fetchResults = async () => {
     try {
-      
-      const response = await axios.get(`${import.meta.env.VITE_RENDER_BACKEND_URL}/productos_impacto/${user.id_brand}`, {
+      let id_brand = user.id_brand;
+      const response = await axios.get(`${import.meta.env.VITE_RENDER_BACKEND_URL}/productos_impacto/${id_brand}`, {
         withCredentials: true});  
       setResults(response.data);
     } catch (error) {
@@ -116,7 +116,6 @@ const Results = () => {
             <table className="results-table">
               <thead>
                 <tr>
-                  <th>{t("TableTitles.Analizar")}</th>
                   <th className="sortable-column">
                     <div className="column-header">
                       <span className="column-title">
@@ -326,7 +325,7 @@ const Results = () => {
       )}
       {activeTab === "archivos" && <Archivos singleProducto={singleProducto} />}
       {activeTab === "informacion" && <Informacion />}
-      {activeTab === "detalle" &&  singleProducto && (<ProductDetail singleProducto={singleProducto} />)}
+      {activeTab === "detalle" &&  singleProducto && (<ProductDetail singleProducto={singleProducto} setActiveMainTab={setActiveTab}/>)}
     </>
   );
 };

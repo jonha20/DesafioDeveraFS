@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Comparativa from "./Comparativa/Comparativa";
 import Conclusiones from "./Conclusiones/Conclusiones";
 import DetalleCategorias from "./DetalleCategorias/DetalleCategorias";
@@ -8,38 +8,43 @@ import SostenibilidadMarca from "./SotenibilidadMarca/SotenibilidadMarca";
 import { UserContext } from "@/src/context/userContext";
 import axios from "axios";
 
-const InfoProduct = ({activeTab, productData}) => {
+const InfoProduct = ({ activeTab, productData }) => {
   const { productoAnalizado } = useContext(UserContext);
   const [jsonData, setJsonData] = useState([]);
+  const [dataToUse, setDataToUse] = useState([]);
 
-  useEffect(() => { 
+  useEffect(() => {
     const fetchProductData = async () => {
-      axios.get("/products_detail.json")
-        .then((response) => {
-          setJsonData(response.data);
-          return response;
-        })
-        .catch((error) => {
-          console.error("Error fetching data:", error);
-          return { data: [] };
-        });
-    }
+      try {
+        const response = await axios.get("/products_detail.json");
+        setJsonData(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        setJsonData([]);
+      }
+    };
+
     fetchProductData();
   }, []);
 
-  // Usa productoAnalizado si existe y tiene elementos, si no usa jsonData
-  const dataToUse = Array.isArray(productoAnalizado) && productoAnalizado.length > 0
-    ? productoAnalizado
-    : jsonData;
+  useEffect(() => {
+    // Actualiza dataToUse cada vez que productoAnalizado cambie
+    if (productoAnalizado && Array.isArray(productoAnalizado) && productoAnalizado.length > 0) {
+      setDataToUse(productoAnalizado);
+    } else {
+      setDataToUse(jsonData);
+    }
+  }, [productoAnalizado, jsonData]);
+
 
   return (
     <>
-      {activeTab === "resumen" && <Resumen jsonData={dataToUse} />}
-      {activeTab === "comparativa" && <Comparativa jsonData={dataToUse} productData={productData}/>}
-      {activeTab === "conclusiones" && <Conclusiones jsonData={dataToUse} />}
-      {activeTab === "detalle_categorias" && <DetalleCategorias jsonData={dataToUse} productData={productData}/>}
+      {activeTab === "resumen" && <Resumen jsonData={dataToUse} productData={productData}/>}
+      {activeTab === "comparativa" && <Comparativa jsonData={dataToUse} productData={productData} />}
+      {activeTab === "conclusiones" && <Conclusiones jsonData={dataToUse} productData={productData}/>}
+      {activeTab === "detalle_categorias" && <DetalleCategorias jsonData={dataToUse} productData={productData} />}
       {activeTab === "informacion_marketing" && <InformacionMarketing jsonData={dataToUse} productData={productData} />}
-      {activeTab === "sostenibilidad_marca" && <SostenibilidadMarca jsonData={dataToUse} />}
+      {activeTab === "sostenibilidad_marca" && <SostenibilidadMarca jsonData={dataToUse} productData={productData}/>}
     </>
   );
 };

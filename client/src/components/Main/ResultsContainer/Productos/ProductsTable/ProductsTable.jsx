@@ -46,7 +46,6 @@ const ProductsTable = ({
 
   //Función para ver el detalle del producto
   const handleDetailClick = () => {
-    console.log("Producto detallado:", producto);
     setActiveSection("detalle");
     setShowDetail(true);
     setSingleProducto(producto); // Establece el producto seleccionado
@@ -103,9 +102,6 @@ try{
   // DESKTOP: Table row
   return (<>
     <tr className="table-row">
-      <td className="table-cell">
-        <input type="checkbox" onClick={postProducto} />
-      </td>
       <td className="table-cell" data-label={t("TableTitles.Producto")}>
         {producto.image && (
           <img

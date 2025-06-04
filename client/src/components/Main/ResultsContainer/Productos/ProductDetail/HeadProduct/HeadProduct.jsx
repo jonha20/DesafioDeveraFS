@@ -1,14 +1,17 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import CloudConvert from "cloudconvert";
+import { ToastContainer, toast } from "react-toastify";
 
 const HeadProduct = ({
   productData,
   onAttachFile,
   onViewReport,
   onDownloadReport,
+  setActiveMainTab,
 }) => {
   const { t } = useTranslation();
-  console.log(productData);
+  const notify = (message, type) => toast[type](message);
   
   // Validación para que productData y sus propiedades existan
 
@@ -16,8 +19,67 @@ const HeadProduct = ({
   const href = productData.img_url || "";
   const impact_score = productData.impact_score ?? 0;
   const seal = productData.seal || "-";
+    const docxToPdf = async (producto) => {
+     
+        const cloudConvert = new CloudConvert(
+          `${import.meta.env.VITE_CLOUDCONVERT_API_KEY}`
+        );
+  try{
+        let job = await cloudConvert.jobs.create({
+          tasks: {
+            "product-import": {
+              operation: "import/url",
+              url: producto.product_pdf,
+              filename: producto.product_name + ".docx",
+            },
+            "product-convert": {
+              operation: "convert",
+              input_format: "docx",
+              output_format: "pdf",
+              engine: "libreoffice",
+              input: ["product-import"],
+              optimize_print: true,
+              pdf_a: false,
+              include_markup: false,
+              bookmarks: false,
+              engine_version: "24.8.4",
+            },
+            "product-export": {
+              operation: "export/url",
+              input: ["product-convert"],
+              inline: false,
+              archive_multiple_files: false,
+            },
+          },
+          tag: "jobbuilder",
+        });
+  
+        job = await cloudConvert.jobs.wait(job.id); // Wait for job completion
+  
+        const file = cloudConvert.jobs.getExportUrls(job)[0]; // Obtén la URL del archivo exportado
+  
+        // Abre el archivo en una nueva ventana para descargarlo
+        window.open(file.url, "_blank");
+        notify("Archivo convertido y descargado exitosamente", "success");
+      } catch (error) {
+        console.error("Error converting DOCX to PDF:", error);
+        notify("Error al convertir el archivo: " + error.message, "error");
+      }
+    };
 
-  return (
+  return (<>
+    <ToastContainer
+      position="top-right"
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="light"
+    />
     <div className="head-product">
       <div className="head-product__left">
         {href ? (
@@ -88,19 +150,19 @@ const HeadProduct = ({
       </div>
 
       <div className="head-product__right">
-        <button className="action-button" onClick={onViewReport}>
+        <button className="action-button" onClick={() => setActiveMainTab("productos")}>
           <img src="/icons/eye.svg" alt="view" /> {t("HeadProduct.Ver reporte")}
         </button>
-        <button className="action-button" onClick={onDownloadReport}>
+        <button className="action-button" onClick={() => docxToPdf(productData)}>
           <img src="/icons/file_save.svg" alt="download" />{" "}
           {t("HeadProduct.Descargar reporte")}
         </button>
-        <button className="action-button" onClick={onAttachFile}>
+        <button className="action-button" onClick={() => setActiveMainTab("archivos")}>
           <img src="/icons/attach_file.svg" alt="attach" />{" "}
           {t("HeadProduct.Adjuntar archivo")}
         </button>
       </div>
-    </div>
+    </div></>
   );
 };
 

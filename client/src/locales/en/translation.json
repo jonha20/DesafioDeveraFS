@@ -85,7 +85,7 @@
     "Categoría": "Category",
     "Marca": "Brand",
     "Enlace": "Link",
-    "Ver reporte": "View report",
+    "Ver reporte": "Go back",
     "Descargar reporte": "Download report",
     "Adjuntar archivo": "Attach file",
     "IMPACT SCORE": "IMPACT SCORE"
@@ -143,10 +143,7 @@
     "strong_points_title": "Strong Points",
     "improvement_areas_title": "Areas for Improvement",
     "loading": "Loading data..."
-  }
-}
-
-
+  },
   "ResumenPage": {
     "HuellaCarbono": "Carbon Footprint",
     "MateriaPrima": "Raw Materials",
