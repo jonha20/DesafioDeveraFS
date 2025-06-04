@@ -103,7 +103,7 @@ const HeadProduct = ({
 
           <div className="head-product__impact">
             <span className="head-product__label">
-              {t("HeadProduct.IMPACT SCORE")}
+              {t("HeadProduct.impact_score")}
             </span>
 
             <div className="head-product__score-wrapper">

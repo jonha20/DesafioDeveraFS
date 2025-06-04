@@ -88,7 +88,7 @@
     "Ver reporte": "Volver atras",
     "Descargar reporte": "Descargar reporte",
     "Adjuntar archivo": "Adjuntar archivo",
-    "IMPACT SCORE": "IMPACT SCORE"
+    "impact_score": "PUNTUACIÓN DE IMPACTO"
   },
   "NavDetailProduct": {
     "Resumen": "Resumen",
@@ -143,7 +143,10 @@
     "TituloResumenImpacto": "Este producto es especial por:",
     "TotalWeight": "Peso total del producto",
     "Reciclado": "Porcentaje reciclado del producto",
-    "Transporte": "Método y distancia de transporte" 
+    "Transporte": "Método y distancia de transporte" ,
+    "HuellaCarbono": "Huella de carbono del producto",
+    "PuntuaciónSostenibilidad": "Puntuación de sostenibilidad",
+    "QR": "Añade el QR a tus productos"
 },
 "conclusions": {
     "general_summary_title": "Resumen General",
