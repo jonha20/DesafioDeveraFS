@@ -1,0 +1,177 @@
+{
+  "welcome": "Bienvenido",
+  "Inicio": "Inicio",
+  "Onboarding": "Chat de incorporación",
+  "NavProductos":{
+    "Productos": "Productos",
+    "Archivos": "Archivos",
+    "Informacion": "Información general"
+  },
+  "Filter":{
+    "show": "Mostrar",
+    "entries": "entradas",
+    "SearchPlaceholder": "Buscar por nombre, correo electrónico, etc.",
+    "export": "Exportar listado CSV"
+  },
+  "TableTitles":{
+    "Analizar": "Analizar",
+    "Producto": "Producto",
+    "Huella de carbono": "Huella de carbono",
+    "Diferncia huella": "Diferencia huella",
+    "Score": "Puntuación",
+    "Status": "Estado",
+    "Ver" : "Ver",
+    "Descargar": "Descargar",
+    "Archivos": "Archivos"
+  },
+  "ArchivosPage": {
+  "AnadirArchivos": "Añadir más archivos",
+  "DescargarArchivos": "Descargar archivos",
+  "SubirArchivos": "Subir archivos",
+  "SueltaParaSubir": "Suelta para subir los archivos",
+  "PlaceholderArrastra": "Arrastra aquí tus archivos"
+  },
+  "InformacionPage": {
+  "InformacionAportada": "Información aportada",
+  "TextoAportado": "Aquí irá la información extraída del chat sobre ventas, número de referencias, etc. Se podrá editar en todo momento, y añadir nueva información.",
+  "CuestionarioEmpresa": "Cuestionario de empresa",
+  "TextoCuestionario": "El cuestionario ya está cumplimentado, si necesitas modificar información puedes comunicarte con el chat o hacerlo de nuevo.",
+  "InformarCambios": "Informar cambios",
+  "RealizarFormulario": "Realizar formulario completo"
+  },
+  "form": {
+    "titulo": "Devera: Información empresa",
+    "intro": "Contesta este cuestionario para que podamos evaluar las políticas de sostenibilidad de tu empresa. En base a la información aportada y a la huella de carbono que detectamos automáticamente, podremos asignar un score de sostenibilidad a tus productos.",
+    "nombreEmpresa": "Nombre de tu empresa *",
+    "empleados": "¿Cuántos empleados tiene la empresa? *",
+    "certificados": "¿Tiene tu empresa algún certificado? ¿Cuál?",
+    "certificadosDescripcion": "Indica todos los certificados que tiene tu empresa y los de los productos que comercializas, así como de transparencia de la cadena de suministro (Bcorp, Fair Trade, ISO14001, Cradle to Cradle, FSC, etc.)",
+    "memoria": "¿Tiene tu empresa memoria de sostenibilidad?",
+    "energia": "¿En qué porcentaje la energía de tu empresa y tus fábricas proviene de fuentes renovables?",
+    "carbono": "¿Se miden las emisiones de carbono en la empresa o se tiene un plan para reducir la huella de carbono?",
+    "materiaVirgen": "¿Qué porcentaje de materia virgen no renovable usan vuestros productos de media?",
+    "proveedores": "¿Qué porcentaje de vuestros proveedores se encuentra a una distancia inferior a 400 km?",
+    "proyectosSociales": "¿Realizáis o apoyáis proyectos sociales?",
+    "criticas": "¿Existen noticias públicas criticando aspectos de sostenibilidad de vuestra empresa?",
+    "igualdad": "¿Existe un plan de igualdad implementado?",
+    "brechaSalarial": "¿Medís la brecha salarial por género?",
+    "conciliacion": "¿Tenéis medidas de conciliación publicadas?",
+    "enps": "¿Medís el eNPS (satisfacción del empleado)?",
+    "otraInfo": "¿Hay alguna otra información relevante?",
+    "enviar": "Enviar",
+    "seleccione": "Seleccione una opción",
+    "enviado": "Formulario enviado correctamente",
+    "alertaRadios": "Selecciona los campos obligatorios",
+    "opciones": {
+      "Si": "Sí",
+      "No": "No",
+      "NoLoSe": "No lo sé",
+      "0%": "0%",
+      "Menos25": "Menos del 25%",
+      "25_50": "Entre un 25 y un 50%",
+      "50_75": "Entre un 50 y un 75%",
+      "75_99": "Entre un 75 y un 99%",
+      "100%": "100%",
+      "ConPlan": "Se están midiendo y hay un plan de reducción",
+      "SinPlan": "Se están midiendo pero no hay plan de reducción",
+      "Proceso": "Se está en proceso de medición",
+      "SinMedicion": "No hay plan de medición",
+      "Otro": "Otro"
+    }
+  },
+  "HeadProduct": {
+    "Sin imagen": "Sin imagen",
+    "Modelo": "Modelo",
+    "Categoría": "Categoría",
+    "Marca": "Marca",
+    "Enlace": "Enlace",
+    "Ver reporte": "Volver atras",
+    "Descargar reporte": "Descargar reporte",
+    "Adjuntar archivo": "Adjuntar archivo",
+    "impact_score": "PUNTUACIÓN DE IMPACTO"
+  },
+  "NavDetailProduct": {
+    "Resumen": "Resumen",
+    "Conclusiones": "Conclusiones",
+    "DetallesCategoria": "Detalles de categoría",
+    "Comparativa": "Comparativa",
+    "SostenibilidadDeLaMarca": "Sostenibilidad de la marca",
+    "InformacionMarketing": "Información de marketing"
+  },
+  "DetallesCategoria": {
+    "MateriasPrimas": "Materias primas",
+    "Fabricacion": "Fabricación",
+    "Transporte": "Transporte",
+    "Emabalaje": "Embalaje",
+    "Uso": "Uso",
+    "FinDeVida": "Fin de vida"
+  },
+  "Comparativa": {
+    "Titulo": "Diferencia huella con respecto a la media",
+    "Subtitulo": "Interpretación del gráfico",
+    "TituloChart": "Distribución de huella de carbono"
+  },
+  "SostenibilidadDeLaMarca": {
+    "Titulo": "Sostenibilidad de la marca",
+    "Subtitulo": "Información sobre la sostenibilidad de la marca del producto",
+    "Certificados": "Certificados",
+    "MemoriaSostenibilidad": "Memoria de sostenibilidad",
+    "EnergiaRenovable": "Energía renovable",
+    "EmisionesCarbono": "Emisiones de carbono",
+    "MateriaVirgen": "Materia virgen no renovable",
+    "ProveedoresCercanos": "Proveedores cercanos",
+    "ProyectosSociales": "Proyectos sociales",
+    "CriticasPublicas": "Críticas públicas",
+    "PlanIgualdad": "Plan de igualdad",
+    "BrechaSalarial": "Brecha salarial por género",
+    "ConciliacionLaboral": "Conciliación laboral",
+    "SatisfaccionEmpleado": "Satisfacción del empleado"
+  },
+  "Chart":{
+    "Titulo": "Distribución de huella de carbono",
+    "Subtitulo": "Interpretación del gráfico",
+    "EjeX": "Distribución de la huella de carbono",
+    "EjeY": "Huella de carbono (kg CO2e)",
+    "Leyenda": {
+      "Media": "Media",
+      "Producto": "Producto"
+    }
+  },
+  "InformacionMarketing": {
+    "PotenciaTitulo": "Potencia el marketing de tus productos",
+    "PotenciaTexto": "Este informe te ayuda a mejorar la transparencia con los grupos de interés y respaldar tus comunicaciones con datos concretos. Esta sección recopila los aspectos clave que puedes resaltar.",
+    "TituloResumenImpacto": "Este producto es especial por:",
+    "TotalWeight": "Peso total del producto",
+    "Reciclado": "Porcentaje reciclado del producto",
+    "Transporte": "Método y distancia de transporte" ,
+    "HuellaCarbono": "Huella de carbono del producto",
+    "PuntuaciónSostenibilidad": "Puntuación de sostenibilidad",
+    "QR": "Añade el QR a tus productos"
+},
+"conclusions": {
+    "general_summary_title": "Resumen General",
+    "strong_points_title": "Puntos Fuertes",
+    "improvement_areas_title": "Áreas de Mejora",
+    "loading": "Cargando datos..."
+
+  },
+  "ResumenPage": {
+    "HuellaCarbono": "Huella de Carbono",
+    "MateriaPrima": "Materia prima",
+    "Fabricacion": "Fabricación",
+    "Transporte": "Transporte",
+    "Embalaje": "Embalaje",
+    "Uso": "Uso",
+    "FinVida": "Fin de vida",
+    "DiferenciaHuella": "Diferencia de huella respecto a la media",
+    "HuellaMediaProducto": "Huella media del producto",
+    "PuntuacionSostenibilidad": "Puntuación de sostenibilidad",
+    "HuellaProductoMercado": "Huella del producto respecto al mercado",
+    "SostenibilidadMarca": "Sostenibilidad de la marca"
+  },
+
+  "CargandoDatos": "Cargando datos..."
+
+}
+
+

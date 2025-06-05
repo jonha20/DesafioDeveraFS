@@ -1,0 +1,248 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Devera",
+    "version": "1.0.0",
+    "description": "Documentación de la API de Devera"
+  },
+  "servers": [
+    {
+      "url": "https://desafiodeverafs.onrender.com",
+      "description": "Servidor remoto en Render"
+    },
+    {
+      "url": "http://localhost:3000",
+      "description": "Servidor local"
+    }
+  ],
+  "paths": {
+    "/form": {
+      "post": {
+        "summary": "Enviar formulario de sostenibilidad",
+        "tags": ["Formularios"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FormInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Formulario enviado con éxito"
+          },
+          "400": {
+            "description": "Campos obligatorios faltantes"
+          },
+          "500": {
+            "description": "Error en el servidor al guardar el formulario"
+          }
+        }
+      }
+    },
+    "/productos_impacto/{id_brand}": {
+      "get": {
+        "summary": "Obtener productos por marca",
+        "tags": ["Productos"],
+        "parameters": [
+          {
+            "name": "id_brand", "example": 30,
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID de la marca"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de productos obtenida con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Product"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error en la base de datos"
+          }
+        }
+      }
+    },
+    "/productos_impacto": {
+      "post": {
+        "summary": "Crear un producto con impacto",
+        "description": "Endpoint para crear un producto con impacto utilizando los datos proporcionados.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductImpactInput"
+              },
+              "example": {
+                "product_name": "EcoProduct",
+                "href": "https://example.com/product",
+                "id_brand": 34,
+                "links": "https://example.com/file1.pdf | https://example.com/file2.pdf",
+                "img_url": "https://example.com/image.jpg"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Producto creado exitosamente",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Producto creado exitosamente"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Faltan datos del producto",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Faltan datos obligatorios"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error al crear el producto",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Error interno del servidor"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "FormInput": {
+        "type": "object",
+        "required": [
+          "name_brand",
+          "company_name",
+          "employees",
+          "sustainability_report",
+          "percent_renewable_sources",
+          "plan_carbon_footprint",
+          "percent_virgin_material",
+          "distance_providers",
+          "news_sustainability",
+          "equality_plan",
+          "wage_gap",
+          "conciliation_measures",
+          "enps_measurement",
+          "user_id"
+        ],
+        "properties": {
+          "name_brand": { "type": "string", "example": "EcoBrand" },
+          "company_name": { "type": "string", "example": "EcoCompany" },
+          "employees": { "type": "integer", "example": 150 },
+          "sustainability_report": { "type": "boolean", "example": true },
+          "percent_renewable_sources": { "type": "number", "example": 75.5 },
+          "plan_carbon_footprint": { "type": "boolean", "example": true },
+          "percent_virgin_material": { "type": "number", "example": 20.3 },
+          "distance_providers": { "type": "number", "example": 120.5 },
+          "news_sustainability": { "type": "string", "example": "We launched a new eco-friendly product line." },
+          "equality_plan": { "type": "boolean", "example": true },
+          "wage_gap": { "type": "number", "example": 5.2 },
+          "conciliation_measures": { "type": "boolean", "example": true },
+          "enps_measurement": { "type": "number", "example": 85 },
+          "proyectossociales": { "type": "string", "example": "Community recycling program" },
+          "otrainfo": { "type": "string", "example": "Additional sustainability certifications" },
+          "certificados": { "type": "string", "example": "ISO 14001" },
+          "user_id": { "type": "number", "example": 8 }
+        }
+      },
+      "Product": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "product_name": { "type": "string" },
+          "href": { "type": "string" },
+          "id_brand": { "type": "integer" },
+          "links": { "type": "string" },
+          "img_url": { "type": "string" }
+        }
+      },
+      "ProductInput": {
+        "type": "object",
+        "required": ["product_name", "href"],
+        "properties": {
+          "product_name": {
+            "type": "string",
+            "example": "Serum Facial"
+          },
+          "href": {
+            "type": "string",
+            "example": "https://miweb.com/producto/serum"
+          },
+          "id_brand": {
+            "type": "integer",
+            "example": 2
+          },
+          "links": {
+            "type": "string",
+            "example": "https://ejemplo.com/info"
+          },
+          "img_url": {
+            "type": "string",
+            "example": "https://ejemplo.com/imagen.jpg"
+          }
+        }
+      },
+      "ProductImpactInput": {
+        "type": "object",
+        "required": [
+          "product_name",
+          "href",
+          "id_brand",
+          "links",
+          "img_url"
+        ],
+        "properties": {
+          "product_name": {
+            "type": "string",
+            "example": "EcoProduct"
+          },
+          "href": {
+            "type": "string",
+            "example": "https://example.com/product"
+          },
+          "id_brand": {
+            "type": "integer",
+            "example": 34
+          },
+          "links": {
+            "type": "string",
+            "example": "https://example.com/file1.pdf | https://example.com/file2.pdf"
+          },
+          "img_url": {
+            "type": "string",
+            "example": "https://example.com/image.jpg"
+          }
+        }
+      }
+    }
+  }
+}

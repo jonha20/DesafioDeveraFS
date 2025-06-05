@@ -1,0 +1,25 @@
+
+@use './views/App';
+@use './components/Header';
+@use './components/Login';
+@use './components/Registro';
+@use './utils/variables.scss';
+@use './utils/mixins.scss';
+@use './components/Form';
+@use './components/Chatbot';
+@use './components/ChatBubble';
+@use './components/InputBox';
+@use './components/ChatContainer';
+@use './components/Navbar';
+@use './components/Filters';
+@use './components/ProductsTable';
+@use './components/ResultsContainer';
+@use './components/LenguagePicker';
+@use './components/Archivos';
+@use './components/Informacion';
+@use './components/HeadProduct';
+@use './components/DetallesCategoria';
+@use './components/NavDetailProduct';
+@use './components/Comparativa';
+@use './components/Resumen';
+@use './components/InformacionMarketing';

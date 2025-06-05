@@ -1,0 +1,14 @@
+.chart-container {
+  width: 100%; // Ocupa todo el ancho en mobile
+  max-width: 300px; // Tamaño máximo en mobile
+  margin: 0 auto; // Centra el gráfico
+  padding: 1rem;
+
+  @media (min-width: 768px) {
+    max-width: 600px; // Tamaño más grande en pantallas grandes
+  }
+
+  @media (min-width: 1024px) {
+    max-width: 800px; // Tamaño aún más grande en pantallas muy grandes
+  }
+}
