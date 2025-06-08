@@ -80,7 +80,7 @@ npm run dev
 
 ### 🚀 Producción
 - 🖥️ **Frontend (Netlify):** [https://deveraai.netlify.app/login](https://deveraai.netlify.app/login)
-- 🛠️ **Backend (Render):** [https://devera-backend.onrender.com/ready](https://devera-backend.onrender.com/ready)
+- 🛠️ **Backend (Render):** [https://desafiodeverafs.onrender.com/ready](https://desafiodeverafs.onrender.com/ready)
 
 ### 🧪 Desarrollo local
 - 🖥️ **Frontend:** [http://localhost:5173](http://localhost:5173)
